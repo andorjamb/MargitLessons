@@ -6,10 +6,12 @@ c = Number.parseInt(prompt("Give a third number:"));
 
 if (a>=0|| b>=0|| c>=0 ){
     console.log(a + b + c);
-}
-if (a>=0 && b>=0 && c>=0 ){
+
+    if (a>=0 && b>=0 && c>=0 ){
 console.log(a * b * c);
 }
+}
+
 else if(a<0 && b<0 && c<0 ){
     return console.log("There were no positive numbers.");
 }
