@@ -1,0 +1,42 @@
+
+
+h1 {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+}
+
+
+
+h2{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* calculator div styling */
+.calculator {
+padding:50px 50px;
+
+}
+
+.calculator input {
+    border-radius: 20px;
+    line-height: 30px;
+}
+
+.calculator label {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.calculator button {
+    display: block;
+    margin: 50px 0px;
+    border-radius: 20px;
+    line-height: 30px;
+
+}
+
+#gasoline {
+    background-color:aquamarine;
+}
+
+.formInput {
+    display: inline-block;
+}

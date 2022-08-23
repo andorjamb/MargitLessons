@@ -122,18 +122,33 @@ function sort() {
 sort();
 console.log(memory);
 
-//let answer = sort();
-
-
-//9. Make a program that asks ten numbers and in the end prints out two 
-//biggest numbers.
-let x;                                                                                                                     
-
-for (let i = 0; i<10; i++){
-    x = Number.parseInt(prompt("Ask a number: "));
+///// second attempt
+let rep = Number.parseInt(prompt("How many numbers do you want to give?:"));
+let progress = 0;
+do{
+    let newNum = prompt("Give a number: ");
+    rep = rep - 1;  
+    if (progress != 0){
+        if (){}
+        progress = newNum;}
+    
 }
+while (rep !=0 ) 
 
 
+
+
+//9. Make a program that asks ten numbers and in the end prints out two biggest //numbers.                                                                                        
+
+let max;
+let number, turn = 0;
+do {number = Number.parseInt(prompt("Give a number: "))
+turn++;
+max=number;
+if (number > max){ max = number;}
+}
+while(turn<10);
+console.log("biggest number is:", max);
 
 //10. Make a program that asks ten numbers. Program calculates and prints 
 // out sum and average, also prints out the smallest and biggest number.
@@ -151,7 +166,7 @@ console.log("average is", total / 10);
 
 
 let bla = "the quick brown fox";
-bla.replace(bla[0], "a");
+bla.replace("the", "a");
 console.log(bla);
 
 
