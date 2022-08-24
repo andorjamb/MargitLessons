@@ -21,6 +21,5 @@ function outcomeDisplay() {
 
 
 let calculateButton = document.getElementById("calculateButton");
-calculateButton.addEventListener("click", outcomeDisplay());
 
 // getElement finds the element, but not its value. You need to get the attribute called 'value' of the input object. By default it is an empty string. 
