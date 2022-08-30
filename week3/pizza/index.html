@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Pizza</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vibur">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Short+Stack">
+</head>
+
+<body>
+
+    <header>
+        <h1 id="pageTitle">Neon Pizza</h1>
+    </header>
+
+
+    <main>
+
+        <div id="pizzaSize">
+            <h3>1. Choose a size for your pizza:</h2>
+                <form name="sizeForm">
+                    <input type="radio" name="size" value="2" onclick="updateCart()">Small (for 2) €7.50
+                    <input type="radio" name="size" value="4" onclick="updateCart()">Medium (for 4) €10.50
+                    <input type="radio" name="size" value="6">Large (for 6) €12.50
+                    <input type="radio" name="size" value="8">X-Large (for 8) €15.50
+                </form>
+
+        </div>
+
+        <div id="pizzaToppings">
+            <form>
+                <h3>2. Choose your toppings:</h3>
+                <p><em>The first four are included in the price, additional toppings are 50c each.</em></p>
+                <input type="checkbox" name="toppings" value="mozzarella">Mozzarella
+                <input type="checkbox" name="toppings" value="prosciutto">Prosciutto
+                <input type="checkbox" name="toppings" value="pumpkin">Roast Pumpkin
+                <input type="checkbox" name="toppings" value="garlic">Garlic
+                <input type="checkbox" name="toppings" value="onion">Onion
+                <input type="checkbox" name="toppings" value="olives">Olives
+                <input type="checkbox" name="toppings" value="anchovies">Anchovies
+                <input type="checkbox" name="toppings" value="pesto">Pesto
+                <input type="checkbox" name="toppings" value="gorgonzola">Gorgonzola
+                <input type="checkbox" name="toppings" value="pepperoni">Pepperoni
+                <input type="checkbox" name="toppings" value="eggplant">Eggplant
+                <input type="checkbox" name="toppings" value="salmon">Smoked Salmon
+                <input type="checkbox" name="toppings" value="goatsCheese">Goat's cheese
+
+            </form>
+        </div>
+
+        <div id="deliveryMethod">
+            <h3>3. Choose your delivery method:</h3>
+            <form>
+                <select name="delivery">
+                    <option value="delivery">Delivery (+5€)</option>
+                    <option value="dickup">Pickup</option>
+                    <option value="eatIn">Eat in</option>
+                </select>
+            </form>
+        </div>
+        <div id="orderName">
+            <h3>4. Lastly, your name:</h3>
+            <form><input type="text"></form>
+
+        </div>
+
+        <div id="orderSummary">
+            <h2>Order Summary:</h2>
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Pizza size:</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Toppings:</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Delivery Method:</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>TOTAL</td>
+                    <td></td>
+                </tr>
+            </table>
+
+
+
+        </div>
+        <form> <button type="submit">Submit Order</submit>
+        </form>
+
+    </main>
+
+
+    <footer>Copyright BCH 2022</footer>
+
+    <script src="./main.js"></script>
+
+</body>
+
+</html>
