@@ -1,72 +1,62 @@
+/*
+////////Notes from Margit's example://///////
 
-let total = 0; // variable for total pizza cost
-let sizePrice = 0;
-let extraToppings;
-let deliveryMethod;
+const form = document.querySelector('form');
+const size = document.querySelectorAll();
+const toppings = document.querySelectorAll();
+const takeOrder = function(event){
+event.preventDefault(); 
+let customerName = customer.value;  
+};
 
-
-
-const size = document.getElementsByName("size");
-console.log(size.value);
-
-// toppingsBoxes is an array of checkbox elements
-const toppingsBoxes = document.getElementsByName("toppings");
-const listenToppings = toppingsBoxes.addEventListener(){ };
-
-console.log(toppingsBoxes.value);
-countToppings();
+form.addEventListener('submit', takeOrder)
 
 
-function updateCart() {
-    total = total + sizePrice + extraToppings + deliveryMethod;
+toppings.forEach((item)=>{toppingsResult.push(item.value);})
+*/
+
+/*
+querySelectorAll gives a nodelist. 
+nodelist - looks like an array but it isn't, you can't use array methods on it. 
+
+*/
+
+let total = 0; // variable for total order cost
+const toppingsList = []; // an empty array of strings
+const toppings = document.getElementsByName("toppings");
+const sizes = document.getElementsByName("size");
+
+sizes.forEach(function (size) {
+    console.log(size.value);
+});
+
+sizes.forEach(function (size) {
+    console.log(size.value);
+});
+/* 
+toppings.forEach(function (topping) {
+    topping.addEventListener("change", test);
+}); */
+// this is not working, the listener needs to be attached to something else?
+
+function check(selection) {
+    if (selection.checked) {
+        console.log(selection.value);
+        toppingsList.push(selection.value)
+    };
+}
+
+function updateCart(c) {
+    total = total + c;
     console.log(`total is ${total}`);
 }
 
-// function to tally the number of toppings selected
-function countToppings() {
-    let toppingsNumber = 0;
-    toppingsBoxes.forEach(function (toppingBox) {
-        if (toppingBox.checked) {
-            toppingsNumber += 1;
-            console.log(toppingBox.value);
-        }
-    })
-
+const c = function () {
+    let price = Number(size.value);
+    console.log(price);
+    return price;
 }
 
 
-//function to send size to total and summary
-function getSize(size) {
-    switch (size) {
-        case 2:
-            sizePrice = 7.5;
-            break;
-        case 4:
-            sizePrice = 10.5;
-            break;
-        case 6:
-            price = 12.5;
-            break;
-        case 8:
-            price = 15.5;
-            break;
-    }
-    return sizePrice;
-}
 
-
-/* document.getElementsByName("size").addEventListener("click", function() {let size = document.sizeForm.size.value;
-console.log(size);})
- */
-// on submit: calculate order summary
-
-//for each radio button:
-/*if checked: add value to total
-
-*/
-//access form.name.value
-
-
-
-/*toppings:
-total toppings: if > 4*/
+console.log("toppings array contents:", toppingsList);

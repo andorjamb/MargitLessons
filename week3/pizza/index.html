@@ -5,28 +5,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucky Pizza</title>
+    <title>Neon Pizza</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vibur">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Short+Stack">
 </head>
 
 <body>
+    <!-- give your inputs an id so they can be accessed by JS -->
 
     <header>
         <h1 id="pageTitle">Neon Pizza</h1>
     </header>
-
 
     <main>
 
         <div id="pizzaSize">
             <h3>1. Choose a size for your pizza:</h2>
                 <form name="sizeForm">
-                    <input type="radio" name="size" value="2" onclick="updateCart()">Small (for 2) €7.50
-                    <input type="radio" name="size" value="4" onclick="updateCart()">Medium (for 4) €10.50
-                    <input type="radio" name="size" value="6">Large (for 6) €12.50
-                    <input type="radio" name="size" value="8">X-Large (for 8) €15.50
+
+                    <input type="radio" name="size" value="7.5" id="small" onchange="updateCart()">
+                    <label for="small"> Small (for 2) €7.50</label>
+                    <br>
+                    <input type="radio" name="size" value="10.5" id="medium" onchange="updateCart()">
+                    <label for="medium"> Medium (for 4) €10.50</label>
+                    <br>
+                    <input type="radio" name="size" value="12.5" onclick="updateCart()">
+                    <label for="large">Large (for 6) €12.50</label>
+                    <br>
+                    <input type="radio" name="size" value="15.5" id="xlarge" onclick="updateCart()">
+                    <label for="xlarge">X-Large (for 8) €15.50</label>
+                    <br>
                 </form>
 
         </div>
@@ -36,17 +45,29 @@
                 <h3>2. Choose your toppings:</h3>
                 <p><em>The first four are included in the price, additional toppings are 50c each.</em></p>
                 <input type="checkbox" name="toppings" value="mozzarella">Mozzarella
+                <br>
                 <input type="checkbox" name="toppings" value="prosciutto">Prosciutto
+                <br>
                 <input type="checkbox" name="toppings" value="pumpkin">Roast Pumpkin
+                <br>
                 <input type="checkbox" name="toppings" value="garlic">Garlic
+                <br>
                 <input type="checkbox" name="toppings" value="onion">Onion
+                <br>
                 <input type="checkbox" name="toppings" value="olives">Olives
+                <br>
                 <input type="checkbox" name="toppings" value="anchovies">Anchovies
+                <br>
                 <input type="checkbox" name="toppings" value="pesto">Pesto
+                <br>
                 <input type="checkbox" name="toppings" value="gorgonzola">Gorgonzola
+                <br>
                 <input type="checkbox" name="toppings" value="pepperoni">Pepperoni
+                <br>
                 <input type="checkbox" name="toppings" value="eggplant">Eggplant
+                <br>
                 <input type="checkbox" name="toppings" value="salmon">Smoked Salmon
+                <br>
                 <input type="checkbox" name="toppings" value="goatsCheese">Goat's cheese
 
             </form>
