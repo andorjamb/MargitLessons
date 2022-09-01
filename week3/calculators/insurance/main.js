@@ -7,8 +7,9 @@ bad habits - increase 5% per bad habit
 */
 const form = document.querySelector("form");
 const client = document.querySelector("#client");
-//console.log('client', client.value);
-function ageLoading() {
+let basePremium = 500;
+let clientPremium = 0;
+function agePenalty() {
   let age = document.querySelector("#age").value;
   let ageCategory;
   let penalty = 1;
@@ -35,39 +36,59 @@ function ageLoading() {
     penalty = 3.2;
   }
 
-  let basePremium = penalty * 500;
+  let clientPremium = penalty * basePremium;
 
   const ageOutput = document.getElementById("ageOutput");
-  ageOutput.textContent = `Your age increases your base premium to ${basePremium}€.`;
+  ageOutput.textContent = `Your age increases your base premium to ${clientPremium}€.`;
   ageOutput.style.border = "2px solid rgba(48, 48, 110, 0.331)";
   ageOutput.style.borderRadius = "17px";
-  return basePremium;
+  return clientPremium;
 }
 
+let healthConditions = 0;
+let healthArray = [];
+let healthOptions = document.getElementsByName("health");
+console.log("health nodelist:", healthOptions); //prints element type and id
+for (let i = 0; i < healthOptions.length; i++) {
+  console.log("health nodelist values:", healthOptions[i].value);
+  console.log(healthOptions[i].checked);
+} //prints value of checkbox input element
+
 function healthPenalty() {
-  let healthConditions = 0; // maybe this should be global so it isn't reset on function trigger
-  let healthPremium = 0;
-  let healthOptions = document.getElementsByName("health");
+  console.log(healthOptions.value);
   healthOptions.forEach(function (item) {
     if (item.checked) {
-      //healthConditions = healthConditions + 1;
-      healthPremium = basePremium * 1.01;
+      if (!healthArray.includes(item.value)) {
+        healthArray.push(item.value);
+      }
     }
-    console.log(healthConditions);
+    clientPremium = clientPremium * 1.01;
+    console.log('clientpremium value:', clientPremium);
+    
   });
 
-  /*increase of 1% cost for each*/
+  console.log("health array:", healthArray);
+
+  for (let j = 0; j < healthArray.length; j++) {}
+
   const healthOutput = document.getElementById("healthOutput");
-  healthOutput.textContent = `Your health conditions increase your premium to ${healthPremium}€.`;
-  return healthPremium;
+  clientPremium = clientPremium * 1.01;
+  healthOutput.textContent = `Your health conditions increase your premium to ${clientPremium}€.`;
+  healthOutput.style.border = "2px solid rgba(48, 48, 110, 0.331)";
+  healthOutput.style.borderRadius = "17px";
+  return clientPremium;
 }
 
 function habitPenalty() {
+  const habitOutput = document.getElementById("habitOutput");
   console.log(smoking);
+  habitOutput.textContent = `Your habit conditions increase your premium to ${clientPremium}€.`;
+  habitOutput.style.border = "2px solid rgba(48, 48, 110, 0.331)";
+  habitOutput.style.borderRadius = "17px";
 }
 
 function calculateAll() {
-  console.log(ageLoading(age));
+  console.log(agePenalty(age));
   console.log(healthForm);
 }
 
@@ -85,4 +106,4 @@ smoking.addEventListener("change", habitPenalty);
 alcohol.addEventListener("change", habitPenalty);
 drugs.addEventListener("change", habitPenalty);
 
-form.addEventListener("change", ageLoading);
+//form.addEventListener("change", ageLoading);
