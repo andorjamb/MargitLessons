@@ -44,6 +44,7 @@ function calculateAll() {
 
   //start of function
   function healthPenalty() {
+    let healthPremium = 0;
     console.log(
       "printing return value from age function to show it can access in health:",
       agePenalty()
@@ -62,12 +63,15 @@ function calculateAll() {
       }
     });
 
+    /*
+
     const healthPenaltyDisplay = document.getElementById(
       "healthPenaltyDisplay"
     );
     healthPenaltyDisplay.textContent = `Your pre-existing health conditions increase your premium to ${healthPremium}€.`;
     healthPenaltyDisplay.style.border = "2px solid rgba(48, 48, 110, 0.331)";
     healthPenaltyDisplay.style.borderRadius = "17px";
+    */
     return healthArray.length;
   }
   //end of health function
@@ -76,10 +80,13 @@ function calculateAll() {
   //for each good habit, reduce price by 5%, bad habits - increase 5% per bad habit
 
   function habitPenalty() {
+    /*
     const habitOutput = document.getElementById("habitOutput");
     habitOutput.textContent = `Your habit conditions increase your premium to ${clientPremium}€.`;
     habitOutput.style.border = "2px solid rgba(48, 48, 110, 0.331)";
     habitOutput.style.borderRadius = "17px";
+
+    */
   }
   console.log("age function returns: ", agePenalty());
   //should print vlaue of agePremium variable
