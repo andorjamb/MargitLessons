@@ -99,7 +99,7 @@ function calculateAll() {
   let clientPremium = agePenalty();
   console.log("after calculating age premium:", clientPremium);
 */
-
+  let clientPremium = agePenalty();
   for (let k = 0; k < healthPenalty(); k++) {
     clientPremium = clientPremium * 1.01;
     console.log(`round ${k} of healthPenalty: ${clientPremium}`);
