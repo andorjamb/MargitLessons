@@ -1,31 +1,52 @@
-
 @import url("https://fonts.googleapis.com/css?family=Lato");
+
 body {
-    font-family: "Lato", Arial, Helvetica, sans-serif}
+    font-family: "Lato", Arial, Helvetica, sans-serif
+}
 
 
 header {
-    height: 150px;
-    
+    display: flex;
+    flex-direction: coloumn;
+    flex-wrap: nowrap;
 }
 
 h1 {
     text-align: center;
-    color:rgb(123, 123, 220);
+    color: rgb(123, 123, 220);
     font-style: italic;
     font-size: 4rem;
-    
+
+}
+
+.logo {
+
+    width: 50%vw;
+    display: inline-block;
+    background: rgba(48, 48, 110, 0.331);
+    padding: 0 30px;
 }
 
 .hero {
-    /*background-image: url("./assets/images/towfiqu-barbhuiya-B3PxVCnbsSI-unsplash\ \(1\).jpg");*/
-    
+    display: inline;
+    width: 50%vw;
+    height: auto;
+    background-image: url("./assets/images/towfiqu-barbhuiya-B3PxVCnbsSI-unsplash\ \(1\).jpg");
+    background-attachment: fixed;
+    background-size: contain;
+}
+
+
+.hero img {
+    height: auto;
+    width: auto;
 }
 
 .main {
-    background-color:rgba(123, 123, 220, 0.5);
+    background-color: rgba(123, 123, 220, 0.5);
     border-radius: 5px;
 }
+
 form {
     padding: 20px 20px;
 }
@@ -39,20 +60,26 @@ input {
     border-radius: 5px;
 }
 
-.outputBox > div, p {
-    animation: fadeIn 2s;
-    color:rgba(48, 48, 110, 0.331);
+
+.results {
+    visibility: hidden;
+    animation: fadeIn 3s;
+    color: rgba(48, 48, 110, 0.331);
     height: 50px;
-   /*  border: 2px solid rgba(48, 48, 110, 0.331);
-    border-radius: 17px; */
+    border: 2px solid rgba(48, 48, 110, 0.331);
+    border-radius: 17px;
     padding: 5px 10px;
-    text-align:center;
+    text-align: center;
 }
 
-#ageOutput {}
-/* rgba(123, 123, 220, 0.5) */
 
+/*rgba(123, 123, 220, 0.5) ; */
 @keyframes fadeIn {
-    0% {opacity: 0;}
-    100% {opacity: 1}
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1
+    }
 }

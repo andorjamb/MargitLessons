@@ -6,12 +6,20 @@ Insurance calculator
 const form = document.querySelector("form");
 const client = document.querySelector("#client");
 const submit = document.querySelector("#submit");
-let healthConditions = document.getElementsByName("health");
-let basePremium = 500;
-//let clientPremium;
+const healthConditions = document.getElementsByName("health");
+const habitsNodelist = docuement.getElementsByName("habit");
+const basePremium = 500;
+const healthResult = document.getElementById(
+  "healthResult");
+const ageResult = document.getElementById("ageResult");
+const habitResult = document.getElementById("habitResult");
 
+//main calculator function, triggered on submit
 function calculateAll() {
+  /*const results = document.getElementsByClassName("results");
+  results.style.visibility = "visible";*/
   //start of age function
+  let clientPremium = 0;
   function agePenalty() {
     let age = document.querySelector("#age").value;
     let penalty = 1;
@@ -33,11 +41,6 @@ function calculateAll() {
     }
 
     agePremium = Number(penalty * basePremium);
-
-    const ageOutput = document.getElementById("ageOutput");
-    ageOutput.textContent = `Your age increases your premium to ${agePremium}€.`;
-    ageOutput.style.border = "2px solid rgba(48, 48, 110, 0.331)";
-    ageOutput.style.borderRadius = "17px";
     return agePremium;
   }
   //end of function
@@ -45,10 +48,7 @@ function calculateAll() {
   //start of function
   function healthPenalty() {
     let healthPremium = 0;
-    console.log(
-      "printing return value from age function to show it can access in health:",
-      agePenalty()
-    );
+
     let healthArray = [];
     healthConditions.forEach(function (item) {
       if (item.checked) {
@@ -62,16 +62,6 @@ function calculateAll() {
         }
       }
     });
-
-    /*
-
-    const healthPenaltyDisplay = document.getElementById(
-      "healthPenaltyDisplay"
-    );
-    healthPenaltyDisplay.textContent = `Your pre-existing health conditions increase your premium to ${healthPremium}€.`;
-    healthPenaltyDisplay.style.border = "2px solid rgba(48, 48, 110, 0.331)";
-    healthPenaltyDisplay.style.borderRadius = "17px";
-    */
     return healthArray.length;
   }
   //end of health function
@@ -80,52 +70,81 @@ function calculateAll() {
   //for each good habit, reduce price by 5%, bad habits - increase 5% per bad habit
 
   function habitPenalty() {
-    /*
-    const habitOutput = document.getElementById("habitOutput");
-    habitOutput.textContent = `Your habit conditions increase your premium to ${clientPremium}€.`;
-    habitOutput.style.border = "2px solid rgba(48, 48, 110, 0.331)";
-    habitOutput.style.borderRadius = "17px";
-
-    */
+    let habitPremium = 0;
+    const badHabits = [];
+    const goodHabits = [];
+    habitsNodelist.forEach(function (item) {
+      if (item.checked) {
+        if (item.class == "bad"){
+          if
+          (!badHabits.includes(item.value)){
+            badHabits.push(item.value);
+          }}
+       
+    else {
+      if (healthArray.includes(item.value)) {
+        let index = healthArray.indexOf(item.value);
+        healthArray = healthArray.splice(index, 1);
+      }
+    }
   }
-  console.log("age function returns: ", agePenalty());
-  //should print vlaue of agePremium variable
-  console.log("health function returns: ", healthPenalty());
-  //should return the length of health conditions array
-  console.log("habit function returns: ", habitPenalty());
-  //
+});
 
+return
+
+  }
+//end of habits function
+
+
+//start of display results function
+
+displayResults() {
+
+  const object = {
+    "agePenalty": "" //return value of AgePenalty function
+      "healthPenalty": "", //
+    "habitPenalty": "",
+  }
+  return object;
+}
+
+//end of display results function
+
+//back in main function: 
+//testing results:
+console.log("age function returns: ", agePenalty());
+//should print vlaue of agePremium variable
+console.log("health function returns: ", healthPenalty());
+//should return the length of health conditions array
+console.log("habit function returns: ", habitPenalty());
+//
+
+clientPremium = agePenalty();
+
+for (let k = 0; k < healthPenalty(); k++) {
+  clientPremium = clientPremium * 1.01;
+  console.log(`round ${k + 1} of healthPenalty: ${clientPremium}`);
+}
+
+displayResults().
   /*
-  let clientPremium = agePenalty();
-  console.log("after calculating age premium:", clientPremium);
-*/
-  let clientPremium = agePenalty();
-  for (let k = 0; k < healthPenalty(); k++) {
-    clientPremium = clientPremium * 1.01;
-    console.log(`round ${k} of healthPenalty: ${clientPremium}`);
-  }
+    healthResult.textContent = `Your pre-existing health conditions increase your premium to ${displayResults().agePenalty}€.`;
+    /*
+  
+    ageResult.textContent = `Your age increases your premium to ${displayResults.healthPenalty}€.`;*/
+  /*
+    habitResult.textContent = `Your habits increase your premium to ${displayResults().habitPremium}€.`;
+  */
+
 }
 //end of main function
 
 submit.addEventListener("click", function (event) {
   event.preventDefault();
   calculateAll();
+
+
 });
 
-/*
-const hypertension = document.getElementById("hypertension");
-const bloodsugar = document.getElementById("bloodsugar");
-const overweight = document.getElementById("overweight");
-hypertension.addEventListener("change", healthPenalty);
-bloodsugar.addEventListener("change", healthPenalty);
-overweight.addEventListener("change", healthPenalty);
 
-const smoking = document.getElementById("smoking");
-const alcohol = document.getElementById("alcohol");
-const drugs = document.getElementById("drugs");
-smoking.addEventListener("change", habitPenalty);
-alcohol.addEventListener("change", habitPenalty);
-drugs.addEventListener("change", habitPenalty);
-*/
-
-//form.addEventListener("change", calculateAll);
+form.addEventListener("change", calculateAll);
