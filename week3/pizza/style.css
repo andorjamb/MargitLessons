@@ -5,6 +5,15 @@
 
 */
 
+header img {
+    height: 90px;
+    width: auto;
+    transform: rotate(-30deg);
+    position: absolute;
+    top: 170px;
+    right: 10px;
+}
+
 body {
 
     margin: 20px;
@@ -40,13 +49,21 @@ h3 {
     color: rgb(177, 241, 74);
 }
 
+
+
 button,
-input,
-select {
+input {
     margin: 1rem;
+    border-radius: 10px;
+    background-color: #82ABB4;
+    border: 2px solid chartreuse;
+    font-size: 1rem;
+    padding: 5px 5px;
 }
 
+
 select {
+    margin: 1rem;
     padding: 5px 10px;
     border-radius: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -54,8 +71,23 @@ select {
     background-color: chartreuse;
 }
 
-input {
+button {
     border: 2px solid chartreuse;
+    background-image: linear-gradient(to bottom, white, chartreuse);
+    box-shadow: 3px 3px rgb(191, 113, 191);
+    text-align: center;
+    font-family: "Short Stack";
+    color: rgb(71, 5, 71);
+    font-weight: 700;
+}
+
+.centered-div {
+    display: flex;
+    background: transparent;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
 }
 
 
@@ -99,7 +131,7 @@ input {
 /* effect from CSS Tricks tutorial*/
 #pageTitle {
     font-family: "Vibur", cursive;
-    font-size: 56px;
+    font-size: 64px;
     text-align: center;
     justify-content: space-around;
     color: white;

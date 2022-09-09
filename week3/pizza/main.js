@@ -11,52 +11,57 @@ let customerName = customer.value;
 
 form.addEventListener('submit', takeOrder)
 
-
 toppings.forEach((item)=>{toppingsResult.push(item.value);})
 */
 
-/*
-querySelectorAll gives a nodelist. 
-nodelist - looks like an array but it isn't, you can't use array methods on it. 
-
-*/
 
 let total = 0; // variable for total order cost
-const toppingsList = []; // an empty array of strings
+const pizzaForm = document.querySelector('pizzaOrder');
+
 const toppings = document.getElementsByName("toppings");
+console.log(toppings);
 const sizes = document.getElementsByName("size");
 
-sizes.forEach(function (size) {
-    console.log(size.value);
-});
-
-sizes.forEach(function (size) {
-    console.log(size.value);
-});
-/* 
-toppings.forEach(function (topping) {
-    topping.addEventListener("change", test);
-}); */
-// this is not working, the listener needs to be attached to something else?
-
-function check(selection) {
-    if (selection.checked) {
-        console.log(selection.value);
-        toppingsList.push(selection.value)
-    };
-}
-
-function updateCart(c) {
-    total = total + c;
-    console.log(`total is ${total}`);
-}
-
-const c = function () {
-    let price = Number(size.value);
-    console.log(price);
-    return price;
-}
-
-
-
+pizzaForm.addEventListener('submit', readOrder);
 console.log("toppings array contents:", toppingsList);
+
+const form = document.querySelector("form");
+form.addEventListener("submit", test);
+
+function readOrder() {
+    test();
+    const cost = function () {
+        let price = Number(sizes.value);
+        return price;
+    }
+    total = total + cost;
+    console.log(`total is ${total}`);
+
+
+}
+
+function test(event) {
+    event.preventDefault();
+    console.log("print me when something is being changed, to show I am listening");
+
+}
+
+let toppingSelection = function () {
+    const toppingsList = []; // an empty array of strings
+    toppings.forEach(function (topping) {
+        if (topping.checked) {
+            console.log(topping.value);
+            toppingsList.push(topping.value)
+        };
+    })
+    return toppingsList;
+}
+
+
+function summary() {
+    const customer = document.querySelector('customer');
+    nameField = document.querySelector('nameField');
+    nameField.textContent = customer.value;
+    console.log('customer name: ', customer.value);
+}
+

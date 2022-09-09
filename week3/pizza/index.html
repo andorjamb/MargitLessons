@@ -16,32 +16,31 @@
 
     <header>
         <h1 id="pageTitle">Neon Pizza</h1>
+        <img src="/—Pngtree—pizza fast food_7354776.png">
     </header>
 
     <main>
+        <form name="pizzaOrder">
+            <div id="pizzaSize">
 
-        <div id="pizzaSize">
-            <h3>1. Choose a size for your pizza:</h2>
-                <form name="sizeForm">
+                <h3>1. Choose a size for your pizza:</h3>
+                <input type="radio" name="size" value="7.5" id="small" onchange="updateCart()">
+                <label for="small"> Small (for 2) €7.50</label>
+                <br>
+                <input type="radio" name="size" value="10.5" id="medium" onchange="updateCart()">
+                <label for="medium"> Medium (for 4) €10.50</label>
+                <br>
+                <input type="radio" name="size" value="12.5" onclick="updateCart()">
+                <label for="large">Large (for 6) €12.50</label>
+                <br>
+                <input type="radio" name="size" value="15.5" id="xlarge" onclick="updateCart()">
+                <label for="xlarge">X-Large (for 8) €15.50</label>
+                <br>
 
-                    <input type="radio" name="size" value="7.5" id="small" onchange="updateCart()">
-                    <label for="small"> Small (for 2) €7.50</label>
-                    <br>
-                    <input type="radio" name="size" value="10.5" id="medium" onchange="updateCart()">
-                    <label for="medium"> Medium (for 4) €10.50</label>
-                    <br>
-                    <input type="radio" name="size" value="12.5" onclick="updateCart()">
-                    <label for="large">Large (for 6) €12.50</label>
-                    <br>
-                    <input type="radio" name="size" value="15.5" id="xlarge" onclick="updateCart()">
-                    <label for="xlarge">X-Large (for 8) €15.50</label>
-                    <br>
-                </form>
+            </div>
 
-        </div>
+            <div id="pizzaToppings">
 
-        <div id="pizzaToppings">
-            <form>
                 <h3>2. Choose your toppings:</h3>
                 <p><em>The first four are included in the price, additional toppings are 50c each.</em></p>
                 <input type="checkbox" name="toppings" value="mozzarella">Mozzarella
@@ -70,54 +69,54 @@
                 <br>
                 <input type="checkbox" name="toppings" value="goatsCheese">Goat's cheese
 
-            </form>
-        </div>
 
-        <div id="deliveryMethod">
-            <h3>3. Choose your delivery method:</h3>
-            <form>
+            </div>
+
+            <div id="deliveryMethod">
+                <h3>3. Choose your delivery method:</h3>
+
                 <select name="delivery">
                     <option value="delivery">Delivery (+5€)</option>
                     <option value="dickup">Pickup</option>
                     <option value="eatIn">Eat in</option>
                 </select>
-            </form>
-        </div>
-        <div id="orderName">
-            <h3>4. Lastly, your name:</h3>
-            <form><input type="text"></form>
 
-        </div>
+            </div>
+            <div id="orderName">
+                <h3>4. Lastly, your name:</h3>
+                <input id="customer" name="customer" type="text">
+            </div>
 
-        <div id="orderSummary">
-            <h2>Order Summary:</h2>
-            <table>
-                <tr>
-                    <td>Name:</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Pizza size:</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Toppings:</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Delivery Method:</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>TOTAL</td>
-                    <td></td>
-                </tr>
-            </table>
-
+            <div id="orderSummary">
+                <h2>Order Summary:</h2>
+                <table>
+                    <tr>
+                        <td>Name:</td>
+                        <td id="nameField"></td>
+                    </tr>
+                    <tr>
+                        <td>Pizza size:</td>
+                        <td id="sizeField"></td>
+                    </tr>
+                    <tr>
+                        <td>Toppings:</td>
+                        <td id="toppingsField"></td>
+                    </tr>
+                    <tr>
+                        <td>Delivery Method:</td>
+                        <td id="deliveryField"></td>
+                    </tr>
+                    <tr>
+                        <td>TOTAL</td>
+                        <td></td>
+                    </tr>
+                </table>
 
 
-        </div>
-        <form> <button type="submit">Submit Order</submit>
+
+            </div>
+            <div class="centered-div"> <button type="submit">Submit Order</button></div>
+
         </form>
 
     </main>
