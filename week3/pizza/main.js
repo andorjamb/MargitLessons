@@ -9,11 +9,18 @@ pizzaForm.addEventListener("submit", function (event) {
 pizzaForm.addEventListener('submit', readOrder);
 
 function getSize() {
+    let pizzaSize;
     const sizes = document.getElementsByName("sizes");
-    sizes.forEach(function (size) { if (size.checked) { sizePrice = Number(size.value); } })
-    return sizePrice;
+    sizes.forEach(function (size) { if (size.checked) { pizzaSize = size.id; } })
+    return pizzaSize;
 }
-//error when undefined
+
+function getSizePrice() {
+    let pizzaPrice;
+    const sizes = document.getElementsByName("sizes");
+    sizes.forEach(function (size) { if (size.checked) { pizzaPrice = Number(size.value); } })
+    return pizzaPrice;
+}
 
 function getToppings() {
     const toppingsList = [];
@@ -27,12 +34,23 @@ function getToppings() {
 }
 function getDelivery() {
     let deliveryChoice = document.getElementById("delivery");
-    console.log(deliveryChoice.value);
     if (deliveryChoice.value == "delivery") {
-        return parseFloat(5);
+        return delivery = {
+            "method": "Delivery",
+            "cost": parseFloat(5),
+        }
     }
-    else { return 0 }
+    else {
+        return delivery = {
+            "method": deliveryChoice.value,
+            "cost": parseFloat(0),
+        }
+    }
+
+
+
 }
+
 
 function getCustomer() {
     let customer = document.getElementById("customer").value;
@@ -40,27 +58,34 @@ function getCustomer() {
     return customer;
 }
 
-function readOrder() {
-    let sizePrice = getSize(); // a number
-    let toppingSelection = getToppings();  //a string array
-    let deliveryCost = getDelivery(); // number
-    let customer = getCustomer(); // string
 
-    function summary() {
-        let nameField = document.getElementById('nameField');
-        let sizeField = document.getElementById('sizeField');
-        let toppingsField = document.getElementById('toppingsField');
-        let deliveryField = document.getElementById('deliveryField');
-        nameField.textContent = customer;
-        sizeField.textContent = sizePrice;
-        toppingsField.textContent = toppingSelection;
-        deliveryField.textContent = deliveryCost;
+function readOrder() {
+    let sizePrice = getSizePrice(); // a number
+    let pizzaSize = getSize();
+    let toppingSelection = getToppings();  //a string array
+
+    let extraToppings = 0;
+    if (toppingSelection.length > 4) {
+        extraToppings = (toppingSelection.length - 4);
     }
 
+    let deliveryCost = getDelivery().cost; // number
+    let deliveryMethod = getDelivery().method;
+    console.log("delivery:", deliveryCost, deliveryMethod);
+    let customer = getCustomer(); // string
 
+    let total = sizePrice + (extraToppings * 0.5) + deliveryCost;
 
-    total = sizePrice + extraToppings + deliveryCost;
-    console.log(`total is ${total}`);
+    let customerField = document.getElementById('customerField');
+    let sizeField = document.getElementById('sizeField');
+    let toppingsField = document.getElementById('toppingsField');
+    let deliveryField = document.getElementById('deliveryField');
+    let totalField = document.getElementById('totalField');
+    customerField.textContent = customer;
+    sizeField.textContent = pizzaSize;
+    toppingsField.textContent = toppingSelection;
+    deliveryField.textContent = deliveryMethod; //
+    totalField.textContent = total.toFixed() + '€';
 }
 
 
