@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Anna Petelin">
     <title>Neon Pizza</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vibur">
@@ -12,16 +13,17 @@
 </head>
 
 <body>
-    <!-- give your inputs an id so they can be accessed by JS -->
-
     <header>
-        <h1 id="pageTitle">Neon Pizza</h1>
-        <img src="/—Pngtree—pizza fast food_7354776.png">
+        <div class="title-div">
+            <h1 id="pageTitle">Neon Pizza</h1>
+            <img src="/pizza-g7ccc38a85_1280.png">
+        </div>
+
     </header>
 
     <main>
         <form id="pizzaForm" name="pizzaForm">
-            <div id="pizzaSize">
+            <div class="purple-box">
 
                 <h3>1. Choose a size for your pizza:</h3>
                 <input type="radio" name="sizes" value="7.5" id="Small">
@@ -39,7 +41,7 @@
 
             </div>
 
-            <div id="pizzaToppings">
+            <div class="purple-box">
 
                 <h3>2. Choose your toppings:</h3>
                 <p><em>The first four are included in the price, additional toppings are 50c each.</em></p>
@@ -72,22 +74,22 @@
 
             </div>
 
-            <div id="deliveryMethod">
+            <div class="purple-box">
                 <h3>3. Choose your delivery method:</h3>
 
                 <select name="delivery" id="delivery">
-                    <option value="delivery">Delivery (+5€)</option>
-                    <option value="pickup">Pickup</option>
-                    <option value="eatIn">Eat in</option>
+                    <option value="Delivery">Delivery (+5€)</option>
+                    <option value="Pick up">Pickup</option>
+                    <option value="Eat in">Eat in</option>
                 </select>
 
             </div>
-            <div id="customerName">
+            <div class="purple-box">
                 <h3>4. Lastly, your name:</h3>
                 <input id="customer" name="customer" type="text">
             </div>
 
-            <div id="orderSummary">
+            <div class="orderSummary">
                 <h2>Order Summary:</h2>
                 <table>
                     <tr>
@@ -122,7 +124,9 @@
     </main>
 
 
-    <footer>Copyright Business College Helsinki 2022</footer>
+    <footer>
+        <p>Copyright Business College Helsinki 2022</p>
+    </footer>
 
     <script src="./main.js"></script>
 

@@ -1,11 +1,9 @@
 
 let total = 0; // variable for total order cost
 const pizzaForm = document.getElementById("pizzaForm");
-
 pizzaForm.addEventListener("submit", function (event) {
     event.preventDefault();
 });
-
 pizzaForm.addEventListener('submit', readOrder);
 
 function getSize() {
@@ -32,9 +30,10 @@ function getToppings() {
     })
     return toppingsList;
 }
+
 function getDelivery() {
     let deliveryChoice = document.getElementById("delivery");
-    if (deliveryChoice.value == "delivery") {
+    if (deliveryChoice.value == "Delivery") {
         return delivery = {
             "method": "Delivery",
             "cost": parseFloat(5),
@@ -46,11 +45,7 @@ function getDelivery() {
             "cost": parseFloat(0),
         }
     }
-
-
-
 }
-
 
 function getCustomer() {
     let customer = document.getElementById("customer").value;
@@ -58,20 +53,19 @@ function getCustomer() {
     return customer;
 }
 
-
 function readOrder() {
-    let sizePrice = getSizePrice(); // a number
+    let sizePrice = getSizePrice();
     let pizzaSize = getSize();
-    let toppingSelection = getToppings();  //a string array
+    let toppingSelection = getToppings();
 
     let extraToppings = 0;
     if (toppingSelection.length > 4) {
         extraToppings = (toppingSelection.length - 4);
     }
 
-    let deliveryCost = getDelivery().cost; // number
+    let deliveryCost = getDelivery().cost;
     let deliveryMethod = getDelivery().method;
-    let customer = getCustomer(); // string
+    let customer = getCustomer();
     console.log('size', sizePrice);
     console.log('del', deliveryCost);
     console.log('50 cents times toppings', extraToppings * 0.5);
@@ -87,7 +81,7 @@ function readOrder() {
     customerField.textContent = customer;
     sizeField.textContent = pizzaSize;
     toppingsField.textContent = toppingSelection;
-    deliveryField.textContent = deliveryMethod; //
+    deliveryField.textContent = deliveryMethod;
     totalField.textContent = total.toFixed(2) + '€';
 }
 

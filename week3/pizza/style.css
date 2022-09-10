@@ -1,38 +1,36 @@
-/*NOTES
-
--to change the space around fonts, headings etc, use the margin attribute
--Any input element should be surrounded by 32px of space, for useability
-
-*/
-
 header img {
-    height: 150px;
+    height: 200px;
     width: auto;
-    transform: rotate(-30deg);
-    position: absolute;
-    top: 175px;
-    right: 10px;
+    position: relative;
+    top: -150px;
+    right: -320px;
+    transform: rotate(10deg);
 }
 
 body {
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 20px;
     padding: 30px;
     background-color: rgb(71, 5, 71);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
 }
 
 div {
-
     height: auto;
     width: auto;
+    max-width: 800px;
     padding: 20px 20px;
-    margin: 20px 0px;
-    box-shadow: rgb(96, 114, 71) 3px 5px;
-    background-color: rgb(191, 113, 191);
+    margin: 20px 0;
 
+}
 
+.title-div {
+    height: 200px;
+    justify-content: center;
+    background-color: rgb(71, 5, 71);
+    box-shadow: none;
 }
 
 h2 {
@@ -48,8 +46,6 @@ h3 {
     font-weight: 700;
     color: rgb(177, 241, 74);
 }
-
-
 
 button,
 input {
@@ -90,38 +86,24 @@ button {
     box-shadow: none;
 }
 
-
-
-#pizzaSize {
-
+.purple-box {
     border: 4px solid rgb(133, 255, 212);
     border-radius: 40px;
-
+    box-shadow: rgb(96, 114, 71) 3px 5px;
+    background-color: rgb(191, 113, 191);
 }
 
+/*   border: 4px solid #03adfc;
+   border: 4px solid magenta;
+   */
 
-#pizzaToppings {
-    border: 4px solid magenta;
-    border-radius: 40px;
 
-
-}
-
-#deliveryMethod {
-    border: 4px solid #03adfc;
-    border-radius: 40px;
-}
-
-#customerName {
-    border: 4px solid magenta;
-    border-radius: 40px;
-}
-
-#orderSummary {
+.orderSummary {
     background-color: rgb(189, 242, 220);
     border: none;
     border-radius: 20px;
     box-shadow: rgb(177, 241, 74) 2px 2px;
+
 
 }
 
@@ -140,9 +122,7 @@ td {
     text-align: top;
 }
 
-
-
-/* effect from CSS Tricks tutorial*/
+/* neon text effect from CSS Tricks tutorial*/
 #pageTitle {
     font-family: "Vibur", cursive;
     font-size: 84px;
@@ -151,6 +131,7 @@ td {
     color: white;
     padding: 15px;
     animation: flicker 1.5s infinite alternate;
+    background: transparent;
 
 }
 
@@ -178,6 +159,5 @@ td {
 footer {
     color: lightgrey;
     font-size: 10;
-    opacity: 80%;
     text-align: right;
 }
