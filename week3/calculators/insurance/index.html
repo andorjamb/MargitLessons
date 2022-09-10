@@ -5,64 +5,67 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>When Insurance</title>
+    <meta name="author" content="Anna Petelin" />
+    <title>Insurance Calculator</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
     <header>
-        <div class="hero"></div>
-        <div class="logo">
-            <h1>When Insurance</h1>
+        <div class="hero">
+            <div class="logo">
+            </div>
         </div>
-
-
+        <h1>Insurance Calculator</h1>
     </header>
-
-    </header>
-    <div class="main">
+    <main>
         <form>
-            <label for="client">Your name:</label>
-            <input type="text" id="client" name="client" placeholder="your name" /><br>
-
-            <label for="age">Enter your age:</label>
-            <input type="number" id="age" name="age" placeholder="your age" />
+            <div class="customer">
+                <table>
+                    <tr>
+                        <td><label for="client">Your name:</label></td>
+                        <td> <input type="text" id="client" name="client" placeholder="your name" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="age">Enter your age:</label></td>
+                        <td><input type="number" id="age" name="age" placeholder="your age" /></td>
+                    </tr>
+                </table>
+            </div>
             <div class="results">
                 <p id="ageResult"></p>
             </div>
 
-            <h3>Existing health conditions:</h3>
-
-            <input type="checkbox" id="hypertension" name="health" value="hypertension" />
-            <label for="hypertension">Hypertension</label><br>
-            <input type="checkbox" id="bloodsugar" name="health" value="bloodsugar" />
-            <label for="bloodsugar">High bloodsugar</label><br>
-            <input type="checkbox" id="overweight" name="health" value="overweight" />
-            <label for="overweight">Overweight</label><br>
-
+            <div class="health">
+                <h3>Existing health conditions:</h3>
+                <input type="checkbox" id="hypertension" name="health" value="hypertension" />
+                <label for="hypertension">Hypertension</label><br>
+                <input type="checkbox" id="bloodsugar" name="health" value="bloodsugar" />
+                <label for="bloodsugar">High bloodsugar</label><br>
+                <input type="checkbox" id="overweight" name="health" value="overweight" />
+                <label for="overweight">Overweight</label><br>
+            </div>
             <div class="results">
                 <p id="healthResult"></p>
             </div>
-
-            <h3>Your existing habits:</h3>
-
-            <input type="checkbox" id="smoking" class="bad" name="habits" value="smoking">
-            <label for="smoking">Smoking</label><br>
-            <input type="checkbox" id="alcohol" class="bad" name="habits" value="alcohol" />
-            <label for="alcohol">Alcohol</label><br>
-            <input type="checkbox" id="drugs" class="bad" name="habits" vqlue="drugs" />
-            <label for="drugs">Drug use</label><br>
-            <input type="checkbox" id="exercise" class="good" name="habits" value="exercise" />
-            <label for="exercise">Daily exercise</label><br>
-
+            <div class="habits">
+                <h3>Your existing habits:</h3>
+                <input type="checkbox" id="smoking" class="bad" name="habits" value="smoking">
+                <label for="smoking">Smoking</label><br>
+                <input type="checkbox" id="alcohol" class="bad" name="habits" value="alcohol" />
+                <label for="alcohol">Alcohol</label><br>
+                <input type="checkbox" id="drugs" class="bad" name="habits" vqlue="drugs" />
+                <label for="drugs">Drug use</label><br>
+                <input type="checkbox" id="exercise" class="good" name="habits" value="exercise" />
+                <label for="exercise">Daily exercise</label><br>
+            </div>
             <div class="results">
                 <p id="habitResults"></p>
             </div>
 
-            <input type="submit" id="submit"></button>
+            <button type="submit" id="submit" value="submit">Submit</button>
         </form>
-
-    </div>
+    </main>
 
     <script src="main.js"></script>
 </body>

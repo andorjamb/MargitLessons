@@ -4,10 +4,17 @@ body {
     font-family: "Lato", Arial, Helvetica, sans-serif
 }
 
+main {
+    background-color: rgba(123, 123, 220, 0.5);
+    border-radius: 5px;
+    padding-left: 25px;
+    padding-bottom: 40px;
+}
+
 
 header {
     display: flex;
-    flex-direction: coloumn;
+    flex-direction: column;
     flex-wrap: nowrap;
 }
 
@@ -28,23 +35,18 @@ h1 {
 }
 
 .hero {
-    display: inline;
-    width: 50%vw;
-    height: auto;
+    width: 100%;
+    min-height: 180px;
     background-image: url("./assets/images/towfiqu-barbhuiya-B3PxVCnbsSI-unsplash\ \(1\).jpg");
-    background-attachment: fixed;
     background-size: contain;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
 .hero img {
     height: auto;
     width: auto;
-}
-
-.main {
-    background-color: rgba(123, 123, 220, 0.5);
-    border-radius: 5px;
 }
 
 form {
@@ -56,13 +58,14 @@ label {
 }
 
 input {
-    border: 1px solid grey;
+    border: 1px solid rgb(233, 223, 223);
     border-radius: 5px;
 }
 
 
 .results {
     visibility: hidden;
+    background-color: rgb(224, 186, 215);
     animation: fadeIn 3s;
     color: rgba(48, 48, 110, 0.331);
     height: 50px;
@@ -70,6 +73,19 @@ input {
     border-radius: 17px;
     padding: 5px 10px;
     text-align: center;
+}
+
+input {
+    border: 0px;
+}
+
+button {
+    font-size: 1.5rem;
+    border: 2px solid rgb(224, 186, 215);
+    border-radius: 15px;
+    padding: 5px 20px;
+    color:rgba(123, 123, 220, 0.5);
+    background-color: rgb(230, 222, 222);
 }
 
 
