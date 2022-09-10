@@ -20,7 +20,7 @@
     </header>
 
     <main>
-        <form name="pizzaForm">
+        <form id="pizzaForm" name="pizzaForm">
             <div id="pizzaSize">
 
                 <h3>1. Choose a size for your pizza:</h3>
@@ -75,14 +75,14 @@
             <div id="deliveryMethod">
                 <h3>3. Choose your delivery method:</h3>
 
-                <select name="delivery">
+                <select name="delivery" id="delivery">
                     <option value="delivery">Delivery (+5€)</option>
-                    <option value="dickup">Pickup</option>
+                    <option value="pickup">Pickup</option>
                     <option value="eatIn">Eat in</option>
                 </select>
 
             </div>
-            <div id="orderName">
+            <div id="customerName">
                 <h3>4. Lastly, your name:</h3>
                 <input id="customer" name="customer" type="text">
             </div>
@@ -92,7 +92,7 @@
                 <table>
                     <tr>
                         <td>Name:</td>
-                        <td id="nameField"></td>
+                        <td id="customerField"></td>
                     </tr>
                     <tr>
                         <td>Pizza size:</td>

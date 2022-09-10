@@ -136,7 +136,7 @@ button {
     justify-content: space-around;
     color: white;
     padding: 15px;
-    animation: flicker 1.5s infinite alternate;
+    animation: flicker 2s infinite alternate;
 
 }
 
