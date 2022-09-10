@@ -32,9 +32,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="results">
-                <p id="ageResult"></p>
-            </div>
+
 
             <div class="health">
                 <h3>Existing health conditions:</h3>
@@ -45,9 +43,7 @@
                 <input type="checkbox" id="overweight" name="health" value="overweight" />
                 <label for="overweight">Overweight</label><br>
             </div>
-            <div class="results">
-                <p id="healthResult"></p>
-            </div>
+
             <div class="habits">
                 <h3>Your existing habits:</h3>
                 <input type="checkbox" id="smoking" class="bad" name="habits" value="smoking">
@@ -59,12 +55,18 @@
                 <input type="checkbox" id="exercise" class="good" name="habits" value="exercise" />
                 <label for="exercise">Daily exercise</label><br>
             </div>
-            <div class="results">
-                <p id="habitResults"></p>
-            </div>
+
 
             <button type="submit" id="submit" value="submit">Submit</button>
         </form>
+
+        <div class="results">
+            <h3>Results of you health insurance calculation</h3>
+            <p id = "clientField"></p>
+            <p id="ageResult"></p>
+            <p id="healthResult"></p>
+            <p id="habitResult"></p>
+        </div>
     </main>
 
     <script src="main.js"></script>
