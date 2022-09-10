@@ -71,10 +71,13 @@ function readOrder() {
 
     let deliveryCost = getDelivery().cost; // number
     let deliveryMethod = getDelivery().method;
-    console.log("delivery:", deliveryCost, deliveryMethod);
     let customer = getCustomer(); // string
+    console.log('size', sizePrice);
+    console.log('del', deliveryCost);
+    console.log('50 cents times toppings', extraToppings * 0.5);
 
     let total = sizePrice + (extraToppings * 0.5) + deliveryCost;
+    console.log('extratoppings:', extraToppings);
 
     let customerField = document.getElementById('customerField');
     let sizeField = document.getElementById('sizeField');
@@ -85,7 +88,7 @@ function readOrder() {
     sizeField.textContent = pizzaSize;
     toppingsField.textContent = toppingSelection;
     deliveryField.textContent = deliveryMethod; //
-    totalField.textContent = total.toFixed() + '€';
+    totalField.textContent = total.toFixed(2) + '€';
 }
 
 
