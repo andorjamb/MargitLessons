@@ -4,7 +4,7 @@ const form = document.querySelector("form");
 const client = document.querySelector("#client");
 const submit = document.querySelector("#submit");
 const healthConditions = document.getElementsByName("health");
-const habitsNodelist = document.getElementsByName("habit");
+const habitsNodelist = document.getElementsByName("habits");
 const clientField = document.getElementById("clientField");
 const healthField = document.getElementById("healthField");
 const ageField = document.getElementById("ageField");
@@ -65,44 +65,37 @@ function calculateHealthPremium(clientPremium = basePremium) {
   return clientPremium.toFixed();
 }
 
-function getHabitObject() {
+function getHabitArray() {
   let habits = {};
-  const badHabits = [];
-  const goodHabits = [];
+  let goodHabits = [];
+  let badHabits = [];
   habitsNodelist.forEach(function (item) {
     if (item.checked) {
-      if (item.class == "bad") {
-        if
-          (!badHabits.includes(item.value)) {
-          badHabits.push(item.value);
+      if (item.className == "bad") {
+        if (!badHabits.includes(item.value)) {
+          badHabits.push(item.value)
         }
-        else {
-          if (healthArray.includes(item.value)) {
-            let index = healthArray.indexOf(item.value);
-            healthArray = healthArray.splice(index, 1);
-          }
-        }
+      } else {
+        goodHabits.push(item.value);
       }
-    } else { goodHabits.push(item.value); }
+    }
   });
-
+  console.log('bad:', badHabits, 'good:', goodHabits);
   return habits = {
     "badHabits": badHabits.length,
     "goodHabits": goodHabits.length,
   }
-
 }
 
 function calculateHabitPremium(clientPremium = basePremium) {
-  console.log(getHabitObject());
-  for (let j = 0; j < getHabitObject().badHabits; j++) {
+  for (let j = 0; j < getHabitArray().badHabits; j++) {
     clientPremium *= 1.05;
-    console.log('printing bad habits:', getHabitObject().badHabits);
+    console.log('printing bad habits:', getHabitArray().badHabits);
   }
-  for (let i = 0; i < getHabitObject().goodHabits; i++) {
+  for (let i = 0; i < getHabitArray().goodHabits; i++) {
     clientPremium = clientPremium - (clientPremium * 0.05);
   }
-  return clientPremium;
+  return clientPremium.toFixed();
 }
 
 function calculateAll() {
