@@ -5,10 +5,11 @@ const client = document.querySelector("#client");
 const submit = document.querySelector("#submit");
 const healthConditions = document.getElementsByName("health");
 const habitsNodelist = document.getElementsByName("habit");
-const clientResult = document.getElementById("clientField");
-const healthResult = document.getElementById("healthResult");
-const ageResult = document.getElementById("ageResult");
-const habitResult = document.getElementById("habitResult");
+const clientField = document.getElementById("clientField");
+const healthField = document.getElementById("healthField");
+const ageField = document.getElementById("ageField");
+const habitField = document.getElementById("habitField");
+const resultsBox = document.getElementById("resultsBox");
 const basePremium = 500;
 
 form.addEventListener("submit", function (event) {
@@ -60,12 +61,12 @@ function getHealthArray() {
 function calculateHealthPremium(clientPremium = basePremium) {
   for (let k = 0; k < getHealthArray().length; k++) {
     clientPremium = clientPremium * 1.01;
-    console.log(`round ${k + 1} of healthPenalty: ${clientPremium}`);
   }
+  return clientPremium.toFixed();
 }
 
 function getHabitObject() {
-  let habits = {}; //return value, an object
+  let habits = {};
   const badHabits = [];
   const goodHabits = [];
   habitsNodelist.forEach(function (item) {
@@ -75,11 +76,11 @@ function getHabitObject() {
           (!badHabits.includes(item.value)) {
           badHabits.push(item.value);
         }
-      }
-      else {
-        if (healthArray.includes(item.value)) {
-          let index = healthArray.indexOf(item.value);
-          healthArray = healthArray.splice(index, 1);
+        else {
+          if (healthArray.includes(item.value)) {
+            let index = healthArray.indexOf(item.value);
+            healthArray = healthArray.splice(index, 1);
+          }
         }
       }
     } else { goodHabits.push(item.value); }
@@ -93,40 +94,23 @@ function getHabitObject() {
 }
 
 function calculateHabitPremium(clientPremium = basePremium) {
-  //for each good habit, reduce price by 5%, 
-  //ad habits - increase 5% per bad habit
+  console.log(getHabitObject());
   for (let j = 0; j < getHabitObject().badHabits; j++) {
-    clientPremium = clientPremium * 1.05;
+    clientPremium *= 1.05;
+    console.log('printing bad habits:', getHabitObject().badHabits);
   }
   for (let i = 0; i < getHabitObject().goodHabits; i++) {
     clientPremium = clientPremium - (clientPremium * 0.05);
   }
   return clientPremium;
 }
-/*
-
-function resultsObject() {
-
-  const premiumObject = {
-    "agePremium": calculateAgePremium(),
-    "healthPremium": calculateHealthPremium(),
-    "habitPremium": calculateHabitPremium()
-  }
-  return premiumObject;
-}*/
-
-//testing results:
 
 function calculateAll() {
-  console.log("age function returns: ", calculateAgePremium());
-  console.log("health function returns: ", calculateHealthPremium());
-  console.log("habit function returns: ", calculateHabitPremium());
 
-
-  clientField.textContent = `Hi €{},`;
-  ageResult.textContent = `Your age increases your premium to ${basePremium + calculateAgePremium()}€.`;
-  healthResult.textContent = `Your pre-existing health conditions increase your premium to ${basePremium + calculateHealthPremium()}€.`;
-  habitResult.textContent = `Your lifestyle increases your premium to ${calculateHabitPremium}€.`;
+  clientField.textContent = `Hi ${client.value},`;
+  ageField.textContent = `Your age increases your premium to ${calculateAgePremium()}€.`;
+  healthField.textContent = `Your pre-existing health conditions increase your premium to ${calculateHealthPremium(calculateAgePremium())}€.`;
+  habitField.textContent = `Your lifestyle increases your premium to ${calculateHabitPremium(calculateHealthPremium(calculateAgePremium()))}€.`;
 }
 
 
