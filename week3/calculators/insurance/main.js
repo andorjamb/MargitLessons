@@ -15,6 +15,7 @@ const basePremium = 500;
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   calculateAll();
+  resultsBox.scrollIntoView();
 });
 
 function calculateAgePremium() {
@@ -65,7 +66,7 @@ function calculateHealthPremium(clientPremium = basePremium) {
   return clientPremium.toFixed();
 }
 
-function getHabitArray() {
+function getHabitObject() {
   let habits = {};
   let goodHabits = [];
   let badHabits = [];
@@ -80,7 +81,6 @@ function getHabitArray() {
       }
     }
   });
-  console.log('bad:', badHabits, 'good:', goodHabits);
   return habits = {
     "badHabits": badHabits.length,
     "goodHabits": goodHabits.length,
@@ -88,11 +88,10 @@ function getHabitArray() {
 }
 
 function calculateHabitPremium(clientPremium = basePremium) {
-  for (let j = 0; j < getHabitArray().badHabits; j++) {
+  for (let j = 0; j < getHabitObject().badHabits; j++) {
     clientPremium *= 1.05;
-    console.log('printing bad habits:', getHabitArray().badHabits);
   }
-  for (let i = 0; i < getHabitArray().goodHabits; i++) {
+  for (let i = 0; i < getHabitObject().goodHabits; i++) {
     clientPremium = clientPremium - (clientPremium * 0.05);
   }
   return clientPremium.toFixed();
