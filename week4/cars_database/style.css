@@ -69,3 +69,10 @@ h2 {
 thead {
     background-color: grey;
 }
+
+#search-container {
+    background-color: rgb(38, 88, 121);
+    color: white;
+    min-height: 100px;
+    padding: 30px 30px;
+}

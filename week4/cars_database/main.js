@@ -36,32 +36,22 @@ function getCarData() { //function collects values from input fields
     const carOwner = document.querySelector("#carOwner").value;
     const carPrice = document.querySelector("#carPrice").value;
     const carColor = document.querySelector("#carColor").value;
-    form.reset();
     return newCar = new Car(carLicence, carMaker, carModel, carOwner, carPrice, carColor);
-
 
 }
 
-function populateTable(valueArray) {/* for (let i = 0; i < cars.length; i++) {
-    let newCarValues = Object.values(cars[i]) //returns an array of the car's values
-    let newRow = carTable.insertRow(i);
-    //let newCell = newRow.insertCell();
-    for (let j = 0; j < newCarValues.length; j++) {
-        let newData = document.createTextNode(`${newCarValues[j]}`);
-        newRow.appendChild(newData);
-    }
-} */
+function populateTable(valueArray) {
+    let newRow = document.createElement('tr');
+    carTable.appendChild(newRow);
+    for (let j = 0; j < valueArray.length; j++) {//for each car object value:
+        let newData = document.createElement('td');
+        newData.innerHTML = valueArray[j];
+        carTable.appendChild(newData);
 
-    let newRow = carTable.insertRow();
-    for (let j = 0; j < valueArray.length; j++) {
-        let newData = document.createTextNode(`${valueArray[j]}`);
-        newRow.appendChild(newData);
     }
-    let newCell = newRow.insertCell();
-    newCell.textContent = "hi";
+}
+
     //syntax: for(const i of carArray)){}
     //search button can be a submit button
 
-
-}
 
