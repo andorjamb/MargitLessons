@@ -1,0 +1,25 @@
+
+
+//Notes for BG Gradient task: Margit's solution
+
+/**
+ * make sure the utf-8 charset is enabled
+ * <meta charset="UTF-8"/>
+ * 
+ * You can use google Material Icons for the arrow icons.
+ * input type for arrow buttons: best to use radio buttons, so that only one can be selected at a time. 
+ * 
+ * give colours a default starting value, or else they will be black.
+ * 
+ * 
+ * linear gradient: you can use the values to define directions, eg -"to bottom left"
+ * label for is important to add. 
+ * 
+ * It's better to use an element for a query selector than an id, because id names might change.
+ * 
+ * selecting the nodelist representing gradient direction: 
+ * let direction = document.querySelectorAll('input[name="direction"]')
+ * 
+ * 
+ * CSS: make the radio button display invisible, and style the label instead. 
+ */
