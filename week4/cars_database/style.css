@@ -10,7 +10,7 @@ body {
     border-bottom: 10px solid rgba(76, 143, 224, 0.5)
 }
 
-.main-container { 
+.main-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -39,7 +39,7 @@ button {
 
 button:hover {
     border: 2px solid rgb(108, 32, 32);
-    color: rgb(108, 32, 32);
+    color: red;
 }
 
 h2 {
@@ -64,4 +64,8 @@ h2 {
 
 .database-container th {
     padding: 5px 10px;
+}
+
+thead {
+    background-color: grey;
 }

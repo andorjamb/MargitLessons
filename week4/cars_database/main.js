@@ -1,16 +1,19 @@
 
-const form = document.querySelector("form");
+const form = document.querySelector("#addCar");
 let newCar;
-let cars = []; //empty array to contain each car object added to database
+let cars = [];
 
-const addCar = document.querySelector("#addCar");
+const addCar = document.querySelector("#addCar"); //button
 const reset = document.querySelector("#reset");
-
+const carTable = document.querySelector('#carTable');
+form.addEventListener('reset', function () {
+    cars = [];
+});
 form.addEventListener("submit", function (event) {
     event.preventDefault();
-    populateTable(getCarData());
     cars.push(getCarData());
-    console.log(cars);
+    let newCarValues = Object.values(getCarData());
+    populateTable(newCarValues);
 
 })
 
@@ -33,12 +36,32 @@ function getCarData() { //function collects values from input fields
     const carOwner = document.querySelector("#carOwner").value;
     const carPrice = document.querySelector("#carPrice").value;
     const carColor = document.querySelector("#carColor").value;
+    form.reset();
     return newCar = new Car(carLicence, carMaker, carModel, carOwner, carPrice, carColor);
 
+
 }
 
-function populateTable() {  //function prints new object to table 'database'
-    //console.table(array or object); each value in the array will a <td> in the row
-    let newRow = getCarData();
-    console.table(newRow);
+function populateTable(valueArray) {/* for (let i = 0; i < cars.length; i++) {
+    let newCarValues = Object.values(cars[i]) //returns an array of the car's values
+    let newRow = carTable.insertRow(i);
+    //let newCell = newRow.insertCell();
+    for (let j = 0; j < newCarValues.length; j++) {
+        let newData = document.createTextNode(`${newCarValues[j]}`);
+        newRow.appendChild(newData);
+    }
+} */
+
+    let newRow = carTable.insertRow();
+    for (let j = 0; j < valueArray.length; j++) {
+        let newData = document.createTextNode(`${valueArray[j]}`);
+        newRow.appendChild(newData);
+    }
+    let newCell = newRow.insertCell();
+    newCell.textContent = "hi";
+    //syntax: for(const i of carArray)){}
+    //search button can be a submit button
+
+
 }
+
