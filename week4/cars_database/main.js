@@ -9,6 +9,8 @@ const reset = document.querySelector("#reset");
 form.addEventListener("submit", function (event) {
     event.preventDefault();
     populateTable(getCarData());
+    cars.push(getCarData());
+    console.log(cars);
 
 })
 
