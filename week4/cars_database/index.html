@@ -14,10 +14,15 @@
 
 <body>
     <div class="main-container">
-        <div id=search-container> <span class="material-symbols-outlined">
-                search
-            </span></div>
-        <div class="table-container">
+        <div id=search-container>
+            <form id="searchForm"> <input type="text" placeholder="Licence Number" id="searchLicence">
+                <button type="submit" id="searchButton"><span class="material-symbols-outlined">
+                        search </span></label>
+            </form>
+            <p id="searchResult"></p>
+
+        </div>
+        <div class="form-container">
             <form id="addCar">
                 <h2>Insert Car Data</h2>
                 <table>
@@ -67,7 +72,7 @@
                         <th>Color</th>
                     </tr>
                 </thead>
-                <tbody ></tbody>
+                <tbody></tbody>
             </table>
         </div>
     </div>

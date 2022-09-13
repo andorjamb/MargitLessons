@@ -14,11 +14,12 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-
+    min-height: 500px;
 }
 
-.table-container {
+.form-container {
     flex: 1;
+
 }
 
 table {
@@ -35,11 +36,12 @@ button {
     background-color: rgb(38, 88, 121);
     border: 1px solid rgb(108, 32, 32);
     color: white;
+    font-size: 1.3rem;
 }
 
 button:hover {
-    border: 2px solid rgb(108, 32, 32);
-    color: red;
+    border: 2px solid pink;
+    color: rgb(255, 200, 0);
 }
 
 h2 {
@@ -62,17 +64,30 @@ h2 {
     text-transform: uppercase;
 }
 
-.database-container th {
-    padding: 5px 10px;
+.table-cells {
+    background-color: pink;
+    padding: 5px 5px;
+    text-align: center;
 }
 
-thead {
-    background-color: grey;
+.database-container th {
+    padding: 5px 10px;
 }
 
 #search-container {
     background-color: rgb(38, 88, 121);
     color: white;
-    min-height: 100px;
+    min-width: 200px;
     padding: 30px 30px;
+}
+
+#search-container button span {
+    border: none;
+    font-size: 3rem;
+    padding: 5px 10px;
+}
+
+#search-container input {
+    padding: 5px 10px;
+    box-shadow: inset 1px 1px grey;
 }
