@@ -2,18 +2,21 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    overscroll-behavior: none;
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+    color: white;
 }
 
 .logo {
     flex: 2;
-    font-size: 3rem;
-    line-height: 100px;
     text-align: left;
 }
+
+/*  /////////// HEADER   ///////////*/
 
 header {
     display: flex;
@@ -22,9 +25,11 @@ header {
     padding: 20px 20px;
     background-color: rgb(72, 72, 163);
     position: sticky;
+    top: 0;
     min-height: 100px;
     color: white;
-    text-align: center;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .scroll header {
@@ -33,25 +38,34 @@ header {
 
 }
 
-.navDiv {
+.navDiv nav ul,
+li,
+a {
     flex: 1;
     color: white;
-
-}
-
-nav ul,
-li {
     display: flex;
     justify-content: space-around;
     text-decoration: none;
     list-style-type: none;
     padding: 10px 10px;
-
+    color: white;
 }
 
-h2,
-h3 {
+.responsive {
+    background-color: white;
+    min-width: 150px;
+    color: rgb(14, 14, 41);
+    border: 1px solid white;
+    display: none;
+}
+
+#menuIcon {
+    display: none;
+    background-color: transparent;
+    border: none;
     color: white;
+    font-size: 2rem;
+
 
 }
 
@@ -59,62 +73,109 @@ main {
     min-height: 500px;
 }
 
-
-
-.slidingMenu {
+#slidingMenu {
     background-color: white;
     min-width: 150px;
     color: rgb(14, 14, 41);
+    border: 1px solid white;
+    display: none;
 }
 
-
-
-
-
-#first {
-    background-color: rgb(72, 72, 163);
-}
-
-#second {
-    background-color: rgb(14, 14, 41);
-}
-
+#first,
 #third {
     background-color: rgb(72, 72, 163);
 }
 
-
+#second,
 #contact {
     background-color: rgb(14, 14, 41);
 }
 
 
 .content {
-    min-height: 150px;
+    min-height: 40vh;
     padding-left: 20px;
     padding-top: 20px;
+    scroll-margin-top: 7rem;
+    /* affects where the page scrolls to*/
+}
+
+/* /////   MODAL    ///// */
+
+.overlay {
+    /*class to obscure page background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(14, 14, 41, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    position: relative;
+    background-color: white;
+    border-radius: 10px;
+    height: 50vh;
+    width: 50vw;
+    color: black;
+    padding: 2rem;
+
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 2px 4px;
+}
+
+.overlay,
+.modal,
+.close {
+    display: none;
 }
 
 footer {
+    padding: 20px 20px;
     min-height: 100px;
     background-color: rgb(72, 72, 163);
-    color: white;
     align-items: right;
 }
 
 #backToTop {
     padding: 5px 5px;
+    display: none;
     border-radius: 10px;
-    color: white;
+    border: 1px solid rgb(14, 14, 41);
     background-color: rgb(72, 72, 163);
+    display: none;
 }
 
 #backToTop :hover {
     color: black;
 }
 
-@media screen and (max-width: 375px) {
+/* SMALL SCREEN DISPLAY */
+
+@media screen and (max-width: 800px) {
     .slidingMenu {
         display: none;
+    }
+
+    #menuIcon {
+        display: block;
+    }
+
+    .navbar.responsive ul {
+        /* note the differnece in syntax (no space) when selecting an element's class, as opposed to an element within a class*/
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 85px;
+
     }
 }
