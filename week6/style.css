@@ -1,0 +1,120 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.logo {
+    flex: 2;
+    font-size: 3rem;
+    line-height: 100px;
+    text-align: left;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+    padding: 20px 20px;
+    background-color: rgb(72, 72, 163);
+    position: sticky;
+    min-height: 100px;
+    color: white;
+    text-align: center;
+}
+
+.scroll header {
+    background-color: white;
+    color: rgb(14, 14, 41);
+
+}
+
+.navDiv {
+    flex: 1;
+    color: white;
+
+}
+
+nav ul,
+li {
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
+    list-style-type: none;
+    padding: 10px 10px;
+
+}
+
+h2,
+h3 {
+    color: white;
+
+}
+
+main {
+    min-height: 500px;
+}
+
+
+
+.slidingMenu {
+    background-color: white;
+    min-width: 150px;
+    color: rgb(14, 14, 41);
+}
+
+
+
+
+
+#first {
+    background-color: rgb(72, 72, 163);
+}
+
+#second {
+    background-color: rgb(14, 14, 41);
+}
+
+#third {
+    background-color: rgb(72, 72, 163);
+}
+
+
+#contact {
+    background-color: rgb(14, 14, 41);
+}
+
+
+.content {
+    min-height: 150px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+footer {
+    min-height: 100px;
+    background-color: rgb(72, 72, 163);
+    color: white;
+    align-items: right;
+}
+
+#backToTop {
+    padding: 5px 5px;
+    border-radius: 10px;
+    color: white;
+    background-color: rgb(72, 72, 163);
+}
+
+#backToTop :hover {
+    color: black;
+}
+
+@media screen and (max-width: 375px) {
+    .slidingMenu {
+        display: none;
+    }
+}
