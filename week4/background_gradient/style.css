@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+.panel {
+    flex: 25%;
+    background-color: grey;
+    opacity: 80%;
+    height: 100%;
+    min-width: 200px;
+
+}
+
+#example {
+    flex: 75%;
+}
+
+.color {
+    height: 150px;
+    width: 250px;
+}
+
+.direction {
+    display: none;
+}
