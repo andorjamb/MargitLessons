@@ -3,8 +3,6 @@ const searchForm = document.querySelector("#searchForm");
 let newCar;
 let cars = [];
 
-console.log("testing connection");
-
 const addCar = document.querySelector("#addCar"); //button
 const reset = document.querySelector("#reset");
 const searchButton = document.querySelector("#searchButton"); // search submit button
@@ -16,7 +14,6 @@ form.addEventListener("reset", function () {
 searchForm.addEventListener("submit", function (event) {
   event.preventDefault();
   const searchLicence = document.getElementById("searchLicence").value.trim(); //input value
-  console.log(searchLicence); //testing WORKS
   searchResult.textContent = findCar(searchLicence);
 });
 
@@ -40,7 +37,6 @@ class Car {
 }
 
 function getCarData() {
-  //function collects values from input fields
   const carLicence = document.querySelector("#carLicence").value;
   const carMaker = document.querySelector("#carMaker").value;
   const carModel = document.querySelector("#carModel").value;
@@ -62,7 +58,6 @@ function populateTable(valueArray) {
   newRow.className = "database-container-body";
   carTable.appendChild(newRow);
   for (let j = 0; j < valueArray.length; j++) {
-    //for each car object value:
     let newData = document.createElement("td");
     newData.className = "table-cells";
     newData.innerHTML = valueArray[j];
