@@ -3,20 +3,22 @@ const form = document.querySelector("#addCar");
 let newCar;
 let cars = [];
 
+console.log("testing connection");
+
 const addCar = document.querySelector("#addCar"); //button
 const reset = document.querySelector("#reset");
 const searchButton = document.querySelector("#searchButton"); // search button
 const carTable = document.querySelector('#carTable');
+const searchResult = document.getElementById("searchResult");
 form.addEventListener('reset', function () {
     cars = [];
 });
 searchButton.addEventListener("submit", function (event) {
     event.preventDefault();
-    const searchResult = document.getElementById("searchResult");
-    const searchLicence = document.getElementById("searchLicence").value.trim();//input
+    const searchLicence = document.getElementById("searchLicence").value.trim();//input value
+    console.log(searchLicence);//testing
 
-    console.log(searchLicence);
-    findCar(searchLicence);
+    searchResult.textContent = findCar(searchLicence);
 
 })
 
@@ -63,15 +65,13 @@ function populateTable(valueArray) {
 }
 
 function findCar(str) {
+    let searchResultText = "";
     for (const k of cars) {
         console.log(cars[k]);
-        /*  if (cars[k].licenceNumber === str) {
-             searchResult.textContent = `Result found: Car owner: ${cars[k].carOwner}, car Model: ${cars[k].carMaker}, car make: ${cars[k].carModel}`;
-             return cars[k];
-         } else { searchResult.textContent = "The car was not found." } */
-
-
-
+        if (cars[k].licenceNumber === str) {
+            searchResultText = `Result found: Car owner: ${cars[k].carOwner}, car Model: ${cars[k].carMaker}, car make: ${cars[k].carModel}`;
+        } else { searchResultText = "The car was not found." }
+        return searchResultText;
     }
 }
 
