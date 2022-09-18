@@ -10,10 +10,12 @@ backToTop.addEventListener('click', function () { window.scroll(0, 0) }); /* or 
 //scrollTop built-in property
 
 window.onscroll = function () {
-    scrollFunction()
+    scrollFunction();
 };
 
-const scrollFunction = function () { /*NOT WORKING*/
+
+/*NOT WORKING*/
+function scrollFunction() { 
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
         header.classList.add('scroll');
         backToTop.style.display = 'block'; /*works more reliably than the visibility property*/

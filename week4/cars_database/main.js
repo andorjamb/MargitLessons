@@ -65,10 +65,13 @@ function populateTable(valueArray) {
 function findCar(str) {
     for (const k of cars) {
         console.log(cars[k]);
-        if (cars[k].licenceNumber === str) {
-            searchResult.textContent = `Result found: Car owner: ${cars[k].carOwner}, car Model: ${cars[k].carMaker}, car make: ${cars[k].carModel}`;
-            return cars[k];
-        } else { searchResult.textContent = "The car was not found." }
+        /*  if (cars[k].licenceNumber === str) {
+             searchResult.textContent = `Result found: Car owner: ${cars[k].carOwner}, car Model: ${cars[k].carMaker}, car make: ${cars[k].carModel}`;
+             return cars[k];
+         } else { searchResult.textContent = "The car was not found." } */
+
+
+
     }
 }
 

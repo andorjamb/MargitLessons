@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    color: white;
+    background-color: violet;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+/*HEADER */
+
+header {
+    background-color: purple;
+    min-height: 100px;
+    margin: 0;
+
+}
+
+.header-scroll-down {
+    background-color: aliceblue;
+    color: purple;
+}
+
+ul,
+li,
+a {
+    text-decoration: none;
+    list-style: none;
+    color: white;
+}
+
+/*MAIN */
+
+section:first-child {
+    background: rgb(123, 123, 224);
+}
+
+section:nth-child(odd) {
+    background: rgb(123, 123, 224);
+}
+
+
+
+/*FOOTER*/
+
+footer {
+    background-color: purple;
+}
