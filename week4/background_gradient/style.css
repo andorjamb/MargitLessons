@@ -14,22 +14,42 @@ main {
     flex-direction: row;
 }
 
+h1 {
+    text-align: center;
+    padding-bottom: 1.5rem;
+}
+
 .panel {
     flex: 25%;
-    background-color: grey;
+    background-color: rgb(225, 212, 212);
     opacity: 80%;
     height: 100%;
-    min-width: 200px;
+    width: 250px;
+    box-shadow: 2px 2px 4px grey;
+    border-radius: 4px;
+}
+
+.colorBox {
+    height: 150px;
+    width: 200px;
+    border: 2px solid white;
 
 }
+
+.icon {
+    font-family: 'Material Symbols Outlined';
+    box-shadow: 2px 2px 4px grey;
+    font-size: 3rem;
+}
+
 
 #example {
     flex: 75%;
 }
 
-.color {
-    height: 150px;
-    width: 250px;
+.direction-container {
+    display: grid;
+    grid-template-columns: ;
 }
 
 .direction {

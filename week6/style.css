@@ -32,10 +32,15 @@ header {
     justify-content: space-between;
 }
 
-.scroll header {
+header.scroll {
     background-color: white;
     color: rgb(14, 14, 41);
 
+}
+
+header.scroll a {
+    color: rgb(14, 14, 41);
+    font-weight: 700;
 }
 
 .navDiv nav ul,
@@ -51,6 +56,7 @@ a {
     color: white;
 }
 
+/* responsive class is toggled by screen width*/
 .responsive {
     background-color: white;
     min-width: 150px;
@@ -65,8 +71,10 @@ a {
     border: none;
     color: white;
     font-size: 2rem;
+}
 
-
+#menuIcon.scroll {
+    color: rgb(14, 14, 41);
 }
 
 main {
@@ -150,9 +158,15 @@ footer {
     padding: 5px 5px;
     display: none;
     border-radius: 10px;
-    border: 1px solid rgb(14, 14, 41);
+    border: 1px solid white;
     background-color: rgb(72, 72, 163);
     display: none;
+    color: white;
+    font-size: 1.3rem;
+    float: right;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
 }
 
 #backToTop :hover {
@@ -171,7 +185,7 @@ footer {
     }
 
     .navbar.responsive ul {
-        /* note the differnece in syntax (no space) when selecting an element's class, as opposed to an element within a class*/
+        /* note the difference in syntax (no space) when selecting an element's class, as opposed to an element within a class */
         display: block;
         position: absolute;
         left: 0;

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Background Gradient Generator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined">
 </head>
 
 <body>
@@ -17,17 +18,19 @@
     <div class="panel">
         <h3>Choose two colours:</h3>
 
-        <div class="color" id="color1"><input type="color"></div>
-        <div class="color" id="color2"><input type="color"></div>
+        <div class="color" id="color1"><input class="colorBox" type="color" value="#CFCFCF"></div>
+        <div class="color" id="color2"><input class="colorBox" type="color" value="#CFCFCF"></div>
         <h3>Choose gradient direction:</h3>
-        <input class="direction" name="direction" type="radio">
-        <input class="direction" name="direction" type="radio">
-        <input class="direction" name="direction" type="radio">
-        <input class="direction" name="direction" type="radio">
-        <input class="direction" name="direction" type="radio">
-        <input class="direction" name="direction" type="radio">
-        <input class="direction" name="direction" type="radio">
-        <input class="direction" name="direction" type="radio">
+        <div class="directionGrid">
+            <span class="icon"> <input class="direction" name="direction" type="radio"><span class="icon">North</span>
+                <label for="north_east"><span class="icon">north_east<input id="north_east" class="direction" name="direction" type="radio"></span></label>
+                <span class="icon">East<input class="direction" name="direction" type="radio"></span>
+                <span class="icon">south_east<input class="direction" name="direction" type="radio"></span>
+                <span class="icon">South<input class="direction" name="direction" type="radio"></span>
+                <span class="icon">south_west<input class="direction" name="direction" type="radio"></span>
+                <span class="icon">West<input class="direction" name="direction" type="radio"></span>
+                <span class="icon">north_west<input class="direction" name="direction" type="radio"></span>
+        </div>
     </div>
     <div id="example"></div>
     <script src="main.js"></script>
