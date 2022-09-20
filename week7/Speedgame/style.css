@@ -16,7 +16,7 @@ h1 {
   font-size: 4rem;
   line-height: 220px;
   color: green;
-  text-shadow: ;
+  text-shadow: 1px 1px 5px #80ff80;
 }
 
 main {
@@ -66,5 +66,5 @@ footer a {
 }
 
 .active {
-  background-image: url(/Speedgame/images/image_1-removebg-preview.png);
+  background-image: url("assets/images/image_1-removebg-preview.png");
 }
