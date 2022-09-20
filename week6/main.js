@@ -53,10 +53,12 @@ menuIcon.addEventListener('click', function () {
 /* modal element toggle */
 doNotClick.addEventListener('click', function () {
     modal.style.display = "visible"
+    body.classList.add('scroll');
 })
 
 close.addEventListener('click', function () {
     console.log('clicked');
     overlay.style.display = "none";
     modal.style.display = "none";
+    body.classList.remove(scroll);
 })

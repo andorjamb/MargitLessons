@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css?family=Rubik+Moonrocks");
+@import url("https://fonts.googleapis.com/css?family=Rubik");
+
+
+* {
+    border: 0;
+    margin: 0;
+    text-align: center;
+}
+
+body {
+    
+    font-family: 'Rubik', sans-serif;
+    background-color: black;
+    color: rgb(227, 226, 227);
+ background-image: url('/Speedgame/images/pexels-pixabay-87009.jpg');
+}
+
+header {
+    height: 220px;
+
+
+}
+
+main {
+    display: flex;
+
+}
+
+h1 {
+    font-family: 'Rubik Moonrocks';
+    text-align: center;
+    font-size: 4rem;
+    padding-top: 2rem;
+}
+
+.playField {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: solid 2px red;
+    padding: 3rem;
+    justify-content: center;
+
+}
+
+/* CIRCLE CLASSES AND IDS */
+
+.circle {
+    
+    background-color: rgb(227, 226, 227);
+    border-radius: 80px;
+    height: 150px;
+    width: 150px;
+    justify-content: space-around;
+    color: black;
+    line-height: 150px;
+
+
+}
+
+
+
+.active {
+    background-image: url(/Speedgame/images/image_1-removebg-preview.png);
+}
+
+footer {
+    background: transparent;
+    min-height: 50px;
+    border: solid 2px blue;
+
+}

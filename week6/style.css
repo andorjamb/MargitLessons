@@ -11,6 +11,11 @@ body {
     color: white;
 }
 
+body.scroll {
+    height: 100%;
+    overflow: hidden;
+}
+
 .logo {
     flex: 2;
     text-align: left;
@@ -131,6 +136,7 @@ main {
     width: 50vw;
     color: black;
     padding: 2rem;
+    overflow: hidden;
 
 }
 
