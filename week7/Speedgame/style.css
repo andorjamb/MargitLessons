@@ -23,7 +23,7 @@ main {
   font-family: "Press Start 2P";
 }
 
-.scoreDisplay {
+.score-container {
   font-family: "Press Start 2P";
 }
 
@@ -50,8 +50,7 @@ main {
   display: flex;
 }
 
-.overlay {
-}
+.overlay {}
 
 footer {
   min-height: 50px;
@@ -67,4 +66,28 @@ footer a {
 
 .active {
   background-image: url("assets/images/image_1-removebg-preview.png");
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+#startButton {
+  border-radius: 8px;
+  font-size: 1.5rem;
+  background-color: green;
+  color: white;
+
+}
+
+#stopButton {
+  border-radius: 8px;
+  font-size: 1.5rem;
+  background-color: red;
+  color: white;
+}
+
+.display-none {
+  display: none;
 }

@@ -1,33 +1,34 @@
-const startButton = document.querySelector("#start");
-const stopButton = document.querySelector("#stop");
+const startButton = document.querySelector("#startButton");
+const stopButton = document.querySelector("#stopButton");
+const scoreDisplay = document.querySelector('#scoreDisplay');
+const circle = document.querySelectorAll(".circle");
+const active = document.querySelector(".active");
 
-startButton.addEventListener('click', startGame);
-stopButton.addEventListener('click', stopGame);
+let score = 0;
 
 function startGame() {
     console.log('game started');
-    startButton.classList.remove();
-    stopButton.classList
+
 }
 
-function stopGame() { }
+function stopGame() {
+    console.log('game ended.');
+}
 
-const active = document.querySelector(".active");
-console.log(active);
-
-const circle = document.querySelectorAll(".circle");
-console.log(circle);
-for (item in circle) {
-    function() {
-
-        item.addEventListener('click', function () {
-            console.log('clicking circle:', item);
-        })
-    }
+circle.forEach((node, index) => {
+    node.addEventListener('click', () => {
+        registerCircle(node)
+        console.log(node);
+        score++;
+        console.log('score is: ', score);
+    });
+})
 
 
-    function toggleActive() {
-        setTimeout(function () {
+function registerCircle() {
+}
 
-        }, 2000);
-    }
+
+startButton.addEventListener('click', startGame);
+stopButton.addEventListener('click', stopGame);
+scoreDisplay.textContent = `Your score: ${score}`;
