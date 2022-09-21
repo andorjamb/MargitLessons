@@ -9,22 +9,21 @@ const active = document.querySelector(".active");
 
 /* ////////////  GLOBAL VARIABLES //////////  */
 let score = 0;
-let newSeed, lastSeed;
-
-
+let seed; 
+let lastSeed = generateRandom;
 
 /* ////////////  FUNCTION DEFINITIONS //////////  */
 
 function startGame() {
     console.log('game started');
-    active = checkRandom();
+    seed = checkRandom();
 }
 
 function checkRandom() {
-    active = generateRandom();
-    if (active != lastActive) {
-        lastActive = active;
-        return active;
+    seed = generateRandom();
+    if (seed != lastseed) {
+        lastseed = seed;
+        return seed;
     }
     else { generateRandom() }
 }
