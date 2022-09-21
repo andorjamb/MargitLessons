@@ -25,6 +25,13 @@ main {
 
 .score-container {
   font-family: "Press Start 2P";
+  display: flex;
+  justify-content: center;
+}
+
+#scoreDisplay {
+  height: 30px;
+  color: white;
 }
 
 .circle-container {
