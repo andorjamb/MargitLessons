@@ -10,7 +10,6 @@
 }
 
 body {
-  display: flex;
   height: 100vh; /* note this! */
   background-image: linear-gradient(var(--start-color1), var(--start-color2));
   background-repeat: no-repeat;
@@ -20,6 +19,7 @@ body {
 
 main {
   padding: 1rem;
+  display: flex;
 }
 .choose-panel {
   min-width: 150px;
@@ -44,7 +44,7 @@ h1 {
 .colors {
   margin: 1rem;
   opacity: 1;
-  height: 100px;
+  height: 70px;
   width: 100px;
   border: 2px solid white;
   border-radius: 7px;
@@ -81,21 +81,10 @@ h1 {
 .direction-icon:hover {
   font-weight: 1200;
   transform: scale(1.1);
-  box.shadow: 0 0 5px #2e3338;
-}
-
-.direction-icon:checked {
-  background-color: red;
-}
-
-.arrow-radio:checked {
-  background-color: green;
+  box-shadow: 0 0 5px #2e3338;
 }
 
 .direction-icon:active {
   background-color: pink;
-}
-
-.arrow-radio:active {
-  background-color: chartreuse;
+  box-shadow: 0 0 5px #2e3338;
 }
