@@ -1,57 +1,101 @@
+:root {
+  --start-color1: #ff0000;
+  --start-color2: #0000ff;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    padding: 1rem;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  height: 100vh; /* note this! */
+  background-image: linear-gradient(var(--start-color1), var(--start-color2));
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Open Sans";
 }
 
 main {
-    display: flex;
-    flex-direction: row;
+  padding: 1rem;
+}
+.choose-panel {
+  min-width: 150px;
+  max-width: 300px;
+  padding: 1rem;
+  flex: 20vw;
+  background: #dbdad9;
+  opacity: 80%;
+  box-shadow: 0 0 5px #2e3338;
+  border-radius: 4px;
 }
 
 h1 {
-    text-align: center;
-    padding-bottom: 1.5rem;
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+.color-container {
+  display: flex;
+  justify-content: center;
 }
 
-.panel {
-    flex: 25%;
-    background-color: rgb(225, 212, 212);
-    opacity: 80%;
-    height: 100%;
-    width: 250px;
-    box-shadow: 2px 2px 4px grey;
-    border-radius: 4px;
+.colors {
+  margin: 1rem;
+  opacity: 1;
+  height: 100px;
+  width: 100px;
+  border: 2px solid white;
+  border-radius: 7px;
 }
 
-.colorBox {
-    height: 150px;
-    width: 200px;
-    border: 2px solid white;
-
+.arrow-container {
+  /*div */
+  display: grid;
+  max-width: 260px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 1rem;
+  min-width: 140px;
+  min-height: 140px;
 }
 
-.icon {
-    font-family: 'Material Symbols Outlined';
-    box-shadow: 2px 2px 4px grey;
-    font-size: 3rem;
+/*technique for masking display of radio buttons from Mark Heath
+  https://markheath.net/post/customize-radio-button-css
+  */
+.arrow-container input[type="radio"] {
+  opacity: 0;
+  width: 0;
+  position: fixed;
+}
+.direction-icon {
+  /*span for label*/
+  font-family: "Material Symbols Outlined";
+  font-weight: 800;
+  font-size: 3rem;
+  border-radius: 7px;
+  text-align: center;
 }
 
-
-#example {
-    flex: 75%;
+.direction-icon:hover {
+  font-weight: 1200;
+  transform: scale(1.1);
+  box.shadow: 0 0 5px #2e3338;
 }
 
-.direction-container {
-    display: grid;
-    grid-template-columns: ;
+.direction-icon:checked {
+  background-color: red;
 }
 
-.direction {
-    display: none;
+.arrow-radio:checked {
+  background-color: green;
+}
+
+.direction-icon:active {
+  background-color: pink;
+}
+
+.arrow-radio:active {
+  background-color: chartreuse;
 }

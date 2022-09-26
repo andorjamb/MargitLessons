@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Background Gradient Generator</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined">
-</head>
-
-<body>
-    <header>
-        <h1>Background Gradient Generator</h1>
-    </header>
-    <main></main>
-    <div class="panel">
-        <h3>Choose two colours:</h3>
-
-        <div class="color" id="color1"><input class="colorBox" type="color" value="#CFCFCF"></div>
-        <div class="color" id="color2"><input class="colorBox" type="color" value="#CFCFCF"></div>
-        <h3>Choose gradient direction:</h3>
-        <div class="directionGrid">
-            <span class="icon"> <input class="direction" name="direction" type="radio"><span class="icon">North</span>
-                <label for="north_east"><span class="icon">north_east<input id="north_east" class="direction" name="direction" type="radio"></span></label>
-                <span class="icon">East<input class="direction" name="direction" type="radio"></span>
-                <span class="icon">south_east<input class="direction" name="direction" type="radio"></span>
-                <span class="icon">South<input class="direction" name="direction" type="radio"></span>
-                <span class="icon">south_west<input class="direction" name="direction" type="radio"></span>
-                <span class="icon">West<input class="direction" name="direction" type="radio"></span>
-                <span class="icon">north_west<input class="direction" name="direction" type="radio"></span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content ="Anna Petelin">
+    <title>Linear Gradient Generator</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Press+Start+2P&family=Roboto+Mono&family=Tourney:ital@1&family=Vibur&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header><h1>Linear Gradient Generator</h1></header>
+    <main>
+      <div class="choose-panel">
+        <div class="color-container">
+          <input type="color" class="colors" id="color1" value="#FF0000" />
+          <input type="color" class="colors" id="color2" value="#0000FF" />
         </div>
-    </div>
-    <div id="example"></div>
-    <script src="main.js"></script>
-</body>
+        <div class="arrow-container">
+          <span class="direction-icon"> <label for="315" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="315">north_west</input></label></span>
+          <span class="direction-icon"><label for="0" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="0">north</input></label></span>
+          <span class="direction-icon"><label for="45" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="45">north_east</input></label></span>
+          <span class="direction-icon"><label for="270" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="270">west</input></label></span>
+          <label for="90" class="arrow"></label>
+          <span class="direction-icon"><label for="90" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="90">east</input></label></span>
+   
+          <span class="direction-icon"><label for="225" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="225">south_west</input></label></span>
 
+          <span class="direction-icon"><label for="180" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="180">south</input></label></span>
+          <span class="direction-icon"><label for="135" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="135">south_east</input></label></span>
+      
+
+            
+  
+ 
+        </div>
+      </div>
+    </main>
+
+    <script src="/main.js"></script>
+  </body>
 </html>
