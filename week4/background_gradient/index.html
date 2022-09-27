@@ -12,34 +12,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Press+Start+2P&family=Roboto+Mono&family=Tourney:ital@1&family=Vibur&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header><h1>Linear Gradient Generator</h1></header>
+    
     <main>
       <div class="choose-panel">
+        <h1>Linear Gradient Generator</h1>
+        <h3>Colors</h3>
         <div class="color-container">
           <input type="color" class="colors" id="color1" value="#FF0000" />
           <input type="color" class="colors" id="color2" value="#0000FF" />
         </div>
+        <h3>Direction</h3>
         <div class="arrow-container">
-          <span class="direction-icon"> <label for="315" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="315">north_west</input></label></span>
-          <span class="direction-icon"><label for="0" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="0">north</input></label></span>
-          <span class="direction-icon"><label for="45" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="45">north_east</input></label></span>
-          <span class="direction-icon"><label for="270" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="270">west</input></label></span>
+          <span class="icon"> <label for="315" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="315">north_west</input></label></span>
+          <span class="icon"><label for="0" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="0">north</input></label></span>
+          <span class="icon"><label for="45" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="45">north_east</input></label></span>
+          <span class="icon"><label for="270" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="270">west</input></label></span>
           <label for="90" class="arrow"></label>
-          <span class="direction-icon"><label for="90" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="90">east</input></label></span>
+          <span class="icon"><label for="90" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="90">east</input></label></span>
    
-          <span class="direction-icon"><label for="225" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="225">south_west</input></label></span>
+          <span class="icon"><label for="225" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="225">south_west</input></label></span>
 
-          <span class="direction-icon"><label for="180" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="180">south</input></label></span>
-          <span class="direction-icon"><label for="135" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="135">south_east</input></label></span>
-      
-
-            
-  
+          <span class="icon"><label for="180" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="180">south</input></label></span>
+          <span class="icon"><label for="135" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="135">south_east</input></label></span>
  
         </div>
+        <div><h3>CSS code</h3>
+        <p id="cssCode"></p>
+    <button><span id="copy" class="icon" >content_copy</span></button></div>
       </div>
     </main>
-
+    
     <script src="/main.js"></script>
   </body>
 </html>

@@ -7,13 +7,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-align: center;
 }
 
 body {
-  height: 100vh; /* note this! */
+  height: 100vh;
   background-image: linear-gradient(var(--start-color1), var(--start-color2));
-  background-repeat: no-repeat;
   background-size: cover;
+  background-repeat: no-repeat;
   font-family: "Open Sans";
 }
 
@@ -23,8 +24,7 @@ main {
 }
 .choose-panel {
   min-width: 150px;
-  max-width: 300px;
-  padding: 1rem;
+  max-width: 270px;
   flex: 20vw;
   background: #dbdad9;
   opacity: 80%;
@@ -33,9 +33,10 @@ main {
 }
 
 h1 {
-  text-align: center;
   padding-bottom: 1.5rem;
+  font-size: 1.4rem;
 }
+
 .color-container {
   display: flex;
   justify-content: center;
@@ -44,10 +45,10 @@ h1 {
 .colors {
   margin: 1rem;
   opacity: 1;
-  height: 70px;
-  width: 100px;
-  border: 2px solid white;
-  border-radius: 7px;
+  height: 60px;
+  width: 80px;
+  border: 1px solid white;
+  border-radius: 4px;
 }
 
 .arrow-container {
@@ -69,7 +70,7 @@ h1 {
   width: 0;
   position: fixed;
 }
-.direction-icon {
+.icon {
   /*span for label*/
   font-family: "Material Symbols Outlined";
   font-weight: 800;
@@ -78,13 +79,24 @@ h1 {
   text-align: center;
 }
 
-.direction-icon:hover {
+.icon:hover {
   font-weight: 1200;
   transform: scale(1.1);
   box-shadow: 0 0 5px #2e3338;
 }
 
-.direction-icon:active {
+.icon:active {
   background-color: pink;
   box-shadow: 0 0 5px #2e3338;
+}
+
+#cssCode {
+  font-size: 0.8rem;
+  padding: 1rem;
+  text-align: left;
+}
+
+#copy {
+  font-weight: 300;
+  font-size: 1rem;
 }
