@@ -48,7 +48,9 @@ header.scroll a {
     font-weight: 700;
 }
 
-.navDiv nav ul,
+/*navbar class for wider screens */
+
+.navbar nav ul,
 li,
 a {
     flex: 1;
@@ -61,13 +63,16 @@ a {
     color: white;
 }
 
-/* responsive class  on menu bar is toggled by screen width  */
+/* responsive class for navbar */
 .responsive {
     background-color: white;
-    min-width: 150px;
+    min-width: 250px;
     color: rgb(14, 14, 41);
     border: 1px solid white;
-    display: none;
+    position: absolute;
+    top: 150px;
+    right: 0;
+
 }
 
 #menuIcon {
@@ -98,14 +103,6 @@ main {
     border: solid 1px white;
 }
 
-#slidingMenu {
-    background-color: white;
-    min-width: 150px;
-    color: rgb(14, 14, 41);
-    border: 1px solid white;
-    display: none;
-}
-
 h2 {
     padding-bottom: 1rem;
 }
@@ -129,9 +126,13 @@ h2 {
     /* affects where the page scrolls to*/
 }
 
-/* /////   MODAL    ///// */
+/* /////   MODAL AND OVERLAY STYLING  ///// */
 
-
+.overlay,
+.modal,
+.close {
+    display: none;
+}
 
 .overlay.visible {
     /*class to obscure page background */
@@ -145,10 +146,11 @@ h2 {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 .modal.visible {
+    display: block;
     position: relative;
     background-color: white;
     border-radius: 10px;
@@ -156,23 +158,21 @@ h2 {
     width: 50vw;
     color: black;
     padding: 2rem;
+    opacity: 1;
 
 
 }
 
-.overlay.visible .close {
+.close.visible {
+    display: block;
     position: absolute;
     top: 20px;
     right: 20px;
     padding: 2px 4px;
+    color: red;
 }
 
-/*  DEFAULT DISPLAY for modal and overlay */
-.overlay,
-.modal,
-.close {
-    display: none;
-}
+
 
 footer {
     padding: 20px 20px;
@@ -220,7 +220,7 @@ footer {
 
     }
 
-    .navDiv nav ul,
+    .navbar nav ul,
     li {
         display: none;
     }

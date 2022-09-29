@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript Responsive Nav Menu</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
@@ -17,7 +17,7 @@
         <div id="title" class="logo">
             <h1><a href="#title">Anna Petelin</a></h1>
         </div>
-        <div class="navDiv">
+        <div class="navbar">
             <nav>
                 <div><button id="menuIcon"><span class="material-symbols-outlined">
                             menu
@@ -41,22 +41,22 @@
                 <li><a>Contact</a></li>
             </ul>
         </div>
-        <!-- note, better to use section than div -->
-        <div class="content" id="first">
+        <!-- note, better to use section than div for semantic HTML -->
+        <section class="content" id="first">
             <h2>First</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi et corrupti minus iste ipsa laudantium
                 in perferendis sapiente ab odio dicta consequatur voluptatum numquam animi nemo, doloremque iure magnam
                 id?</p>
             <button id="doNotClick">Do NOT click me</button>
-        </div>
-        <div class="content" id="second">
+        </section>
+        <section class="content" id="second">
 
             <h2>Second</h2>
-            
-        </div>
-        <div class="content" id="third">
+
+        </section>
+        <section class="content" id="third">
             <h2>Third</h2>
-        </div>
+        </section>
         <div class="content" id="contact">
             <h2>Contact</h2>
         </div>
@@ -64,9 +64,9 @@
         <div class="overlay">
             <div class="modal">
                 <h2>Modal</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aspernatur voluptates dolor
-                    doloribus provident soluta a id illum asperiores? Pariatur quam nam exercitationem molestiae magni
-                    iure earum ut odit sapiente.</p>
+                <p>Congratulations, you are our millionth customer....</p>
+                <p>you can close this menu now.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam maiores atque, ratione minima quae iusto ut quas, harum distinctio quis nam commodi obcaecati a. Fugit temporibus soluta culpa minus iste!</p>
                 <button class="close">X</button>
             </div>
         </div>
@@ -78,7 +78,7 @@
     </footer>
 
 
-    <script src="/main.js"></script>
+    <script src="./main.js"></script>
 </body>
 
 </html>

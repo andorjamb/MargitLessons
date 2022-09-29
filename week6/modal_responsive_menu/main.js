@@ -1,19 +1,19 @@
 
-
-const slidingMenu = document.getElementById("slidingMenu");
+const body = document.querySelector('body');
 const navbar = document.querySelector('nav');
 const backToTop = document.getElementById("backToTop");
 const header = document.querySelector("header");
 const menuIcon = document.getElementById('menuIcon');
-header.addEventListener('scroll', function () { header.classList.toggle("") })
-backToTop.addEventListener('click', function () { window.scroll(0, 0) }); /* or window.scrollTop = 0 */
+const doNotClick = document.getElementById("doNotClick");
+const overlay = document.querySelector('.overlay');
+const modal = document.querySelector('.modal');
+const close = document.querySelector('.close');
 
-//scrollTop built-in property
+backToTop.addEventListener('click', function () { window.scroll(0, 0) }); /* or window.scrollTop = 0 */
 
 window.onscroll = function () {
     scrollFunction();
 };
-
 
 function scrollFunction() {
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
@@ -27,18 +27,22 @@ function scrollFunction() {
     }
 }
 
-const doNotClick = document.getElementById("doNotClick");
-const overlay = document.querySelector('.overlay');
-const modal = document.querySelector('.modal');
-const close = document.querySelector('.close');
+
 doNotClick.addEventListener('click', function () {
-    overlay.style.display = 'flex';
-    modal.style.display = 'block';
-    close.style.display = 'block';
-    /*disable scroll*/
+    if (!(overlay.classList.contains('visible'))) {
+        overlay.classList.add('visible');
+        modal.classList.add('visible');
+        close.classList.add('visible');
+    }
 })
 
-/* responsive class toggle */
+
+close.addEventListener('click', function () {
+    overlay.classList.remove('visible');
+    body.classList.remove('scroll');
+})
+
+/* responsive navbar menu button toggle */
 
 menuIcon.addEventListener('click', function () {
     if (navbar.classList.contains('responsive')) {
@@ -50,15 +54,6 @@ menuIcon.addEventListener('click', function () {
     }
 })
 
-/* modal element toggle */
-doNotClick.addEventListener('click', function () {
-    modal.style.display = "visible"
-    body.classList.add('scroll');
-})
 
-close.addEventListener('click', function () {
-    console.log('clicked');
-    overlay.style.display = "none";
-    modal.style.display = "none";
-    body.classList.remove(scroll);
-})
+
+
