@@ -89,6 +89,15 @@ main {
     min-height: 500px;
 }
 
+#doNotClick {
+    margin-top: 1rem;
+    border-radius: 14px;
+    padding: 0.5rem;
+    background-color: rgb(14, 14, 41);
+    color: white;
+    border: solid 1px white;
+}
+
 #slidingMenu {
     background-color: white;
     min-width: 150px;
@@ -201,8 +210,6 @@ footer {
     #menuIcon {
         display: block;
     }
-
-
 
     .navbar.responsive ul {
         /* note the difference in syntax (no space) when selecting an element's class, as opposed to an element within a class */
