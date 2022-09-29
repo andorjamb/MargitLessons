@@ -50,6 +50,10 @@ header.scroll a {
 
 /*navbar class for wider screens */
 
+
+.navbar {
+    border: solid 3px red;
+}
 .navbar nav ul,
 li,
 a {
@@ -61,19 +65,10 @@ a {
     list-style-type: none;
     padding: 10px 10px;
     color: white;
+    
 }
 
-/* responsive class for navbar */
-.responsive {
-    background-color: white;
-    min-width: 250px;
-    color: rgb(14, 14, 41);
-    border: 1px solid white;
-    position: absolute;
-    top: 150px;
-    right: 0;
 
-}
 
 #menuIcon {
     display: none;
@@ -169,7 +164,9 @@ h2 {
     top: 20px;
     right: 20px;
     padding: 2px 4px;
-    color: red;
+    color: black;
+    border: none;
+    font-weight: 900;
 }
 
 
@@ -211,16 +208,23 @@ footer {
         display: block;
     }
 
-    .navbar.responsive ul {
-        /* note the difference in syntax (no space) when selecting an element's class, as opposed to an element within a class */
+
+    /* note the difference in syntax (no space) when selecting an element's class, as opposed to an element within a class */
+
+
+    /* responsive class for navbar */
+    .navbar.responsive {
         display: block;
-        position: absolute;
-        left: 0;
-        top: 85px;
+    }
+
+    .navbar .responsive ul li a {
+        color: rgb(14, 14, 41);
+        display: block;
+        width: 100%;
 
     }
 
-    .navbar nav ul,
+    .navbar ul,
     li {
         display: none;
     }

@@ -1,6 +1,7 @@
 
 const body = document.querySelector('body');
-const navbar = document.querySelector('nav');
+const nav = document.querySelector('nav');
+let navbar = document.getElementsByClassName('navbar');
 const backToTop = document.getElementById("backToTop");
 const header = document.querySelector("header");
 const menuIcon = document.getElementById('menuIcon');
