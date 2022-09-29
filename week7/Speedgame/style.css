@@ -36,7 +36,7 @@ main {
 
 .circle-container {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
   padding: 20px 20px;
 }
@@ -57,7 +57,12 @@ main {
   display: flex;
 }
 
-.overlay {}
+.overlay {
+  background-color: gray;
+  opacity: 0.5;
+  height: 100%;
+  overflow: hidden;
+}
 
 footer {
   min-height: 50px;
