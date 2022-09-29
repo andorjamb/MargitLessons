@@ -1,5 +1,6 @@
 
 const body = document.querySelector('body');
+let links = document.querySelectorAll('nav ul li a');
 const nav = document.querySelector('nav');
 const backToTop = document.getElementById("backToTop");
 const header = document.querySelector("header");
@@ -10,7 +11,7 @@ const modal = document.querySelector('.modal');
 const close = document.querySelector('.close');
 
 
-/*   FUNCTIONS   */
+/*   FUNCTIONS  (from Margit's example) */
 
 function scrollFunction() {
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
@@ -24,6 +25,23 @@ function scrollFunction() {
     }
 }
 
+function mobileMenu() {
+    console.log('clicked');
+    for (const link of links) {
+        link.addEventListener('click', mobileMenu);
+    }
+    if (nav.classList.contains('responsive')) {
+        nav.classList.remove('responsive');
+        document.body.style.overflow = '';
+    } else {
+        nav.classList.add('responsive');
+        document.body.style.overflow = 'hidden';
+    }
+};
+
+
+/*  */
+
 
 backToTop.addEventListener('click', function () { window.scroll(0, 0) }); /* or window.scrollTop = 0 */
 
@@ -31,6 +49,7 @@ window.onscroll = function () {
     scrollFunction();
 };
 
+menuIcon.addEventListener('click', mobileMenu);
 
 doNotClick.addEventListener('click', function () {
     if (!(overlay.classList.contains('visible'))) {

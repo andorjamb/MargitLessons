@@ -214,19 +214,12 @@ footer {
         display: none;
     }
 
-
-
     /* /* responsive class for navbar */
-    nav.responsive {
-        display: block;
-    }
+
 
     nav.responsive ul li a {
         color: rgb(14, 14, 41);
         display: block;
         width: 100%;
-
     }
-
-    *
 }
