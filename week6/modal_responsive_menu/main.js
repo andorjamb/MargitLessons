@@ -1,7 +1,6 @@
 
 const body = document.querySelector('body');
 const nav = document.querySelector('nav');
-let navbar = document.getElementsByClassName('navbar');
 const backToTop = document.getElementById("backToTop");
 const header = document.querySelector("header");
 const menuIcon = document.getElementById('menuIcon');
@@ -10,11 +9,8 @@ const overlay = document.querySelector('.overlay');
 const modal = document.querySelector('.modal');
 const close = document.querySelector('.close');
 
-backToTop.addEventListener('click', function () { window.scroll(0, 0) }); /* or window.scrollTop = 0 */
 
-window.onscroll = function () {
-    scrollFunction();
-};
+/*   FUNCTIONS   */
 
 function scrollFunction() {
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
@@ -29,6 +25,13 @@ function scrollFunction() {
 }
 
 
+backToTop.addEventListener('click', function () { window.scroll(0, 0) }); /* or window.scrollTop = 0 */
+
+window.onscroll = function () {
+    scrollFunction();
+};
+
+
 doNotClick.addEventListener('click', function () {
     if (!(overlay.classList.contains('visible'))) {
         overlay.classList.add('visible');
@@ -37,24 +40,10 @@ doNotClick.addEventListener('click', function () {
     }
 })
 
-
 close.addEventListener('click', function () {
     overlay.classList.remove('visible');
     body.classList.remove('scroll');
 })
-
-/* responsive navbar menu button toggle */
-
-menuIcon.addEventListener('click', function () {
-    if (navbar.classList.contains('responsive')) {
-        navbar.classList.remove('responsive');
-        document.body.style.overflow = '';
-    } else {
-        navbar.classList.add('responsive');
-        document.body.style.overflow = 'hidden';
-    }
-})
-
 
 
 

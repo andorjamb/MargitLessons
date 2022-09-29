@@ -51,10 +51,11 @@ header.scroll a {
 /*navbar class for wider screens */
 
 
-.navbar {
-    border: solid 3px red;
+nav {
+    border: solid 2px green
 }
-.navbar nav ul,
+
+nav ul,
 li,
 a {
     flex: 1;
@@ -65,10 +66,8 @@ a {
     list-style-type: none;
     padding: 10px 10px;
     color: white;
-    
+
 }
-
-
 
 #menuIcon {
     display: none;
@@ -132,6 +131,7 @@ h2 {
 .overlay.visible {
     /*class to obscure page background */
     position: fixed;
+    background: fixed;
     top: 0;
     left: 0;
     height: 100%;
@@ -154,6 +154,7 @@ h2 {
     color: black;
     padding: 2rem;
     opacity: 1;
+    overflow: hidden;
 
 
 }
@@ -197,35 +198,35 @@ footer {
     color: black;
 }
 
+/* note the difference in syntax (no space) when selecting an element's class, as opposed to an element within a class */
+
+
 /* SMALL SCREEN DISPLAY */
 
 @media screen and (max-width: 800px) {
-    .slidingMenu {
-        display: none;
-    }
 
     #menuIcon {
         display: block;
     }
 
+    .nav ul,
+    li {
+        display: none;
+    }
 
-    /* note the difference in syntax (no space) when selecting an element's class, as opposed to an element within a class */
 
 
-    /* responsive class for navbar */
-    .navbar.responsive {
+    /* /* responsive class for navbar */
+    nav.responsive {
         display: block;
     }
 
-    .navbar .responsive ul li a {
+    nav.responsive ul li a {
         color: rgb(14, 14, 41);
         display: block;
         width: 100%;
 
     }
 
-    .navbar ul,
-    li {
-        display: none;
-    }
+    *
 }
