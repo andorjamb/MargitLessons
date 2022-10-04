@@ -60,6 +60,27 @@ main {
   color: transparent;
 }
 
+.circle.alien {
+  background-image: url("assets/images/planet1_alien1.png");
+}
+
+.circle.alien1 {
+  background-image: url("assets/images/planet1_alien1.png");
+}
+
+.circle.alien2 {
+  background-image: url("assets/images/planet1_alien2.png");
+}
+
+.circle.alien3 {
+  background-image: url("assets/images/planet1_alien3.png");
+}
+
+.circle.alien4 {
+  background-image: url("assets/images/planet1_alien4.png");
+}
+
+
 .overlay,
 .modal,
 .close {
