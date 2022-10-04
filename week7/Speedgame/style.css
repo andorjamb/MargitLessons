@@ -19,6 +19,13 @@ h1 {
   text-shadow: 1px 1px 5px #80ff80;
 }
 
+h2 {
+  color: red;
+  text-transform: uppercase;
+  text-align: center;
+
+}
+
 main {
   font-family: "Press Start 2P";
 }
@@ -53,15 +60,60 @@ main {
 }
 
 .overlay,
-.modal {
-  display: flex;
+.modal,
+.close {
+  display: none;
 }
 
 .overlay {
+  display: none;
   background-color: gray;
   opacity: 0.5;
   height: 100%;
   overflow: hidden;
+}
+
+
+.overlay.visible {
+  /*class to obscure page background */
+  position: fixed;
+  background: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(14, 14, 41, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  opacity: 0.8;
+}
+
+.modal.visible {
+  display: block;
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  height: 50vh;
+  width: 50vw;
+  color: black;
+  padding: 2rem;
+  opacity: 1;
+  overflow: hidden;
+
+
+}
+
+.close.visible {
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 2px 4px;
+  color: black;
+  border: none;
+  font-weight: 900;
 }
 
 footer {
