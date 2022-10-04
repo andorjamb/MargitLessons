@@ -3,7 +3,7 @@
 const startButton = document.querySelector("#startButton");
 const stopButton = document.querySelector("#stopButton");
 const scoreDisplay = document.getElementById('scoreDisplay');
-const circle = document.querySelectorAll(".circle");
+const circles = document.querySelectorAll(".circle");
 const active = document.querySelector(".active");
 const close = document.querySelector('.close');
 const overlay = document.querySelector('.overlay');
@@ -15,12 +15,14 @@ const finalScoreText = document.querySelector("#finalScoreText");
 let score = 0;
 let seed;
 let lastSeed = generateRandom();
+const interval = 1500;
+let divInPlay;
 
 /* ////////////  FUNCTION DEFINITIONS //////////  */
 
 function startGame() {
     console.log('game started');
-    seed = makeRandom();
+    setTimeout(activateAlien, 1500);
 }
 
 function finalScore(score) {
@@ -44,23 +46,16 @@ function stopGame() {
     showModal();
 }
 
-function alien() {
-    let divInPlay = circle[makeRandom()];
+function activateAlien() {
+    //divInPlay.style.backgroundImage = "url(./assets/images/planet1.png)";
+    let divInPlay = circles[makeRandom()];
     console.log(divInPlay);
     divInPlay.style.backgroundImage = getImage();
+    console.log(divInPlay.style.backgroundImage);
+    const alienTimeout = setTimeout(activateAlien, interval);
 }
 
-circle.forEach((node, index) => {
-    node.addEventListener('click', () => {
-        showIndex(index);
-        console.log('score is: ', score);
-        return score;
-
-    });
-})
-
-function showIndex(index) {
-    console.log('clicked on circle', index);
+function showScore(index) {
     score++;
     scoreDisplay.textContent = `Your score: ${score}`;
     return score;
@@ -68,15 +63,14 @@ function showIndex(index) {
 
 function generateRandom() {
     newRandom = Math.floor(Math.random() * 4);
-    console.log(newRandom);
     return newRandom;
 }
 
 function getImage() {
-    const image1 = "./assets/images/planet1_alien1.png";
-    const image2 = "./assets/images/planet1_alien2.png";
-    const image3 = "./assets/images/planet1_alien3.png";
-    const image4 = "./assets/images/planet1_alien4.png";
+    const image1 = "url(./assets/images/planet1_alien1.png)";
+    const image2 = "url(./assets/images/planet1_alien2.png)";
+    const image3 = "url(./assets/images/planet1_alien3.png)";
+    const image4 = "url(./assets/images/planet1_alien4.png)";
     const imageArray = [image1, image2, image3, image4];
     return imageArray[generateRandom()];
 }
@@ -104,7 +98,17 @@ console.log('print last seed variable: ', lastSeed);
 startButton.addEventListener('click', startGame);
 stopButton.addEventListener('click', stopGame);
 
-
+circles.forEach((node, index) => {
+    node.addEventListener('click', () => {
+        if (!(node === divInPlay)) {
+            stopGame();
+        }
+        else {
+            showScore(index); //gets current score
+            return score; //already being returned from inner function
+        }
+    })
+})
 
 /* Pseudocode notes 
 
