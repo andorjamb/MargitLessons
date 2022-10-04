@@ -13,10 +13,10 @@ const finalScoreText = document.querySelector("#finalScoreText");
 
 /* ////////////  GLOBAL VARIABLES //////////  */
 let score = 0;
-let seed;
-let lastSeed = generateRandom();
+let newCurrent;
+let current = generateRandom();
 const interval = 1500;
-let divInPlay;
+let alienTimeout;
 
 /* ////////////  FUNCTION DEFINITIONS //////////  */
 
@@ -27,32 +27,25 @@ function startGame() {
 
 function finalScore(score) {
     gameOverText.textContent = `Your score is: ${score}.`;
-    if (score > 20) { finalScoreText.textContent = `Wowzers, you're amazing`; }
+    if (score > 20) { finalScoreText.textContent = `Wowzers, you're amazing, and wayyy better at this than Margit`; }
     else if (score > 10) { finalScoreText.textContent = `Pretty good, for an amateur`; }
     else { finalScoreText.textContent = `Man you suck.`; }
 }
 
 function makeRandom() {
-    seed = generateRandom();
-    if (seed != lastSeed) {
-        lastSeed = seed;
-        return seed;
+    newCurrent = generateRandom();
+    if (newCurrent != current) {
+        current = newCurrent;
+        return current;
     }
     else { generateRandom() }
 }
+
 function stopGame() {
     console.log('game ended.');
+    clearTimeout(alienTimeout);
     finalScore(score);
     showModal();
-}
-
-function activateAlien() {
-    //divInPlay.style.backgroundImage = "url(./assets/images/planet1.png)";
-    let divInPlay = circles[makeRandom()];
-    console.log(divInPlay);
-    divInPlay.style.backgroundImage = getImage();
-    console.log(divInPlay.style.backgroundImage);
-    const alienTimeout = setTimeout(activateAlien, interval);
 }
 
 function showScore(index) {
@@ -67,15 +60,38 @@ function generateRandom() {
 }
 
 function getImage() {
-    const image1 = "url(./assets/images/planet1_alien1.png)";
-    const image2 = "url(./assets/images/planet1_alien2.png)";
-    const image3 = "url(./assets/images/planet1_alien3.png)";
-    const image4 = "url(./assets/images/planet1_alien4.png)";
+    console.log(circles[current]);
+    console.log(circles[current].style.backgroundImage);
+    const image1 = "url('./assets/images/planet1_alien1.png')";
+    const image2 = "url('./assets/images/planet1_alien2.png')";
+    const image3 = "url('./assets/images/planet1_alien3.png')";
+    const image4 = "url('./assets/images/planet1_alien4.png')";
     const imageArray = [image1, image2, image3, image4];
     return imageArray[generateRandom()];
 }
 
-/* modal menu and close button functions */
+function activateAlien() { //the main game function
+    circles[current].style.backgroundImage = "url('./assets/images/planet1.png')";
+    current = makeRandom();
+    circles[current].style.backgroundImage = getImage();
+    circles.forEach((node, index) => {
+        node.addEventListener('click', () => {
+            if (!(node === circles[current])) {
+                stopGame();
+            }
+            else {
+                showScore(index); //gets current score
+                return score; //being returned from nested function
+            }
+        })
+    })
+    if ((score != 0) && (score % 5 == 0)) { interval = interval - 100 };
+    alienTimeout = setTimeout(activateAlien, interval);
+    return current;
+}
+
+
+/* modal menu function */
 
 function showModal() {
     const close = document.querySelector('.close');
@@ -87,31 +103,17 @@ function showModal() {
     }
 }
 
+/* //////////////  Event listeners   /////////////// */
+
+startButton.addEventListener('click', startGame);
+stopButton.addEventListener('click', stopGame);
 close.addEventListener('click', function () {
     overlay.classList.remove('visible');
 
 })
+/*
+BUGS:
 
-/* //////////////  Program execution  and event listeners   /////////////// */
-console.log('print last seed variable: ', lastSeed);
-
-startButton.addEventListener('click', startGame);
-stopButton.addEventListener('click', stopGame);
-
-circles.forEach((node, index) => {
-    node.addEventListener('click', () => {
-        if (!(node === divInPlay)) {
-            stopGame();
-        }
-        else {
-            showScore(index); //gets current score
-            return score; //already being returned from inner function
-        }
-    })
-})
-
-/* Pseudocode notes 
-
-each time new random number generated this value is passed to function that changes class of selected div
+alien background image not working
 
 */
