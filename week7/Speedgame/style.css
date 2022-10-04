@@ -87,7 +87,7 @@ main {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .modal.visible {
@@ -99,10 +99,7 @@ main {
   width: 50vw;
   color: black;
   padding: 2rem;
-  opacity: 1;
   overflow: hidden;
-
-
 }
 
 .close.visible {
@@ -128,10 +125,6 @@ footer a {
   color: green;
 }
 
-.active {
-  background-image: url("assets/images/image_1-removebg-preview.png");
-}
-
 .button-container {
   display: flex;
   justify-content: center;
@@ -142,7 +135,6 @@ footer a {
   font-size: 1.5rem;
   background-color: green;
   color: white;
-
 }
 
 #stopButton {

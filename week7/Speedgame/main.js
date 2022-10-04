@@ -73,7 +73,11 @@ function generateRandom() {
 }
 
 function getImage() {
-
+    const image1 = "./assets/images/planet1_alien1.png";
+    const image2 = "./assets/images/planet1_alien2.png";
+    const image3 = "./assets/images/planet1_alien3.png";
+    const image4 = "./assets/images/planet1_alien4.png";
+    const imageArray = [image1, image2, image3, image4];
     return imageArray[generateRandom()];
 }
 
@@ -103,8 +107,6 @@ stopButton.addEventListener('click', stopGame);
 
 
 /* Pseudocode notes 
-
-
 
 each time new random number generated this value is passed to function that changes class of selected div
 
