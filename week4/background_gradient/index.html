@@ -1,47 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content ="Anna Petelin">
-    <title>Linear Gradient Generator</title>
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Press+Start+2P&family=Roboto+Mono&family=Tourney:ital@1&family=Vibur&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    
-    <main>
-      <div class="choose-panel">
-        <h1>Linear Gradient Generator</h1>
-        <h3>Colors</h3>
-        <div class="color-container">
-          <input type="color" class="colors" id="color1" value="#FF0000" />
-          <input type="color" class="colors" id="color2" value="#0000FF" />
-        </div>
-        <h3>Direction</h3>
-        <div class="arrow-container">
-          <span class="icon"> <label for="315" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="315">north_west</input></label></span>
-          <span class="icon"><label for="0" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="0">north</input></label></span>
-          <span class="icon"><label for="45" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="45">north_east</input></label></span>
-          <span class="icon"><label for="270" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="270">west</input></label></span>
-          <label for="90" class="arrow"></label>
-          <span class="icon"><label for="90" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="90">east</input></label></span>
-   
-          <span class="icon"><label for="225" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="225">south_west</input></label></span>
 
-          <span class="icon"><label for="180" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="180">south</input></label></span>
-          <span class="icon"><label for="135" class="arrow"><input type="radio" name="arrow" class="arrow-radio" id="135">south_east</input></label></span>
- 
-        </div>
-        <div><h3>CSS code</h3>
-        <p id="cssCode"></p>
-    <button><span id="copy" class="icon" >content_copy</span></button></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Anna Petelin">
+  <title>Linear Gradient Generator</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Press+Start+2P&family=Roboto+Mono&family=Tourney:ital@1&family=Vibur&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <main>
+    <div class="choose-panel">
+      <h1>Linear Gradient Generator</h1>
+      <h3>Colors</h3>
+      <div class="color-container">
+        <input type="color" class="colors" id="color1" value="#FF0000" />
+        <input type="color" class="colors" id="color2" value="#0000FF" />
       </div>
-    </main>
-    
-    <script src="./main.js"></script>
-  </body>
+      <h3>Direction</h3>
+      <div class="arrow-container">
+        <span class="icon"> <label for="315" class="arrow"><input type="radio" name="arrow" class="arrow-radio"
+              id="315">north_west</label></span>
+        <span class="icon"><label for="0" class="arrow"><input type="radio" name="arrow" class="arrow-radio"
+              id="0">north</label></span>
+        <span class="icon"><label for="45" class="arrow"><input type="radio" name="arrow" class="arrow-radio"
+              id="45">north_east</input></label></span>
+        <span class="icon"><label for="270" class="arrow"><input type="radio" name="arrow" class="arrow-radio"
+              id="270">west</input></label></span>
+        <label for="90" class="arrow"></label>
+        <span class="icon"><label for="90" class="arrow"><input type="radio" name="arrow" class="arrow-radio"
+              id="90">east</input></label></span>
+
+        <span class="icon"><label for="225" class="arrow"><input type="radio" name="arrow" class="arrow-radio"
+              id="225">south_west</input></label></span>
+
+        <span class="icon"><label for="180" class="arrow"><input type="radio" name="arrow" class="arrow-radio"
+              id="180">south</input></label></span>
+        <span class="icon"><label for="135" class="arrow"><input type="radio" name="arrow" class="arrow-radio"
+              id="135">south_east</input></label></span>
+
+      </div>
+      <div>
+        <h3>CSS code</h3>
+        <p id="cssCode"></p>
+        <button><span id="copy" class="icon">content_copy</span></button>
+      </div>
+    </div>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+
 </html>

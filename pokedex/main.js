@@ -3,18 +3,46 @@ const pokemonContainer = document.querySelector('.pokemon-container')
 const searchTerm = document.querySelector('#search-term');
 const submitSearch = document.querySelector('#submit-search');
 const genRadios = document.querySelectorAll('.gen-radio');
-let number = 50;
+let number = 10;
 let generation = 0;
 const genButtons = document.querySelectorAll('.gen');
 
-// https://pokeapi.co/api/v2/pokemon/
-
-genButtons.forEach(genButton => genButton.addEventListener('click', function (this) {
-    console.log('clocking');
-   
-}));
+// example: 
+// https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0.
+//promise.all()
+//use map() method or forEach() to generate cards
 
 
+function defineGen(generation) {
+    switch (generation) {
+        case "1":
+            return indexDivider = [151, 0];
+            break;
+        case "2":
+            return indexDivider = [100, 151];
+            break;
+        case "3":
+            return indexDivider = [135, 251];
+            break;
+        case "4":
+            return indexDivider = [107, 386];
+            break;
+        case "5":
+            return indexDivider = [156, 493];
+            break;
+        case "6":
+            return indexDivider = [72, 659];
+            break;
+        case "7":
+            return indexDivider = [88, 721];
+            break;
+        case "8":
+            return indexDivider = [96, 809];
+            break;
+
+    }
+
+}
 
 function pokemonDivMaker(number) {
     for (let i = 0; i < number; i++) {
@@ -24,42 +52,34 @@ function pokemonDivMaker(number) {
         const pokemonImage = document.createElement('img');
         pokemonDiv.appendChild(pokemonImage);
 
-
     }
 }
 
-function searchWrapper(searchTerm,) {
-    const baseURL = 'https://pokeapi.co/api/v2/';
-    return searchURL = '"' + baseURL + '"'
-
-}
-
-function genWrapper(gen) {
-
-    const baseURL = 'https://pokeapi.co/api/v2/';
-
+function genWrapper(generation) {
+    const baseURL = 'https://pokeapi.co/api/v2/pokemon';
+    fetchURL = '"' + baseURL + '?limit=' + defineGen()[0] + '&offet=' + defineGen()[1] + '"';
+    console.log(fetchURL);
+    return fetchURL;
 
 }
 function APICall(term) {
-
-    let pokemonData = fetch('https://pokeapi.co/api/v2/pokemon/' + term).then(function (response) { console.log('successful call'); return response.json() }).then(function (data) { console.log(data) }).catch(function (err) {
+    let pokemonData = fetch(genWrapper()).then(function (response) { console.log('successful call'); return response.json() }).then(function (data) { console.log(data) }).catch(function (err) {
         console.log('error', err);
     })
 }
 
-submitSearch.addEventListener('click', searchPokemon(searchTerm.value));
-
-
 function searchPokemon(value) {
-
     return APICall(value)
-
 
 }
 
+genRadios.forEach(genRadio => genRadio.addEventListener('click', function () {
+    console.log(genRadio.value);
+    defineGen(genRadio.value); //returns array
+
+}));
+
 pokemonDivMaker(10);
-
-
-
+console.log('index divider: ', indexDivider);
 
 pokemonNumber.textContent = `There are ${number} pokemons in generation ${generation}`

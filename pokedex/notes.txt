@@ -1,0 +1,10 @@
+
+
+sample return object from promise:
+
+return {
+    id:data.id,
+    name: data.name,
+    img: data.sprites.other[].front_default,
+    types: 
+}
