@@ -1,5 +1,5 @@
 body {
-  background-image: url("/assets/images/nao-takabayashi-gT3b5EwYAnQ-unsplash.jpg");
+  background-image: url("./assets/images/nao-takabayashi-gT3b5EwYAnQ-unsplash.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   font-family: "Roboto Mono";
@@ -176,7 +176,12 @@ button {
 }
 
 @keyframes zoom {
-  0% { transform: scale(1); }
-  100%{transform: scale(0);} 
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
 
 }
