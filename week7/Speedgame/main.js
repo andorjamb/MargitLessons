@@ -9,7 +9,7 @@ const overlay = document.querySelector('.overlay');
 const modal = document.querySelector('.modal');
 const gameOverText = document.querySelector("#gameOverText");
 const finalScoreText = document.querySelector("#finalScoreText");
-
+const circleBg = 'url("assets/images.planet1.png")';
 /* ////////////  GLOBAL VARIABLES //////////  */
 let score = 0;
 let active;
@@ -28,8 +28,11 @@ function activateAlien() {  //randomly selects active circle and applies alien b
         if (circle == active) {
             console.log('logging active circle: ', active);
             active.style.backgroundImage = 'url("assets/images/planet1_alien4.png")';
-
+            /*     circles[active].style.backgroundImage = getImage(); */
         }
+        /*         else {
+                    circle.style.background = 'gray';
+                } */
     }
     alienTimeout = setTimeout(activateAlien, stopwatch);
 }
@@ -52,7 +55,7 @@ function newRandom() { /* prevents repeated numbers in the random sequence */
         active = newActive;
         return active;
     }
-    else { generateRandom() }
+    else { newRandom() }
 }
 
 function stopGame() {
