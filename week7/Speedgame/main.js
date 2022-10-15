@@ -10,32 +10,37 @@ const modal = document.querySelector('.modal');
 const gameOverText = document.querySelector("#gameOverText");
 const finalScoreText = document.querySelector("#finalScoreText");
 const circleBg = 'url("assets/images.planet1.png")';
+
 /* ////////////  GLOBAL VARIABLES //////////  */
 let score = 0;
-let active;
+let active = (Math.floor(Math.random() * 4));  //an integer used for index of circles nodelist
 let alienTimeout;
-let stopwatch = 1500;
+let timer = 3000;
 
 /* ////////////  FUNCTION DEFINITIONS //////////  */
 
-
 function activateAlien() {  //randomly selects active circle and applies alien background, initiates timeout
-    console.log('activating alien');
-    active = circles[newRandom()]; //global
-    console.log('active circle: ', active);
-    /*     circles[active].style.backgroundImage = getImage(); */
-    for (const circle in circles) {
-        if (circle == active) {
-            console.log('logging active circle: ', active);
-            active.style.backgroundImage = 'url("assets/images/planet1_alien4.png")';
-            /*     circles[active].style.backgroundImage = getImage(); */
-        }
-        /*         else {
-                    circle.style.background = 'gray';
-                } */
-    }
-    alienTimeout = setTimeout(activateAlien, stopwatch);
+    newRandomIndex().then(() => {
+        console.log(active);
+        circles[active].style.backgroundImage = getImage();
+
+    });
+
+    alienTimeout = setTimeout(activateAlien, timer);
+
 }
+
+//circles[active].style.backgroundImage = getImage();
+
+/*for (const circle in circles) {
+    if (circle == active) {
+        console.log('logging active circle: ', active);
+        active.style.backgroundImage = 'url("assets/images/planet1_alien4.png")';
+        circles[active].style.backgroundImage = getImage(); 
+        
+        else {
+            circle.style.background = 'gray';
+          } */
 
 function finalScore(score) {
     gameOverText.textContent = `Your score is: ${score}.`;
@@ -44,18 +49,12 @@ function finalScore(score) {
     else { finalScoreText.textContent = `Honestly? Terrible.`; }
 }
 
-function generateRandom() {
+async function newRandomIndex() {
     let rand = Math.floor(Math.random() * 4);
-    return rand;
-}
-
-function newRandom() { /* prevents repeated numbers in the random sequence */
-    let newActive = generateRandom();
-    if (newActive != active) {
-        active = newActive;
+    if (!(rand === active)) {
+        active = rand;
         return active;
-    }
-    else { newRandom() }
+    } else newRandomIndex();
 }
 
 function stopGame() {
@@ -79,9 +78,8 @@ function getImage() { /** randomly selects alien background for active circle */
     const image2 = 'url("assets/images/planet1_alien2.png")';
     const image3 = 'url("assets/images/planet1_alien3.png")';
     const image4 = 'url("assets/images/planet1_alien4.png")';
-    const imageArray = [image2, image3, image4];
-    let imgToReturn = imageArray[generateRandom()]
-    console.log('in image function ', imgToReturn);
+    const imageArray = [image1, image2, image3, image4];
+    let imgToReturn = imageArray[(Math.floor(Math.random() * 4))]
     return imgToReturn; // returns a URL attribute
 }
 
@@ -100,26 +98,6 @@ function runGame() {
     startButton.style.display = "none";
     stopButton.style.display = "block";
     activateAlien();
-
-    circles.forEach((circle) => {
-        circle.addEventListener('click', () => {
-            if (!(circle == active)) {
-                clearTimeout(alienTimeout);
-                stopGame();
-            }
-            else {
-                circle.style.backgroundImage = 'url("assets/images/planet1.png")';
-                if ((score != 0) && (score % 3 == 0)) {
-                    interval -= 100;
-                    console.log('decreasing interval!');
-                };
-
-            }
-            showScore();
-            return score;
-        })
-
-    })
 }
 
 /* //////////////  Event listeners   /////////////// */
@@ -129,4 +107,25 @@ stopButton.addEventListener('click', stopGame);
 close.addEventListener('click', function () {
     overlay.classList.remove('visible');
 })
+
+circles.forEach((circle) => {
+    circle.addEventListener('click', () => {
+        if (!(circle == circles[active])) {
+            clearTimeout(alienTimeout);
+            stopGame();
+
+        }
+    }
+    )
+})
+/* 
+        else {
+        circle.style.backgroundImage = 'url("assets/images/planet1.png")';
+        if((score != 0) && (score % 3 == 0)) {
+    interval -= 100;
+    console.log('decreasing interval!');
+}; */
+
+/* showScore();
+return score; */
 
