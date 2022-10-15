@@ -125,6 +125,10 @@ main {
   overflow: hidden;
 }
 
+.modal p {
+  margin-top: 2rem;
+}
+
 .close.visible {
   display: block;
   position: absolute;

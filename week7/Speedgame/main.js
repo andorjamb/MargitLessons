@@ -15,50 +15,22 @@ const defaultBG = 'url("assets/images/planet1.png")';
 let score = 0;
 let activeIndex = (Math.floor(Math.random() * 4));  //an integer used for index of circles nodelist
 let alienTimeout;
-let timer = 1200;
+let timer = 1800;
 
 /* ////////////  FUNCTION DEFINITIONS //////////  */
 
 function activateAlien() {  //randomly selects active circle and applies alien background, initiates timeout
 
     newRandomIndex().then(() => {
-        console.log("activeIndex: ", activeIndex);
-        //circles.forEach((circle) => setBG(circle));
-        for (let i = 0; i < circles.length; i++) {
-            setBG(i);
+        for (let i = 0; i < circles.length; i++) { 
+            setBG(i);  // check the index against current active index
         }
-
-        alienTimeout = setTimeout(activateAlien, timer);
-    });
-
-    circles.forEach((circle) => {
-        circle.addEventListener('click', () => {
-            console.log('clicked:', circle);
-            if (!(circle == circles[activeIndex])) {
-                clearTimeout(alienTimeout);
-                stopGame();
-
-            }
-            else {
-                showScore();
-                return score;
-
-            }
-        }
-        )
-
-    })
+    }
+    )
+    alienTimeout = setTimeout(activateAlien, timer);
 }
 
-/* 
-if((score != 0) && (score % 3 == 0)) {
-    timer -= 200;
-    console.log('decreasing interval!');
-}; */
-
-
-function setBG(index) {
-    //console.log('index variable in setBG: ', index);
+function setBG(index) { /** sets background image for circles */
     if (index == activeIndex) {
         circles[activeIndex].style.backgroundImage = getImage();
     }
@@ -66,8 +38,6 @@ function setBG(index) {
         circles[index].style.backgroundImage = defaultBG;
     }
 }
-
-
 
 function finalScore(score) {
     gameOverText.textContent = `Your score is: ${score}.`;
@@ -93,13 +63,6 @@ function stopGame() {
     showModal();
 }
 
-function showScore() { /** shows cumulative score while playing */
-    score += 1;
-    scoreDisplay.textContent = `Your score: ${score}`;
-    return score;
-}
-
-
 function getImage() { /** randomly selects alien background for active circle */
     const image1 = 'url("assets/images/planet1_alien1.png")';
     const image2 = 'url("assets/images/planet1_alien2.png")';
@@ -111,7 +74,6 @@ function getImage() { /** randomly selects alien background for active circle */
 }
 
 function showModal() { /* modal menu at game end */
-
     if (!(overlay.classList.contains('visible'))) {
         const close = document.querySelector('.close');
         overlay.classList.add('visible');
@@ -122,6 +84,8 @@ function showModal() { /* modal menu at game end */
 
 function runGame() {
     console.log('game started');
+    score = 0;
+    scoreDisplay.textContent = `Your score: ${score}`;
     startButton.style.display = "none";
     stopButton.style.display = "block";
     activateAlien();
@@ -135,3 +99,25 @@ close.addEventListener('click', function () {
     overlay.classList.remove('visible');
 })
 
+for (let i = 0; i < circles.length; i++) {
+    circles[i].addEventListener('click', () => {
+        console.log('clicked:', i);
+        if (!(circles[i] == circles[activeIndex])) {
+            clearTimeout(alienTimeout);
+            scoreDisplay.textContent = `Your score: ${score}`;
+            stopGame();
+        }
+        else {
+
+            score = score + 1;
+            scoreDisplay.textContent = `Your score: ${score}`;
+            /** change class to animate */
+            if ((score != 0) && (score % 3 == 0)) {
+                timer -= 200;
+                console.log('decreasing interval to', timer);
+            };
+        }
+    }
+    )
+
+}
