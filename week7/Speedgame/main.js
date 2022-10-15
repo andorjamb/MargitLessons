@@ -15,7 +15,7 @@ const defaultBG = 'url("assets/images/planet1.png")';
 let score = 0;
 let activeIndex = (Math.floor(Math.random() * 4));  //an integer used for index of circles nodelist
 let alienTimeout;
-let timer = 3000;
+let timer = 1200;
 
 /* ////////////  FUNCTION DEFINITIONS //////////  */
 
@@ -24,38 +24,48 @@ function activateAlien() {  //randomly selects active circle and applies alien b
     newRandomIndex().then(() => {
         console.log("activeIndex: ", activeIndex);
         //circles.forEach((circle) => setBG(circle));
-        for (let i = 0; i<circles.length;i++){
+        for (let i = 0; i < circles.length; i++) {
             setBG(i);
         }
 
         alienTimeout = setTimeout(activateAlien, timer);
-    }
-    )
+    });
 
+    circles.forEach((circle) => {
+        circle.addEventListener('click', () => {
+            console.log('clicked:', circle);
+            if (!(circle == circles[activeIndex])) {
+                clearTimeout(alienTimeout);
+                stopGame();
+
+            }
+            else {
+                showScore();
+                return score;
+
+            }
+        }
+        )
+
+    })
 }
 
 /* 
-        if((score != 0) && (score % 3 == 0)) {
+if((score != 0) && (score % 3 == 0)) {
     timer -= 200;
     console.log('decreasing interval!');
 }; */
 
-/* showScore();
-return score; */
-
 
 function setBG(index) {
-    console.log('index variable in setBG: ', index);
+    //console.log('index variable in setBG: ', index);
     if (index == activeIndex) {
         circles[activeIndex].style.backgroundImage = getImage();
     }
     else {
         circles[index].style.backgroundImage = defaultBG;
     }
-
-
 }
-
 
 
 
@@ -124,16 +134,4 @@ stopButton.addEventListener('click', stopGame);
 close.addEventListener('click', function () {
     overlay.classList.remove('visible');
 })
-
-circles.forEach((circle) => {
-    circle.addEventListener('click', () => {
-        if (!(circle == circles[activeIndex])) {
-            clearTimeout(alienTimeout);
-            stopGame();
-
-        }
-    }
-    )
-})
-
 
