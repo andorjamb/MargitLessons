@@ -4,6 +4,7 @@ const startButton = document.querySelector("#startButton");
 const stopButton = document.querySelector("#stopButton");
 const scoreDisplay = document.getElementById("scoreDisplay");
 const circles = document.querySelectorAll(".circle");
+const aliens = document.querySelectorAll(".alien");
 const close = document.querySelector(".close");
 const overlay = document.querySelector(".overlay");
 const modal = document.querySelector(".modal");
@@ -12,19 +13,20 @@ const finalScoreText = document.querySelector("#finalScoreText");
 const defaultBG = 'url("assets/images/planet1.png")';
 const zap = new Audio("./assets/audio/zap_c_07-82067.mp3");
 const endMusic = new Audio("./assets/audio/2018-08-01-30015.mp3");
-let gameRunning = false;
 
 /* ////////////  GLOBAL VARIABLES //////////  */
 let score = 0;
 let activeIndex = Math.floor(Math.random() * 4);
 let alienTimeout;
 let timer = 1800;
+let gameRunning = false;
 
 /* ////////////  FUNCTION DEFINITIONS //////////  */
 
 function activateAlien() {
   /*randomly selects active circle and 
 applies alien background, initiates timeout */
+  timer = 1800;
   newRandomIndex().then(() => {
     for (let i = 0; i < circles.length; i++) {
       setBG(i);
@@ -32,6 +34,9 @@ applies alien background, initiates timeout */
   });
   alienTimeout = setTimeout(activateAlien, timer);
   gameRunning = true;
+  // pseudocode:
+  // (! clicked()){
+  //  }
 }
 
 async function newRandomIndex() {
@@ -45,14 +50,16 @@ async function newRandomIndex() {
 function setBG(index) {
   /** sets background image for circles */
   if (index == activeIndex) {
-    circles[activeIndex].style.backgroundImage = getImage();
+    aliens[index].style.display = "inline-block";
+    aliens[activeIndex].style.backgroundImage = getImage();
   } else {
     circles[index].style.backgroundImage = defaultBG;
+    aliens[index].style.display = "none";
   }
 }
 
-function checkClick() {
-  circles[activeIndex].addEventListener("click", () => {
+function checkClick(clicked) {
+  clicked.addEventListener("click", () => {
     return true;
   });
 }
@@ -87,7 +94,6 @@ function finalScore(score) {
 function getImage() {
   let imageURLroot = 'url("assets/images/planet1_alien';
   imageURL = imageURLroot + Math.ceil(Math.random() * 4).toString() + '.png")';
-  console.log(imageURL);
   return imageURL;
 }
 
@@ -115,7 +121,6 @@ function runGame() {
 
 /* //////////////  Event listeners   /////////////// */
 
-console.log(gameRunning);
 startButton.addEventListener("click", runGame);
 stopButton.addEventListener("click", stopGame);
 close.addEventListener("click", function () {
@@ -129,20 +134,18 @@ close.addEventListener("click", function () {
 for (let i = 0; i < circles.length; i++) {
   circles[i].addEventListener("click", () => {
     zap.play();
-
-    if (!(circles[i] == circles[activeIndex])) {
+    //aliens[i].classList.add("zoom-out");
+    if (!(i == activeIndex)) {
       clearTimeout(alienTimeout);
-      scoreDisplay.textContent = `Your score: ${score}`;
       stopGame();
     } else {
       score = score + 1;
-      circles[i].classList.add("zoom-out");
-      circles[i].backgroundImage = defaultBG;
-      scoreDisplay.textContent = `Your score: ${score}`;
       if (score != 0 && score % 4 == 0) {
         timer -= 200;
         console.log("decreasing interval to", timer);
       }
     }
+    scoreDisplay.textContent = `Your score: ${score}`;
+    // aliens[i].classList.remove("zoom-out");
   });
 }
