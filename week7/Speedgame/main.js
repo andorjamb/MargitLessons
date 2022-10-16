@@ -22,7 +22,7 @@ let timer = 1800;
 function activateAlien() {  //randomly selects active circle and applies alien background, initiates timeout
 
     newRandomIndex().then(() => {
-        for (let i = 0; i < circles.length; i++) { 
+        for (let i = 0; i < circles.length; i++) {
             setBG(i);  // check the index against current active index
         }
     }
@@ -57,6 +57,12 @@ async function newRandomIndex() {
 function stopGame() {
     console.log('game ended.');
     clearTimeout(alienTimeout);
+    circles.forEach((circle) => {
+        console.log(circle);
+        circle.style.backgroundImage = defaultBG;
+        circle.style.pointerEvents = 'none';
+    }
+    )
     stopButton.style.display = "none";
     startButton.style.display = "block";
     finalScore(score);
@@ -85,6 +91,9 @@ function showModal() { /* modal menu at game end */
 function runGame() {
     console.log('game started');
     score = 0;
+    circles.forEach((circle) => {
+        circle.style.pointerEvents = 'auto';
+    })
     scoreDisplay.textContent = `Your score: ${score}`;
     startButton.style.display = "none";
     stopButton.style.display = "block";
@@ -114,6 +123,7 @@ for (let i = 0; i < circles.length; i++) {
             /** change class to animate */
             if ((score != 0) && (score % 3 == 0)) {
                 timer -= 200;
+
                 console.log('decreasing interval to', timer);
             };
         }
