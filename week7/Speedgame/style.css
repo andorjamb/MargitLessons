@@ -3,10 +3,12 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   font-family: "Roboto Mono";
+  margin: 0;
+  padding-top: 0;
 }
 
 header {
-  height: 220px;
+  height: 200px;
   background: linear-gradient(to bottom, #220619, #ad3459, 50%, #220619);
   box-shadow: 3px 3px 3px #220619;
 }
@@ -25,7 +27,6 @@ h2 {
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 2rem;
-
 }
 
 main {
@@ -43,8 +44,17 @@ main {
   color: white;
 }
 
+.side {
+  flex: 0.7;
+}
+
+.circle-flex-container {
+  display: flex;
+}
 .circle-container {
   display: flex;
+  flex: 3;
+  max-width: 1100px;
   justify-content: space-between;
   align-items: center;
   padding: 20px 20px;
@@ -55,32 +65,11 @@ main {
   background-image: url("assets/images/planet1.png");
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 80px;
-  height: 100px;
-  width: 100px;
+  border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
   color: transparent;
 }
-
-.circle.alien {
-  background-image: url("assets/images/planet1_alien1.png");
-}
-
-.circle.alien1 {
-  background-image: url("assets/images/planet1_alien1.png");
-}
-
-.circle.alien2 {
-  background-image: url("assets/images/planet1_alien2.png");
-}
-
-.circle.alien3 {
-  background-image: url("assets/images/planet1_alien3.png");
-}
-
-.circle.alien4 {
-  background-image: url("assets/images/planet1_alien4.png");
-}
-
 
 .overlay,
 .modal,
@@ -95,7 +84,6 @@ main {
   height: 100%;
   overflow: hidden;
 }
-
 
 .overlay.visible {
   /*class to obscure page background */
@@ -187,5 +175,4 @@ button {
   100% {
     transform: scale(0);
   }
-
 }

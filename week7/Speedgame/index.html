@@ -1,57 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Anna Petelin" />
+    <title>Speed Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono&family=Tourney:ital@1&family=Vibur&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="author" content="Anna Petelin">
-  <title>Speed Game</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono&family=Tourney:ital@1&family=Vibur&display=swap"
-    rel="stylesheet" />
-</head>
+  <body>
+    <header>
+      <h1>Speedgame</h1>
+    </header>
 
-<body>
-  <header>
-    <h1>Speedgame</h1>
-  </header>
-
-  <main>
-    <div class="score-container">
-      <p id="scoreDisplay"></p>
-    </div>
-    <div class="circle-container">
-      <div class="circle">1</div>
-      <div class="circle">2</div>
-      <div class="circle">3</div>
-      <div class="circle">4</div>
-    </div>
-    <div class="button-container"><button id="startButton">Start Game</button></div>
-    <div class="button-container"><button id="stopButton">Stop Game</button></div>
-    <!-- Modal Menu -->
-    <div class="overlay">
-      <div class="modal">
-        <h2>GAME OVER</h2>
-        <p id="finalScoreText"></p>
-        <p id="gameOverText"></p>
-        <button class="close">X</button>
+    <main>
+      <div class="score-container">
+        <p id="scoreDisplay"></p>
       </div>
-    </div>
-  </main>
-  <footer>
-    <p>
-      'Alien' image credits: by
-      <a
-        href="https://www.freepik.com/free-vector/monsters-set-cartoon-cute-character-isolated-white-background_13031453.htm#query=alien&position=4&from_view=keyword">macrovector</a>
-      on Freepik
-    </p>
-  </footer>
+      <div class="circle-flex-container">
+        <div class="side"></div>
+        <div class="circle-container">
+          <div class="circle">1</div>
+          <div class="circle">2</div>
+          <div class="circle">3</div>
+          <div class="circle">4</div>
+        </div>
+        <div class="side"></div>
+      </div>
+      <div class="button-container">
+        <button id="startButton">Start Game</button>
+      </div>
+      <div class="button-container">
+        <button id="stopButton">Stop Game</button>
+      </div>
+      <!-- Modal Menu -->
+      <div class="overlay">
+        <div class="modal">
+          <h2>GAME OVER</h2>
+          <p id="finalScoreText"></p>
+          <p id="gameOverText"></p>
+          <button class="close">X</button>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>
+        'Alien' image credits: by
+        <a
+          href="https://www.freepik.com/free-vector/monsters-set-cartoon-cute-character-isolated-white-background_13031453.htm#query=alien&position=4&from_view=keyword"
+          >macrovector</a
+        >
+        on Freepik
+      </p>
+    </footer>
 
-  <script src="main.js"></script>
-</body>
-
+    <script src="main.js"></script>
+  </body>
 </html>
