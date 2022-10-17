@@ -5,10 +5,11 @@ const pokemonContainer = document.querySelector('.pokemon-container')
 const searchTerm = document.querySelector('#search-term');
 const submitSearch = document.querySelector('#submit-search');
 const genRadios = document.querySelectorAll('.gen-radio');
-const baseURL = 'https://pokeapi.co/api/v2/pokemon';
-//const genButtons = document.querySelectorAll('.gen');
+//const namePara = document.querySelectorAll('namePara');
+const genLabels = document.querySelectorAll('.gen');
 
 /* ////////////////  GLOBAL VARIABLES    ////////////    */
+const baseURL = 'https://pokeapi.co/api/v2/pokemon';
 let amountPokemons = 0;
 let genNumber = 0;
 
@@ -48,14 +49,13 @@ function getGen(g) {
     }
 }
 
-function pokemonDivMaker(amountPokemons) {
-    for (let i = 0; i < amountPokemons; i++) {
-        const pokemonDiv = document.createElement('div');
-        pokemonContainer.appendChild(pokemonDiv);
-        pokemonDiv.classList.add('card');
-        const pokemonImage = document.createElement('img');
-        pokemonDiv.appendChild(pokemonImage);
-    }
+function pokemonDivMaker(pname) {
+    const pokemonDiv = document.createElement('div');
+    pokemonDiv.classList.add('card');
+    pokemonContainer.appendChild(pokemonDiv);
+    pokemonDiv.innerHTML = `
+    <p>Name: ${pname}</p>`;
+
 }
 
 /* function searchPokemon(value) {
@@ -64,16 +64,21 @@ function pokemonDivMaker(amountPokemons) {
 
 /*  /////////////////// RUNTIME   //////////////////////   */
 
-pokemonNumber.textContent = `There are ${amountPokemons} pokemons in generation ${genNumber}`
-pokemonDivMaker(amountPokemons);
+
+genLabels.forEach((label) => {
+    label.addEventListener('click', () => {
+        label.classList.toggle('selected');
+    })
+
+})
 
 genRadios.forEach((radio) => {
-    radio.addEventListener('change', () => {
+    radio.addEventListener('click', () => {
+        console.log('radio');
         genNumber = radio.value;
         let limit, offset;
         [limit, offset] = getGen(genNumber);
-        console.log(limit, offset);
-
+        pokemonNumber.textContent = `There are ${limit} pokemons in generation ${genNumber}`
         const fetchURL = baseURL + "?offset=" + offset.toString() + "&limit=" + limit.toString();
         console.log(fetchURL);
 
@@ -83,9 +88,11 @@ genRadios.forEach((radio) => {
         })
             .then((data) => {
                 const pokemons = data.results;
+                console.log(pokemons.length);
+                pokemonContainer.innerHTML = "";
+
                 for (const pokemon of pokemons) {
-                    console.log(pokemon.name);
-                    pokemonDivMaker(pokemons.length);
+                    pokemonDivMaker(pokemon.name);
                 }
             }
             )
