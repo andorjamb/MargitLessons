@@ -51,6 +51,7 @@ main {
 .circle-flex-container {
   display: flex;
 }
+
 .circle-container {
   display: flex;
   position: static;
@@ -63,7 +64,7 @@ main {
 
 .circle {
   position: relative;
-  background-image: url("assets/images/planet1.png");
+  background-image: url("./assets/images/planet1.png");
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;

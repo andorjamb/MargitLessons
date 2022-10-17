@@ -34,7 +34,7 @@ function activateAlien() {
     });
     alienTimeout = setTimeout(activateAlien, timer);
     missedAliens++;
-    if (missedAliens == 2) {
+    if (missedAliens > 2) {
         stopGame();
     }
 }
@@ -84,7 +84,7 @@ function finalScore(score) {
 }
 
 function getImage() {
-    let imageURLroot = 'url("assets/images/planet1_alien';
+    let imageURLroot = 'url("./assets/images/planet1_alien';
     imageURL = imageURLroot + Math.ceil(Math.random() * 4).toString() + '.png")';
     return imageURL;
 }
