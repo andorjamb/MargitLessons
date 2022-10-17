@@ -1,16 +1,16 @@
-/* /////////////   DOCUMENT OBJECTS   /////////////////  */ 
+/* /////////////   DOCUMENT OBJECTS   /////////////////  */
 
 const pokemonNumber = document.querySelector('#pokemon-number');
 const pokemonContainer = document.querySelector('.pokemon-container')
 const searchTerm = document.querySelector('#search-term');
 const submitSearch = document.querySelector('#submit-search');
 const genRadios = document.querySelectorAll('.gen-radio');
+const baseURL = 'https://pokeapi.co/api/v2/pokemon';
 //const genButtons = document.querySelectorAll('.gen');
-
 
 /* ////////////////  GLOBAL VARIABLES    ////////////    */
 let amountPokemons = 10;
-let genNumber= 0;
+let genNumber = 0;
 
 // example: 
 // https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0.
@@ -19,20 +19,8 @@ let genNumber= 0;
 
 /*  ////////////  FUNCTIONS ///////////////   */
 
-function getGenNumber(){
-    genRadios.forEach((radio)=>{
-        if(radio.checked) {
-        console.log(radio.value);
-        genNumber = radio.value;
-        return genNumber;
-        
-    }
-}
-)
-} 
-
-function getGen(genNumber) {
-    switch (genNumber) {
+function getGen(g) {
+    switch (g) {
         case "1":
             return [151, 0];
             break;
@@ -69,59 +57,43 @@ function pokemonDivMaker(amountPokemons) {
         pokemonDiv.appendChild(pokemonImage);
     }
 }
-+
-function genWrapper(g0, g1) {
-    const baseURL = 'https://pokeapi.co/api/v2/pokemon';
-    fetchURL = '"' + baseURL + '?limit=' + g0 + '&offset=' + g1+ '"';
-    console.log(fetchURL);
-    return fetchURL;
-
-}
 
 /* function searchPokemon(value) {
-   
-
 } */
 
 
 /*  /////////////////// RUNTIME   //////////////////////   */
 
-
-
 pokemonNumber.textContent = `There are ${amountPokemons} pokemons in generation ${genNumber}`
 pokemonDivMaker(amountPokemons);
 
-
-genRadios.forEach((radio)=>{
-    radio.addEventListener('change', ()=>{ 
-        getGenNumber();
+genRadios.forEach((radio) => {
+    radio.addEventListener('change', () => {
+        genNumber = radio.value;
         let limit, offset;
         [limit, offset] = getGen(genNumber);
         console.log(limit, offset);
+
+        const fetchURL = baseURL + "?offset=" + offset.toString() + "&limit=" + limit.toString();
+        console.log(fetchURL);
+
+        const pokemonData = fetch(fetchURL);
+        pokemonData.then((response) => {
+            return response.json()
+        })
+            .then((data) => {
+
+                console.log(data);
+            })
+
     })
 }
 )
 
-genWrapper(limit, offset);
 
-
-/* const pokemonData = fetch(genWrapper(limit, offset))
-.then((response) => { 
-        response.json() 
-    })
-    .then(function (data) { 
-        console.log(data) }).catch(function (err) {
-            console.log('error', err);
-})
-
- */
-
-
-
-/* const pokemonData = fetch(genWrapper(getGen()[0], getGen()[1])).then((response) => { 
-    response.json() }).then(function (data) { console.log(data) }).catch(function (err) {
-        console.log('error', err);
-    })
- */
 
 //const pokemonDivs = pokemonData.map(pokemon => pokemon.)
+/* 
+.catch(function (err) {
+    console.log('error', err);
+}) */
