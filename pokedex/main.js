@@ -9,7 +9,7 @@ const baseURL = 'https://pokeapi.co/api/v2/pokemon';
 //const genButtons = document.querySelectorAll('.gen');
 
 /* ////////////////  GLOBAL VARIABLES    ////////////    */
-let amountPokemons = 10;
+let amountPokemons = 0;
 let genNumber = 0;
 
 // example: 
@@ -82,17 +82,19 @@ genRadios.forEach((radio) => {
             return response.json()
         })
             .then((data) => {
-
-                console.log(data);
-            })
+                const pokemons = data.results;
+                for (const pokemon of pokemons) {
+                    console.log(pokemon.name);
+                    pokemonDivMaker(pokemons.length);
+                }
+            }
+            )
 
     })
-}
-)
+})
 
 
 
-//const pokemonDivs = pokemonData.map(pokemon => pokemon.)
 /* 
 .catch(function (err) {
     console.log('error', err);
