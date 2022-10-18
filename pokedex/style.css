@@ -10,6 +10,10 @@ body {
 
 header {
     min-height: 150px;
+    border: 2px solid red; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 main {
@@ -19,38 +23,40 @@ main {
 }
 
 h1 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-top: 2rem;
+    font-size: 3rem;
 }
 
 .button-container {
     padding: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    flex: 1;
+    display: grid;
+    grid-template-rows: 1;
+    grid-template-columns: repeat(8,1fr);
+    border: 2px solid blue;
+    height: auto;
 }
 
-.gen {
+.gen {/* class for labels */
 
     background-color: rgb(101, 101, 200);
-    padding: 0.5rem;
+    height: 2rem;
+    min-width: 5rem;
     border-radius: 4px;
-    flex: 1;
+    margin: 1rem;
+    padding: 0.5rem;
+    color: white;
+    font-weight: 800;
 
 }
 
 .selected {
-    box-shadow: 2px 2px black;
-    background-color: rgb(52, 13, 89);
+    box-shadow: 2px 2px rgb(52, 13, 89);
+    background-color: rgb(93, 1, 179);;
 }
 
 .gen-radio {
-    opacity: 0;
-    height: 0;
+    visibility: hidden;
 
 }
-
 
 .pokemon-container {
     display: flex;
@@ -72,9 +78,14 @@ h1 {
     width: 10rem;
 }
 
+.card p {
+    font-size: 1.5rem;
+    text-align: center;
+}
 #pokemon-number {
-    display: block;
-    font-size: 2rem;
+    flex: 1;
+    font-size: 1.5rem;
+    padding-top: 40px;
 }
 
 #search-term {
@@ -85,6 +96,7 @@ h1 {
     margin: 1rem;
     padding: 0.5rem;
     text-align: center;
+    border: 2px solid rgb(93, 1, 179);
 }
 
 #submit-search {
@@ -92,15 +104,11 @@ h1 {
 }
 
 
-
-.newPara {
-    font-size: 1.5rem;
-    text-align: center;
-}
-
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
 
     .gen {
-        flex: 1;
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns:repeat (4, 1fr );
     }
 }

@@ -11,6 +11,7 @@ const genLabels = document.querySelectorAll('.gen');
 const baseURL = 'https://pokeapi.co/api/v2/pokemon';
 let genNumber = 0;
 let pokemons = [];
+let objectArray = [];
 let limit, offset;
 
 /*  ////////////  FUNCTIONS ///////////////   */
@@ -73,24 +74,28 @@ function getPokemons(limit, offset) {
 }
 
 function getPokemonAttributes(pokemonArray) {//[bulbasaur, ....etc]
-    //pokemonArray.forEach((pokemon) => {
-    let requests = pokemonArray.map(pokemon => fetch(baseURL + `/${pokemon}`));
+    let requests = pokemonArray.map(pokemon => fetch(baseURL + `/${pokemon}`)
+    .then((response)=>response.json())
+    .then((data)=>{return objectArray = objectArray.push({  //note: successfully logs data
+        pokeName : data.name,
+        pokeId: data.id
+    })
 
-    //  });
-
-    Promise.all(requests)
-
-    Promise.all([promise1, promise2, promise3, promise4]);
-}
+    })
+    ); // data returned from each request has been mapped to an object
 
 
-for (const pokemon of pokemons) {
+   Promise.all(requests).then((response)=>console.log(response));
+//call divMaker
+/* for (const pokemon of pokemons) {
     pokemonDivMaker(pokemon.name);
 }
+ */
+  
 
+} //end of getPokemonAttributes
 
 /*  /////////////////// RUNTIME   //////////////////////   */
-
 /**
  * 
  sample return object from promise:
