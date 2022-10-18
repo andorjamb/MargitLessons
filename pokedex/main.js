@@ -12,7 +12,7 @@ const previousPage = document.querySelector('#previousPage');
 const baseURL = 'https://pokeapi.co/api/v2/pokemon';
 let pokemons = [];
 let limit = 60;
-let offset = 0;
+let offset = 1;
 let pokemon;
 
 
@@ -22,7 +22,7 @@ class Pokemon  {
     constructor ( id, pokeName, types, img) {
         this.id = id;
         this.name = pokeName;
-        this.types = types; //array
+        this.types = types;
         this.img = img;
 
     }
@@ -31,22 +31,25 @@ class Pokemon  {
 /*  ////////////  FUNCTIONS ///////////////   */
 
 
-function makeObject(data){
+function makePoke(data){ //parameter: object
     let newPokemon = new Pokemon(data.id, data.name, data.types, data.img);
     return newPokemon;
 }
 
-function pokemonDivMaker(object) {
-    console.log(object);
-    const pokemonDiv = document.createElement('div');
+function pokemonDivMaker(pokemons) {
+    pokemons.forEach((pokemon)=>{   
+        const pokemonDiv = document.createElement('div');
     pokemonDiv.classList.add('card');
     pokemonContainer.appendChild(pokemonDiv);
     pokemonDiv.innerHTML = `
-    <img src="${object.sprites.other['offical-artwork'].front_default}">
-    <p>Id: ${object.id}</p>
-    <p>Name: ${object.name}</p>
-    <p>Types: ${((object.types).map((type)=>type.name)).join(", ")}</p>
-`
+    <img src="${pokemon.sprites.other['offical-artwork'].front_default}">
+    <p>Id: ${pokemon.id}</p>
+    <p>Name: ${pokemon.name}</p>
+    <p>Types: ${((pokemon.types).map((type)=>type.name)).join(", ")}</p>
+`}
+ 
+    )
+    
 } 
 
 function searchPokemon() {
@@ -54,23 +57,27 @@ function searchPokemon() {
 }
 
 function getPokemons(offset, limit) {
+    /**
+     * maybe here: if (page == 2 ){offset = }
+     * else if(page == 3) etc
+     * but you would also need to do this for generations buttons?
+     */
     pokemonContainer.innerHTML = ""; //sweep up
-for(const i=offset;i<limit;i++){
- let fetchURL = `baseURL/${i}`;
-console.log(fetchURL);
+for(let i=offset;i<limit;i++){
+ let fetchURL = baseURL + `/${i}`;
 fetch(fetchURL)
     .then(
         response => response.json()
     ).then(
-        (data) => {console.log(data.results);
-            (data.results).map();
-        });
-    return pokemons; // returning an indexed array of pokemon names for each generation
+        (data) => {const newPoke = makePoke(data);
+            pokemons.push(newPoke);
+       console.log(newPoke);}  //an object pushed to an array of objects
+    )
+}  
+console.log(pokemons);
 }
 
-}
-
-function getPokemonAttributes(pokemonArray) {//[bulbasaur, ....etc, this takes the 'pokemons' global array as its parameter]
+function getPokemonAttributes(pokemonArray) {
     let requests = pokemonArray.map(pokemon => fetch(baseURL + `/${pokemon}`)
     .then((response)=>response.json())
     .then((data)=>{pokemonDivMaker(makeObject(data))})
@@ -85,16 +92,16 @@ function getPokemonAttributes(pokemonArray) {//[bulbasaur, ....etc, this takes t
 /*  /////////////////// RUNTIME   //////////////////////   */
 
 //pre-populate some divs
-window.onload = getPokemons(1);
+window.onload = getPokemons(offset,limit);
 
 nextPage.addEventListener('click', (page)=>{page++; getPokemons(offset, limit)});
-previousPage.addEventListener('click', (page)=>{page--; getPokemons(offset, limit});
+previousPage.addEventListener('click', (page)=>{page--; getPokemons(offset, limit)});
 
 //display pokemons by selected generation
 genRadios.forEach((radio) => {
     radio.addEventListener('change', () => {
         pokemons= [];
-        [limit, offset] = getGen(radio.value);
+        //[limit, offset] = getGen(radio.value);
         pokemonNumber.textContent = `There are ${limit} pokemons in generation ${radio.value}`
         getPokemonAttributes(getPokemons(limit, offset));
     }

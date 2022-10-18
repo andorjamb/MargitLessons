@@ -68,7 +68,6 @@ h1 {
     width: 200px;
     padding: 0.5rem;
     border-radius: 7px;
-    display: inline;
 
 }
 
@@ -115,6 +114,10 @@ h1 {
 
 #submit-search {
     font-family: 'Material Symbols Outlined';
+}
+
+footer {
+    display: flex;
 }
 
 
