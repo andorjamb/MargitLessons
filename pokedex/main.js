@@ -14,6 +14,18 @@ let pokemons = [];
 let objectArray = [];
 let limit, offset;
 
+/*  //////////////// CLASS CONSTRUCTOR  ////////////////7   */
+
+class Pokemon  {
+    constructor ( id, pokeName, types, img) {
+        this.id = id;
+        this.name = pokeName;
+        this.types = types;
+        this.img = img;
+
+    }
+}
+
 /*  ////////////  FUNCTIONS ///////////////   */
 
 function getGen(number) {
@@ -59,6 +71,15 @@ function pokemonDivMaker(pname) {
 function searchPokemon() {
     console.log('');
 }
+// id, pokeName, types, img
+function makeObject(data){
+    let newPoke = new Pokemon(data.id, data.name, data.name, data.name);
+    console.log(newPoke);
+    return newPoke;
+
+}
+
+
 
 function getPokemons(limit, offset) {
     pokemonContainer.innerHTML = "";
@@ -76,17 +97,14 @@ function getPokemons(limit, offset) {
 function getPokemonAttributes(pokemonArray) {//[bulbasaur, ....etc]
     let requests = pokemonArray.map(pokemon => fetch(baseURL + `/${pokemon}`)
     .then((response)=>response.json())
-    .then((data)=>{return objectArray = objectArray.push({  //note: successfully logs data
-        pokeName : data.name,
-        pokeId: data.id
+    .then((data)=>{return makeObject(data);
+        
     })
 
-    })
     ); // data returned from each request has been mapped to an object
 
 
-   Promise.all(requests).then((response)=>console.log(response));
-//call divMaker
+   Promise.all(requests);
 /* for (const pokemon of pokemons) {
     pokemonDivMaker(pokemon.name);
 }
