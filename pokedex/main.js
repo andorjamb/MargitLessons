@@ -5,22 +5,24 @@ const pokemonContainer = document.querySelector('.pokemon-container')
 const searchTerm = document.querySelector('#search-term');
 const submitSearch = document.querySelector('#submit-search');
 const genRadios = document.querySelectorAll('.gen-radio');
-const genLabels = document.querySelectorAll('.gen');
+const nextPage = document.querySelector('#nextPage');
+const previousPage = document.querySelector('#previousPage');
 
 /* ////////////////  GLOBAL VARIABLES    ////////////    */
 const baseURL = 'https://pokeapi.co/api/v2/pokemon';
-let genNumber = 0;
 let pokemons = [];
-let objectArray = [];
-let limit, offset;
+let limit = 60;
+let offset = 0;
+let pokemon;
 
-/*  //////////////// CLASS CONSTRUCTOR  ////////////////7   */
+
+/*  //////////////// CLASS CONSTRUCTOR  ////////////////   */
 
 class Pokemon  {
     constructor ( id, pokeName, types, img) {
         this.id = id;
         this.name = pokeName;
-        this.types = types;
+        this.types = types; //array
         this.img = img;
 
     }
@@ -28,115 +30,80 @@ class Pokemon  {
 
 /*  ////////////  FUNCTIONS ///////////////   */
 
-function getGen(number) {
-    switch (number) {
-        case "1":
-            return [151, 0];
-            break;
-        case "2":
-            return [100, 151];
-            break;
-        case "3":
-            return [135, 251];
-            break;
-        case "4":
-            return [107, 386];
-            break;
-        case "5":
-            return [156, 493];
-            break;
-        case "6":
-            return [72, 659];
-            break;
-        case "7":
-            return [88, 721];
-            break;
-        case "8":
-            return [96, 809];
-            break;
-    }
+
+function makeObject(data){
+    let newPokemon = new Pokemon(data.id, data.name, data.types, data.img);
+    return newPokemon;
 }
 
-function pokemonDivMaker(pname) {
+function pokemonDivMaker(object) {
+    console.log(object);
     const pokemonDiv = document.createElement('div');
     pokemonDiv.classList.add('card');
     pokemonContainer.appendChild(pokemonDiv);
     pokemonDiv.innerHTML = `
-    <p>Name: ${pname}</p>
-    <p>ID: ${id}</p>
-    <p>Types: ${types}</p>`;
-
-}
+    <img src="${object.sprites.other['offical-artwork'].front_default}">
+    <p>Id: ${object.id}</p>
+    <p>Name: ${object.name}</p>
+    <p>Types: ${((object.types).map((type)=>type.name)).join(", ")}</p>
+`
+} 
 
 function searchPokemon() {
     console.log('');
 }
-// id, pokeName, types, img
-function makeObject(data){
-    let newPoke = new Pokemon(data.id, data.name, data.name, data.name);
-    console.log(newPoke);
-    return newPoke;
 
-}
-
-
-
-function getPokemons(limit, offset) {
-    pokemonContainer.innerHTML = "";
-    const fetchURL = baseURL + "?offset=" + offset.toString() + "&limit=" + limit.toString();
-    fetch(fetchURL).then(
-        (response) => { return response.json() }
+function getPokemons(offset, limit) {
+    pokemonContainer.innerHTML = ""; //sweep up
+for(const i=offset;i<limit;i++){
+ let fetchURL = `baseURL/${i}`;
+console.log(fetchURL);
+fetch(fetchURL)
+    .then(
+        response => response.json()
     ).then(
-        (data) => {
-            (data.results).map((object) => { pokemons.push(object.name) });
-
+        (data) => {console.log(data.results);
+            (data.results).map();
         });
     return pokemons; // returning an indexed array of pokemon names for each generation
 }
 
-function getPokemonAttributes(pokemonArray) {//[bulbasaur, ....etc]
+}
+
+function getPokemonAttributes(pokemonArray) {//[bulbasaur, ....etc, this takes the 'pokemons' global array as its parameter]
     let requests = pokemonArray.map(pokemon => fetch(baseURL + `/${pokemon}`)
     .then((response)=>response.json())
-    .then((data)=>{return makeObject(data);
-        
-    })
+    .then((data)=>{pokemonDivMaker(makeObject(data))})
+    )
+    // data returned from each request has been mapped to an object, 
+    // then fed to the divmaker
 
-    ); // data returned from each request has been mapped to an object
-
-
-   Promise.all(requests);
-/* for (const pokemon of pokemons) {
-    pokemonDivMaker(pokemon.name);
-}
- */
-  
+  Promise.all(requests);
 
 } //end of getPokemonAttributes
 
 /*  /////////////////// RUNTIME   //////////////////////   */
-/**
- * 
- sample return object from promise:
- 
- return {
-     id:data.id,
-     name: data.name,
-     img: data.sprites.other[].front_default,
-     types: 
-    }
-    */
 
+//pre-populate some divs
+window.onload = getPokemons(1);
+
+nextPage.addEventListener('click', (page)=>{page++; getPokemons(offset, limit)});
+previousPage.addEventListener('click', (page)=>{page--; getPokemons(offset, limit});
+
+//display pokemons by selected generation
 genRadios.forEach((radio) => {
-
     radio.addEventListener('change', () => {
-        genNumber = radio.value;
-        pokemonArray = [];
-        [limit, offset] = getGen(genNumber);
-        pokemonNumber.textContent = `There are ${limit} pokemons in generation ${genNumber}`
+        pokemons= [];
+        [limit, offset] = getGen(radio.value);
+        pokemonNumber.textContent = `There are ${limit} pokemons in generation ${radio.value}`
         getPokemonAttributes(getPokemons(limit, offset));
     }
     )
 });
+
+
+
+
 
 
 
