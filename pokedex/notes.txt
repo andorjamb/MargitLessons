@@ -1,4 +1,4 @@
-
+icons: https://bulbapedia.bulbagarden.net/wiki/Type#Icons  
 
 sample return object from promise:
 
@@ -8,3 +8,7 @@ return {
     img: data.sprites.other[].front_default,
     types: 
 }
+// example: 
+// https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0.
+//promise.all()
+//use map() method or forEach() to generate cards
