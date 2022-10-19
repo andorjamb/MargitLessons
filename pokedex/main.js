@@ -3,17 +3,16 @@
 const pokemonNumber = document.querySelector("#pokemon-number");
 const pokemonContainer = document.querySelector(".pokemon-container");
 const searchTerm = document.querySelector("#search-term");
-const submitSearch = document.querySelector("#submit-search");
+const searchBtn = document.querySelector("#search-btn");
 const genRadios = document.querySelectorAll(".gen-radio");
-const form = document.querySelector("form");
-//const nextPage
-//const previousPage
+//const nextPage = document.querySelector('#nextPage);
+//const previousPage = document.querySelector('#previousPage);
 
 /* ////////////////  GLOBAL VARIABLES    ////////////    */
 const baseURL = "https://pokeapi.co/api/v2/pokemon";
 let genNumber = 0;
 let pokemons = [];
-let extraArray = [];
+let attributes = [];
 let limit, offset;
 
 /*  //////////////// CLASS CONSTRUCTOR  ////////////////7   */
@@ -60,7 +59,7 @@ function getGen(number) {
 
 function getPokemons(limit, offset) {
   pokemonContainer.innerHTML = "";
-  pokemons = [];
+  pokemons = []; //array needs to be reset
   const fetchURL =
     baseURL + "?offset=" + offset.toString() + "&limit=" + limit.toString();
   fetch(fetchURL)
@@ -72,65 +71,58 @@ function getPokemons(limit, offset) {
         pokemons.push(object.name);
       });
     });
-  pokemons.forEach((pokemon) => {
-    console.log(pokemon);
-  });
+  console.log(pokemons);
   return pokemons; // returning an array of pokemon names for selected generation
 }
 
-function pokemonDivMaker(poke) {
-  const pokemonDiv = document.createElement("div");
-  pokemonDiv.classList.add("card");
-  pokemonContainer.appendChild(pokemonDiv);
-  pokemonDiv.innerHTML = `
+function getAttributes(pokemonArray) {
+  let requests = pokemonArray.map((pokemon) =>
+    fetch(baseURL + `/${pokemon}`)
+      .then((response) => response.json())
+      .then((data) => {
+        attributes.push(data);
+        console.log(attributes);
+      })
+  ); // data returned from each request has been mapped to an object
+
+  Promise.all(requests);
+}
+
+function pokemonCards(poke) {
+  const pokemonCard = document.createElement("div");
+  pokemonCard.classList.add("card");
+  pokemonContainer.appendChild(pokemonCard);
+  pokemonCard.innerHTML = `
     <p>Name: ${poke.name}</p>
     <p>ID: ${poke.id}</p>
     `;
 }
 
-function searchPokemon(term, pokemons) {
+function searchPokemon(term) {
+  pokemons = getPokemons(905, 0);
   if (pokemons.includes(term)) {
-    console.log("yes");
+    console.log("found");
+    //insert pokemon card on page
   } else {
-    console.log("try another page");
+    console.log("not found");
   }
-}
-
-function getPokemonAttributes(arr) {
-  //of the array of names returned above
-  extraArray = [];
-  console.log(arr); //works
-  arr.forEach((pokemon) => {
-    fetch(baseURL + `/${pokemon}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
-  });
 }
 
 /*  /////////////////// RUNTIME   //////////////////////   */
 
-/* searchTerm.addEventListener("submit", function (e) {
-  e.preventDefault;
-  let searchWord = searchTerm.value;
-  console.log(pokemons);
-  searchPokemon(searchWord, pokemons);
-});
- */
-form.addEventListener("submit", function (e) {
-  e.preventDefault;
-  let searchWord = searchTerm.value;
-  console.log(pokemons);
-  searchPokemon(searchWord, pokemons);
+searchBtn.addEventListener("click", function () {
+  if (searchTerm.value) {
+    console.log(value);
+  }
 });
 
 genRadios.forEach((radio) => {
   radio.addEventListener("change", () => {
+    console.log("clicked");
     genNumber = radio.value;
     [limit, offset] = getGen(genNumber);
     pokemonNumber.textContent = `There are ${limit} pokemons in generation ${genNumber}`;
-    getPokemons(limit, offset);
-    console.log(pokemons);
+
+    return getAttributes(getPokemons(limit, offset));
   });
 });
