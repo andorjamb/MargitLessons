@@ -77,12 +77,17 @@ function getPokemons(limit, offset) {
       return response.json();
     })
     .then((data) => {return (data.results).map((pokemon)=>{pokemons.push(pokemon.name)});      
-}).then((result)=>console.log(result.length));
+}).then((result)=>console.log(result.length)).then();
 
     
 }
 
+function getAttributes(){
+
+}
+
 function pokemonCards(poke) {
+
   const pokemonCard = document.createElement("div");
   pokemonCard.classList.add("card");
   pokemonContainer.appendChild(pokemonCard);
@@ -103,11 +108,10 @@ function searchPokemon(term) {
 }
 
 /*  /////////////////// RUNTIME   //////////////////////   */
-window.onload = new Promise(function(resolve, reject){getPokemons(limit, offset)}
-).then((pokemons)=> console.log(pokemons.length));
+window.onload = getPokemons(limit, offset);
 
 setTimeout(function () {for (let i = 0; i < pokemons.length; i++) {
-    console.log('hi')}}, 2000);
+    console.log('hi')}}, 2000);//put here a function that populates boxes
 
   
 searchBtn.addEventListener("click", function () {
