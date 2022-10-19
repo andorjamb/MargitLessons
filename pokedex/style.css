@@ -86,6 +86,11 @@ h1 {
   width: 10rem;
 }
 
+.card img {
+  height: 7rem;
+  width:auto;
+}
+
 .card p {
   font-size: 1rem;
   text-align: center;
@@ -113,10 +118,14 @@ h1 {
 
 footer {
   display: flex;
+  height: 12rem;
+  justify-content: center;
+  align-items: center;
 }
 
 #nextPage,
 #previousPage {
+  height: 30px;
   width: 200px;
   padding: 0.5rem;
   border-radius: 7px;

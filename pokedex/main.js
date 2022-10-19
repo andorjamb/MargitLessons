@@ -23,7 +23,7 @@ class Pokemon {
   constructor(id, pokeName, types, img) {
     this.id = id;
     this.name = pokeName;
-    this.types = types;
+    this.types = types.map((type)=>type.name);
     this.img = img;
   }
 }
@@ -61,7 +61,9 @@ function getGen(number) {
 
 function makePoke(data){
     //try mapping types here
-    let newPoke = new Pokemon(data.id, data.name, data.name, data.name);
+  /*   function transform(data){
+        (data.types).map(()=>)} */
+    let newPoke = new Pokemon(data.id, data.name, data.types, data.sprites.other['official-artwork'].front_default);
     console.log(newPoke);
     attributes.push(newPoke);  //here the object is also being pushed!
     return newPoke;
@@ -87,7 +89,6 @@ function getPokemons(limit, offset) {
 
 function getAttributes(){
     attributes = [];
-    console.log(pokemons);
     console.log(pokemons.length);
     let requests = pokemons.map((pokemon) => fetch(baseURL + `/${pokemon}`)
     .then((response)=>response.json())
@@ -105,8 +106,12 @@ attributes.forEach((attribute)=>{
   pokemonCard.classList.add("card");
   pokemonContainer.appendChild(pokemonCard);
   pokemonCard.innerHTML = `
-    <p>Name: ${limit}</p>
-    <p>ID: ${offset}</p>
+    
+  <p>Name: ${attribute.name}</p>
+  <img src="${attribute.img}">
+    <p>Id: ${attribute.id}</p>
+    <p>Types: ${attribute.types}</p>
+
     `;});
 }
 
