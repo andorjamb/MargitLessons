@@ -59,7 +59,7 @@ function getGen(number) {
 
 function getPokemons(limit, offset) {
   pokemonContainer.innerHTML = "";
-  pokemons = []; //array needs to be reset
+  pokemons = [];
   const fetchURL =
     baseURL + "?offset=" + offset.toString() + "&limit=" + limit.toString();
   fetch(fetchURL)
@@ -76,16 +76,23 @@ function getPokemons(limit, offset) {
 }
 
 function getAttributes(pokemonArray) {
-  let requests = pokemonArray.map((pokemon) =>
-    fetch(baseURL + `/${pokemon}`)
-      .then((response) => response.json())
+  let requests = pokemonArray.map((pokemon) => {
+    fetch(baseURL + `/${pokemon}`);
+  });
+
+  /*   .then((response) => response.json())
       .then((data) => {
         attributes.push(data);
-        console.log(attributes);
-      })
-  ); // data returned from each request has been mapped to an object
+      });
+  }); */
+  // data returned from each request has been mapped to a PROMISE
 
-  Promise.all(requests);
+  Promise.all(requests)
+    .then((response) => response.json())
+    .then((data) => {
+      attributes.push(data);
+    });
+  console.log(attributes);
 }
 
 function pokemonCards(poke) {
