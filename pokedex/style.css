@@ -26,6 +26,7 @@ main {
 h1 {
   font-size: 3rem;
   color: orange;
+  text-shadow: 2px 2px yellow;
 }
 
 .button-container {

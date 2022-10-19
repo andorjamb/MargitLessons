@@ -57,42 +57,41 @@ function getGen(number) {
   }
 }
 
+
+function makePoke(data){
+    //try mapping types here
+    let newPoke = new Pokemon(data.id, data.name, data.name, data.name);
+    console.log(newPoke);
+    attributes.push(newPoke);
+    console.log(attributes);
+    return newPoke;
+
+}
+function getPokemonAttributes(pokemonArray) {//[bulbasaur, ....etc]
+    let requests = pokemonArray.map(pokemon => fetch(baseURL + `/${pokemon}`)
+    .then((response)=>response.json())
+    .then((data)=>{return makePoke(data);})
+    );
+Promise.all(requests);
+    }
+    
+//
+
 function getPokemons(limit, offset) {
-  pokemonContainer.innerHTML = "";
-  pokemons = [];
+    pokemonContainer.innerHTML = "";
   const fetchURL =
     baseURL + "?offset=" + offset.toString() + "&limit=" + limit.toString();
   fetch(fetchURL)
     .then((response) => {
       return response.json();
     })
-    .then((data) => {
-      data.results.map((object) => {
-        pokemons.push(object.name);
+    .then((data) => {(data.results).map((pokemon)=>{pokemons.push(pokemon.name)});
+      console.log(data.results);
+      console.log(pokemons);
+      
       });
-    });
-  console.log(pokemons);
-  return pokemons; // returning an array of pokemon names for selected generation
-}
-
-function getAttributes(pokemonArray) {
-  let requests = pokemonArray.map((pokemon) => {
-    fetch(baseURL + `/${pokemon}`);
-  });
-
-  /*   .then((response) => response.json())
-      .then((data) => {
-        attributes.push(data);
-      });
-  }); */
-  // data returned from each request has been mapped to a PROMISE
-
-  Promise.all(requests)
-    .then((response) => response.json())
-    .then((data) => {
-      attributes.push(data);
-    });
-  console.log(attributes);
+   
+  
 }
 
 function pokemonCards(poke) {
@@ -129,7 +128,9 @@ genRadios.forEach((radio) => {
     genNumber = radio.value;
     [limit, offset] = getGen(genNumber);
     pokemonNumber.textContent = `There are ${limit} pokemons in generation ${genNumber}`;
+    getPokemons(limit, offset);
 
-    return getAttributes(getPokemons(limit, offset));
-  });
-});
+
+
+  })})
+
