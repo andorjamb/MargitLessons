@@ -6,6 +6,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(rgb(0, 251, 255), rgb(107, 107, 168));
 }
 
 header {
@@ -24,6 +25,7 @@ main {
 
 h1 {
   font-size: 3rem;
+  color: orange;
 }
 
 .button-container {

@@ -5,6 +5,7 @@ const pokemonContainer = document.querySelector(".pokemon-container");
 const searchTerm = document.querySelector("#search-term");
 const submitSearch = document.querySelector("#submit-search");
 const genRadios = document.querySelectorAll(".gen-radio");
+const form = document.querySelector("form");
 //const nextPage
 //const previousPage
 
@@ -12,6 +13,7 @@ const genRadios = document.querySelectorAll(".gen-radio");
 const baseURL = "https://pokeapi.co/api/v2/pokemon";
 let genNumber = 0;
 let pokemons = [];
+let extraArray = [];
 let limit, offset;
 
 /*  //////////////// CLASS CONSTRUCTOR  ////////////////7   */
@@ -56,26 +58,6 @@ function getGen(number) {
   }
 }
 
-function pokemonDivMaker(poke) {
-  const pokemonDiv = document.createElement("div");
-  pokemonDiv.classList.add("card");
-  pokemonContainer.appendChild(pokemonDiv);
-  pokemonDiv.innerHTML = `
-    <p>Name: ${poke.name}</p>
-    <p>ID: ${poke.id}</p>
-    `;
-}
-
-function searchPokemon(term) {
-  if (pokemons.includes(term)) console.log("");
-}
-
-function makeObject(data) {
-  let newPoke = new Pokemon(data.id, data.name, data.name, data.name);
-  console.log(newPoke);
-  return newPoke;
-}
-
 function getPokemons(limit, offset) {
   pokemonContainer.innerHTML = "";
   pokemons = [];
@@ -90,39 +72,65 @@ function getPokemons(limit, offset) {
         pokemons.push(object.name);
       });
     });
-  return pokemons; // returning an indexed array of pokemon names for each generation
+  pokemons.forEach((pokemon) => {
+    console.log(pokemon);
+  });
+  return pokemons; // returning an array of pokemon names for selected generation
+}
+
+function pokemonDivMaker(poke) {
+  const pokemonDiv = document.createElement("div");
+  pokemonDiv.classList.add("card");
+  pokemonContainer.appendChild(pokemonDiv);
+  pokemonDiv.innerHTML = `
+    <p>Name: ${poke.name}</p>
+    <p>ID: ${poke.id}</p>
+    `;
+}
+
+function searchPokemon(term, pokemons) {
+  if (pokemons.includes(term)) {
+    console.log("yes");
+  } else {
+    console.log("try another page");
+  }
 }
 
 function getPokemonAttributes(arr) {
-  //[bulbasaur, ....etc]
-  let requests = arr.map((pokemon) =>
+  //of the array of names returned above
+  extraArray = [];
+  console.log(arr); //works
+  arr.forEach((pokemon) => {
     fetch(baseURL + `/${pokemon}`)
       .then((response) => response.json())
       .then((data) => {
-        return makeObject(data);
-      })
-  ); // data returned from each request has been mapped to an object
-
-  Promise.all(requests);
-  /* for (const pokemon of pokemons) {
-    pokemonDivMaker(pokemon.name);
+        console.log(data);
+      });
+  });
 }
- */
-} //end of getPokemonAttributes
 
 /*  /////////////////// RUNTIME   //////////////////////   */
 
-searchTerm.addEventListener("submit", function () {
+/* searchTerm.addEventListener("submit", function (e) {
+  e.preventDefault;
   let searchWord = searchTerm.value;
-  searchPokemon(searchWord);
+  console.log(pokemons);
+  searchPokemon(searchWord, pokemons);
+});
+ */
+form.addEventListener("submit", function (e) {
+  e.preventDefault;
+  let searchWord = searchTerm.value;
+  console.log(pokemons);
+  searchPokemon(searchWord, pokemons);
 });
 
 genRadios.forEach((radio) => {
   radio.addEventListener("change", () => {
     genNumber = radio.value;
-    pokemonArray = [];
     [limit, offset] = getGen(genNumber);
     pokemonNumber.textContent = `There are ${limit} pokemons in generation ${genNumber}`;
-    getPokemonAttributes(getPokemons(limit, offset));
+    getPokemons(limit, offset);
+    console.log(pokemons);
   });
 });
