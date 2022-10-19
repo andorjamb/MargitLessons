@@ -63,8 +63,7 @@ function makePoke(data){
     //try mapping types here
     let newPoke = new Pokemon(data.id, data.name, data.name, data.name);
     console.log(newPoke);
-    attributes.push(newPoke);
-    console.log(attributes);
+    attributes.push(newPoke);  //here the object is also being pushed!
     return newPoke;
 
 }
@@ -87,28 +86,28 @@ function getPokemons(limit, offset) {
 }
 
 function getAttributes(){
+    attributes = [];
     console.log(pokemons);
     console.log(pokemons.length);
     let requests = pokemons.map((pokemon) => fetch(baseURL + `/${pokemon}`)
     .then((response)=>response.json())
-    .then((data)=>{return makePoke(data)})
-    .then((data)=>attributes.push(data))
+    .then((data)=>{return makePoke(data)})//making an object from each request
+    //.then((data)=>attributes.push(data))
     )
 
-    Promise.all(requests).then((attributes)=>console.log(attributes));
+    Promise.all(requests).then((attributes)=>{return pokemonCards(attributes)});
     
 }
 
-function pokemonCards(poke) {
-    getAttributes(pokemons);
-
+function pokemonCards(attributes) {
+attributes.forEach((attribute)=>{
   const pokemonCard = document.createElement("div");
   pokemonCard.classList.add("card");
   pokemonContainer.appendChild(pokemonCard);
   pokemonCard.innerHTML = `
-    <p>Name: ${poke.name}</p>
-    <p>ID: ${poke.id}</p>
-    `;
+    <p>Name: ${limit}</p>
+    <p>ID: ${offset}</p>
+    `;});
 }
 
 
@@ -143,6 +142,7 @@ genRadios.forEach((radio) => {
     pokemonNumber.textContent = `There are ${limit} pokemons in generation ${genNumber}`;
     getPokemons(limit, offset);
     setTimeout(()=>{getAttributes()},2000);//put here a function that populates boxes
+    console.log(attributes.length);
     
 
 
