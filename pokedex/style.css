@@ -1,7 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
 }
 
 body {
@@ -25,6 +29,7 @@ main {
 
 h1 {
   font-size: 3rem;
+  font-family: Kanit;
   color: orange;
   text-shadow: 2px 2px yellow;
 }
@@ -38,9 +43,12 @@ h1 {
   height: auto;
 }
 
+h3 {
+  text-align: center;
+  margin: 0.5rem, 1rem;
+}
 .gen {
   /* class for labels */
-
   background-color: rgb(101, 101, 200);
   height: 2rem;
   min-width: 5rem;
@@ -88,12 +96,17 @@ h1 {
 
 .card img {
   height: 7rem;
-  width:auto;
+  width: auto;
+  margin-bottom: 0;
 }
 
 .card p {
-  font-size: 1rem;
-  text-align: center;
+  font-size: auto;
+  line-height: 16px;
+  text-align: left;
+  font-family: Kanit;
+  margin: 0;
+  padding: 0;
 }
 #pokemon-number {
   flex: 1;
@@ -101,7 +114,7 @@ h1 {
   padding-top: 40px;
 }
 
-#search-term {
+#search-term {margin
   flex: 1;
   width: 300px;
   border-radius: 8px;
@@ -126,9 +139,10 @@ footer {
 #nextPage,
 #previousPage {
   height: 30px;
-  width: 200px;
+  width: 160px;
   padding: 0.5rem;
   border-radius: 7px;
+  margin: 0.5rem;
 }
 
 @media screen and (max-width: 800px) {

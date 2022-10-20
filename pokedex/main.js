@@ -13,9 +13,9 @@ const baseURL = "https://pokeapi.co/api/v2/pokemon";
 let genNumber = 0;
 let pokemons = [];
 let attributes = [];
-let limit="60";
+let limit = "60";
 let offset = "0";
-let testPokemons = [1,2,3];
+let testPokemons = [1, 2, 3];
 
 /*  //////////////// CLASS CONSTRUCTOR  ////////////////7   */
 
@@ -23,7 +23,7 @@ class Pokemon {
   constructor(id, pokeName, types, img) {
     this.id = id;
     this.name = pokeName;
-    this.types = types.map((type)=>type.name);
+    this.types = types;
     this.img = img;
   }
 }
@@ -59,62 +59,73 @@ function getGen(number) {
   }
 }
 
-function makePoke(data){
-    //try mapping types here
-  /*   function transform(data){
-        (data.types).map(()=>)} */
-    let newPoke = new Pokemon(data.id, data.name, data.types, data.sprites.other['official-artwork'].front_default);
-    console.log(newPoke);
-    attributes.push(newPoke);  //here the object is also being pushed!
-    return newPoke;
-
+function makePoke(data) {
+  let types = data.types.map((type) => type.type.name).join(", ");
+  let newPoke = new Pokemon(
+    data.id,
+    data.name,
+    types,
+    data.sprites.other["official-artwork"].front_default
+  );
+  console.log(newPoke);
+  attributes.push(newPoke); //here the object is also being pushed!
+  return newPoke;
 }
 
 function getPokemons(limit, offset) {
-    pokemonContainer.innerHTML = "";
-    
-    let fetchURL =
+  pokemonContainer.innerHTML = "";
+
+  let fetchURL =
     baseURL + "?offset=" + offset.toString() + "&limit=" + limit.toString();
   fetch(fetchURL)
     .then((response) => {
       return response.json();
     })
-    .then((data) => {return (data.results).map((pokemon)=>{pokemons.push(pokemon.name)});      
-}).then((result)=>{console.log(result.length);
-   
-});
-
-    
+    .then((data) => {
+      return data.results.map((pokemon) => {
+        pokemons.push(pokemon.name);
+      });
+    })
+    .then((result) => {
+      console.log(result.length);
+    });
 }
 
-function getAttributes(){
-    attributes = [];
-    console.log(pokemons.length);
-    let requests = pokemons.map((pokemon) => fetch(baseURL + `/${pokemon}`)
-    .then((response)=>response.json())
-    .then((data)=>{return makePoke(data)})//making an object from each request
+function getAttributes() {
+  attributes = [];
+  console.log(pokemons.length);
+  let requests = pokemons.map(
+    (pokemon) =>
+      fetch(baseURL + `/${pokemon}`)
+        .then((response) => response.json())
+        .then((data) => {
+          return makePoke(data);
+        }) //making an object from each request
     //.then((data)=>attributes.push(data))
-    )
+  );
 
-    Promise.all(requests).then((attributes)=>{return pokemonCards(attributes)});
-    
+  Promise.all(requests).then((attributes) => {
+    return pokemonCards(attributes);
+  });
 }
 
 function pokemonCards(attributes) {
-attributes.forEach((attribute)=>{
-  const pokemonCard = document.createElement("div");
-  pokemonCard.classList.add("card");
-  pokemonContainer.appendChild(pokemonCard);
-  pokemonCard.innerHTML = `
+  attributes.forEach((attribute) => {
+    const pokemonCard = document.createElement("div");
+    pokemonCard.classList.add("card");
+    pokemonContainer.appendChild(pokemonCard);
+    pokemonCard.innerHTML = `
     
-  <p>Name: ${attribute.name}</p>
+  <h3>${
+    attribute.name.charAt(0).toUpperCase() + attribute.name.substring(1)
+  }</h3>
   <img src="${attribute.img}">
     <p>Id: ${attribute.id}</p>
     <p>Types: ${attribute.types}</p>
 
-    `;});
+    `;
+  });
 }
-
 
 function searchPokemon(term) {
   pokemons = getPokemons(905, 0);
@@ -129,9 +140,10 @@ function searchPokemon(term) {
 /*  /////////////////// RUNTIME   //////////////////////   */
 window.onload = getPokemons(limit, offset);
 
-setTimeout(()=>{getAttributes(getPokemons)},2000);//put here a function that populates boxes
+setTimeout(() => {
+  getAttributes(getPokemons);
+}, 2500); //put here a function that populates boxes
 
-  
 searchBtn.addEventListener("click", function () {
   if (searchTerm.value) {
     console.log(value);
@@ -141,20 +153,16 @@ searchBtn.addEventListener("click", function () {
 genRadios.forEach((radio) => {
   radio.addEventListener("change", () => {
     console.log("clicked");
-    if ((pokemons.length) != 0){pokemons= []};
+    if (pokemons.length != 0) {
+      pokemons = [];
+    }
     genNumber = radio.value;
     [limit, offset] = getGen(genNumber);
     pokemonNumber.textContent = `There are ${limit} pokemons in generation ${genNumber}`;
     getPokemons(limit, offset);
-    setTimeout(()=>{getAttributes()},2000);//put here a function that populates boxes
+    setTimeout(() => {
+      getAttributes();
+    }, 2000); //put here a function that populates boxes
     console.log(attributes.length);
-    
-
-
-
-
-})
-}
-)
-
-
+  });
+});
