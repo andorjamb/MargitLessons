@@ -95,15 +95,6 @@ h3 {
   border: 2px solid rgb(93, 1, 179);
 }
 
-#search-btn {
-  font-family: "Material Symbols Outlined";
-  font-size: 1.5rem;
-  border-radius: 4px;
-  margin: 1.5rem 1rem 0 0;
-  border: 2px solid rgb(93, 1, 179);
-  color: darkgray;
-}
-
 .typeIcon {
   height: 2rem;
   width: auto;

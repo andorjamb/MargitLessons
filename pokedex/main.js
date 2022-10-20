@@ -156,14 +156,6 @@ form.addEventListener("submit", function (e) {
   searchPokemon(searchTerm.value);
 });
 
-searchBtn.addEventListener("submit", function (e) {
-  e.preventDefault();
-  pokemonNumber.textContent = "";
-  console.log(searchTerm, "button");
-  console.log(searchTerm.value, "button");
-  searchPokemon(searchTerm.value);
-});
-
 genRadios.forEach((radio) => {
   radio.addEventListener("change", () => {
     console.log("clicked");
