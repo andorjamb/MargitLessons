@@ -6,9 +6,9 @@ const searchBtn = document.querySelector("#search-btn");
 const form = document.querySelector("form");
 const searchTerm = document.querySelector("#search-term");
 const genRadios = document.querySelectorAll(".gen-radio");
-
-//const nextPage = document.querySelector('#nextPage);
-//const previousPage = document.querySelector('#previousPage);
+const page = document.querySelector("#page");
+const nextPage = document.querySelector("#nextPage");
+const previousPage = document.querySelector("#previousPage");
 
 /* ////////////////  GLOBAL VARIABLES    ////////////    */
 const baseURL = "https://pokeapi.co/api/v2/pokemon";
@@ -17,6 +17,7 @@ let pokemons = [];
 let attributes = [];
 let limit = "60";
 let offset = "0";
+let pageNo = 1;
 
 /*  //////////////// CLASS CONSTRUCTOR  ////////////////7   */
 
@@ -131,13 +132,50 @@ function searchPokemon(term) {
 
 /*  /////////////////// RUNTIME   //////////////////////   */
 window.onload = getPokemons(limit, offset);
-
+page.innerHTML = `${pageNo}`;
 setTimeout(() => {
   getAttributes(getPokemons);
 }, 1000);
 
+nextPage.addEventListener("click", function () {
+  pageNo = (Number(pageNo) + 1).toString();
+  if (pageNo >= 15) {
+    nextPage.style.pointerEvents = "none";
+    return 0;
+  } else {
+    pokemonNumber.textContent = "";
+    offset = ((Number(pageNo) - 1) * 60).toString();
+    console.log(offset);
+    limit = "60";
+
+    console.log(pageNo);
+    setTimeout(() => {
+      getAttributes(getPokemons(limit, offset));
+    }, 500);
+  }
+});
+
+previousPage.addEventListener("click", function () {
+  pageNo = (Number(pageNo) - 1).toString();
+  if (pageNo <= 1) {
+    pageNo = 1;
+    previousPage.style.pointerEvents = "none";
+    return 0;
+  } else {
+    pokemonNumber.textContent = "";
+    offset = ((Number(pageNo) - 1) * 60).toString();
+    console.log(offset);
+    limit = "60";
+    pageNo = (Number(pageNo) - 1).toString();
+    setTimeout(() => {
+      getAttributes(getPokemons(limit, offset));
+    }, 500);
+  }
+});
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+  pokemonNumber.textContent = "";
   console.log(searchTerm);
   console.log(searchTerm.value);
   searchPokemon(searchTerm.value);
@@ -145,6 +183,7 @@ form.addEventListener("submit", function (e) {
 
 searchBtn.addEventListener("submit", function (e) {
   e.preventDefault();
+  pokemonNumber.textContent = "";
   console.log(searchTerm, "button");
   console.log(searchTerm.value, "button");
   searchPokemon(searchTerm.value);

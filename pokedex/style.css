@@ -53,7 +53,7 @@ h3 {
   text-align: center;
   min-width: 5rem;
   border-radius: 7px;
-  margin: 1rem;
+  margin: 0.6rem;
   padding: 0.5rem;
   color: white;
   font-weight: 800;
@@ -158,6 +158,20 @@ footer {
   padding: 0.5rem;
   border-radius: 7px;
   margin: 0.5rem;
+}
+
+#page {
+  height: 30px;
+  width: 35px;
+  padding: 0.5rem;
+  border-radius: 7px;
+  margin: 0.5rem;
+}
+
+#nextPage:active,
+#previousPage:active {
+  background-color: rgb(172, 126, 242);
+  box-shadow: 1px 1px 3px black;
 }
 
 @media screen and (max-width: 700px) {
