@@ -2,7 +2,6 @@
 
 const pokemonNumber = document.querySelector("#pokemon-number");
 const pokemonContainer = document.querySelector(".pokemon-container");
-const searchTerm = document.querySelector("#search-term");
 const searchBtn = document.querySelector("#search-btn");
 const genRadios = document.querySelectorAll(".gen-radio");
 //const nextPage = document.querySelector('#nextPage);
@@ -67,15 +66,17 @@ function makePoke(data) {
     types,
     data.sprites.other["official-artwork"].front_default
   );
-  console.log(newPoke);
-  attributes.push(newPoke); //here the object is also being pushed!
+  attributes.push(newPoke);
+  // localStorage.setItem(newPoke);
   return newPoke;
 }
 
 function getPokemons(limit, offset) {
   pokemonContainer.innerHTML = "";
+  /*  let fetchLocal = Object.keys(localStorage);
+        fetchLocal.forEach((item) => pokemonCards(item)); */
 
-  let fetchURL =
+  let fetchURL = //just fetches an array of names
     baseURL + "?offset=" + offset.toString() + "&limit=" + limit.toString();
   fetch(fetchURL)
     .then((response) => {
@@ -92,20 +93,18 @@ function getPokemons(limit, offset) {
 }
 
 function getAttributes() {
+  //
   attributes = [];
-  console.log(pokemons.length);
-  let requests = pokemons.map(
-    (pokemon) =>
-      fetch(baseURL + `/${pokemon}`)
-        .then((response) => response.json())
-        .then((data) => {
-          return makePoke(data);
-        }) //making an object from each request
-    //.then((data)=>attributes.push(data))
+  let requests = pokemons.map((pokemon) =>
+    fetch(baseURL + `/${pokemon}`)
+      .then((response) => response.json())
+      .then((data) => {
+        return makePoke(data); //attributes are pushed to attributes array in makePoke()
+      })
   );
 
   Promise.all(requests).then((attributes) => {
-    return pokemonCards(attributes);
+    return pokemonCards(attributes); //making an object from each request
   });
 }
 
@@ -122,19 +121,20 @@ function pokemonCards(attributes) {
   <img src="${attribute.img}">
     <p>Id: ${attribute.id}</p>
     <p>Types: ${attribute.types}</p>
-
     `;
   });
 }
 
 function searchPokemon(term) {
-  pokemons = getPokemons(905, 0);
-  if (pokemons.includes(term)) {
-    console.log("found");
-    //insert pokemon card on page
+  //check localStorage first, then:
+  if (Object.keys(localStorage).includes(term)) {
+    pokemonCards(term);
   } else {
-    console.log("not found");
+    pokemons = [term];
+    getAttributes();
   }
+  /*  let fetchLocal = 
+        fetchLocal.forEach((item) => pokemonCards(item)); */
 }
 
 /*  /////////////////// RUNTIME   //////////////////////   */
@@ -142,11 +142,13 @@ window.onload = getPokemons(limit, offset);
 
 setTimeout(() => {
   getAttributes(getPokemons);
-}, 2500); //put here a function that populates boxes
+}, 1000); //put here a function that populates boxes
 
 searchBtn.addEventListener("click", function () {
+  const searchTerm = document.querySelector("#search-term");
   if (searchTerm.value) {
     console.log(value);
+    searchPokemon(searchTerm.value);
   }
 });
 
@@ -162,7 +164,6 @@ genRadios.forEach((radio) => {
     getPokemons(limit, offset);
     setTimeout(() => {
       getAttributes();
-    }, 2000); //put here a function that populates boxes
-    console.log(attributes.length);
+    }, 2000); // Note for improvement: see if async/await avoids the need for these timeouts
   });
 });

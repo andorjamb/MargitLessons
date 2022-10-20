@@ -15,7 +15,6 @@ body {
 
 header {
   min-height: 150px;
-  border: 2px solid red;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +39,6 @@ h1 {
   max-width: 900px;
   grid-template-rows: 1;
   grid-template-columns: repeat(8, 1fr);
-  border: 2px solid blue;
   height: auto;
 }
 
@@ -52,13 +50,18 @@ h3 {
   /* class for labels */
   background-color: rgb(101, 101, 200);
   height: 2rem;
+  text-align: center;
   min-width: 5rem;
-  border-radius: 4px;
+  border-radius: 7px;
   margin: 1rem;
   padding: 0.5rem;
   color: white;
   font-weight: 800;
-  border: 1px solid (52, 13, 89);
+}
+
+.gen:hover {
+  background-color: rgb(172, 126, 242);
+  box-shadow: 1px 1px 3px black;
 }
 
 .selected {
@@ -70,8 +73,13 @@ h3 {
   visibility: hidden;
 }
 
+#pokemon-number {
+  flex: 1;
+  font-size: 1.5rem;
+  padding-top: 40px;
+}
+
 .search-container {
-  border: 3px solid yellow;
   margin: auto;
   text-align: center;
 }
@@ -92,6 +100,8 @@ h3 {
   font-size: 1.5rem;
   border-radius: 4px;
   margin: 1rem 1rem 0 0;
+  border: 2px solid rgb(93, 1, 179);
+  color: darkgray;
 }
 
 .typeIcon {
@@ -132,12 +142,6 @@ h3 {
   font-family: Kanit;
   margin: 0;
   padding: 0;
-}
-#pokemon-number {
-  flex: 1;
-  font-size: 1.5rem;
-  padding-top: 40px;
-  border: 2px solid purple;
 }
 
 footer {
