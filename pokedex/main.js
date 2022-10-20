@@ -4,6 +4,8 @@ const pokemonNumber = document.querySelector("#pokemon-number");
 const pokemonContainer = document.querySelector(".pokemon-container");
 const searchBtn = document.querySelector("#search-btn");
 const genRadios = document.querySelectorAll(".gen-radio");
+const form = document.querySelector("form");
+const searchTerm = document.querySelector("#search-term");
 //const nextPage = document.querySelector('#nextPage);
 //const previousPage = document.querySelector('#previousPage);
 
@@ -67,16 +69,15 @@ function makePoke(data) {
     data.sprites.other["official-artwork"].front_default
   );
   attributes.push(newPoke);
-  // localStorage.setItem(newPoke);
+  localStorage.setItem(newPoke.name, newPoke);
   return newPoke;
 }
 
 function getPokemons(limit, offset) {
   pokemonContainer.innerHTML = "";
-  /*  let fetchLocal = Object.keys(localStorage);
-        fetchLocal.forEach((item) => pokemonCards(item)); */
 
   let fetchURL = //just fetches an array of names
+    //note: it would be better to download the whole list at the beginning, then access it by index as needed
     baseURL + "?offset=" + offset.toString() + "&limit=" + limit.toString();
   fetch(fetchURL)
     .then((response) => {
@@ -86,20 +87,35 @@ function getPokemons(limit, offset) {
       return data.results.map((pokemon) => {
         pokemons.push(pokemon.name);
       });
-    })
-    .then((result) => {
-      console.log(result.length);
     });
+
+  /**
+ *  if (localStorage.Storage.length > 0) {
+    let fetchLocalList = Object.keys(localStorage);
+    console.log(fetchLocalList.length);
+    console.log(fetchLocalList);
+    fetchLocalList.forEach((item) => pokemonCards(item));
+  } else {
+  
+ *
+ */
 }
 
 function getAttributes() {
-  //
+  //try to fetch from local storage first
   attributes = [];
+  /*  if (localStorage.length > 0) {
+    let fetchLocal = Object.keys(localStorage);
+    console.log(fetchLocal.length);
+    console.log(fetchLocal);
+    fetchLocal.forEach((item) => pokemonCards(item));
+  } else { */
   let requests = pokemons.map((pokemon) =>
     fetch(baseURL + `/${pokemon}`)
       .then((response) => response.json())
       .then((data) => {
         return makePoke(data); //attributes are pushed to attributes array in makePoke()
+        // (and added to localStorage)git 
       })
   );
 
@@ -107,8 +123,10 @@ function getAttributes() {
     return pokemonCards(attributes); //making an object from each request
   });
 }
+//}
 
 function pokemonCards(attributes) {
+  // takes as parameter an array of objects
   attributes.forEach((attribute) => {
     const pokemonCard = document.createElement("div");
     pokemonCard.classList.add("card");
@@ -126,15 +144,13 @@ function pokemonCards(attributes) {
 }
 
 function searchPokemon(term) {
-  //check localStorage first, then:
-  if (Object.keys(localStorage).includes(term)) {
+  //if adding localstorage, check localStorage first, then:
+  /*  if (Object.keys(localStorage).includes(term)) {
     pokemonCards(term);
-  } else {
-    pokemons = [term];
-    getAttributes();
-  }
-  /*  let fetchLocal = 
-        fetchLocal.forEach((item) => pokemonCards(item)); */
+  } else { */
+  pokemons = [term];
+  getAttributes();
+  //}
 }
 
 /*  /////////////////// RUNTIME   //////////////////////   */
@@ -142,14 +158,18 @@ window.onload = getPokemons(limit, offset);
 
 setTimeout(() => {
   getAttributes(getPokemons);
-}, 1000); //put here a function that populates boxes
+}, 1000);
 
-searchBtn.addEventListener("click", function () {
-  const searchTerm = document.querySelector("#search-term");
-  if (searchTerm.value) {
-    console.log(value);
-    searchPokemon(searchTerm.value);
-  }
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  searchPokemon(searchTerm.value);
+});
+
+searchBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  console.log(searchTerm);
+  console.log(searchTerm.value);
+  searchPokemon(searchTerm.value);
 });
 
 genRadios.forEach((radio) => {
@@ -164,6 +184,6 @@ genRadios.forEach((radio) => {
     getPokemons(limit, offset);
     setTimeout(() => {
       getAttributes();
-    }, 2000); // Note for improvement: see if async/await avoids the need for these timeouts
+    }, 1000); // Note for improvement: see if async/await avoids the need for these timeouts
   });
 });
