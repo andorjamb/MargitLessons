@@ -6,9 +6,7 @@ const searchBtn = document.querySelector("#search-btn");
 const form = document.querySelector("form");
 const searchTerm = document.querySelector("#search-term");
 const genRadios = document.querySelectorAll(".gen-radio");
-const page = document.querySelector("#page");
-const nextPage = document.querySelector("#nextPage");
-const previousPage = document.querySelector("#previousPage");
+const nextSixty = document.querySelector("#nextSixty");
 
 /* ////////////////  GLOBAL VARIABLES    ////////////    */
 const baseURL = "https://pokeapi.co/api/v2/pokemon";
@@ -17,7 +15,7 @@ let pokemons = [];
 let attributes = [];
 let limit = "60";
 let offset = "0";
-let pageNo = 1;
+let pageNo = 0;
 
 /*  //////////////// CLASS CONSTRUCTOR  ////////////////7   */
 
@@ -74,7 +72,7 @@ function makePoke(data) {
 }
 
 function getPokemons(limit, offset) {
-  pokemonContainer.innerHTML = "";
+  pokemonContainer.innerHTML = ""; //note: to improve: inefficient to always empty these hard-gotten gains
   let fetchURL = //just fetches an array of names
     baseURL + "?offset=" + offset.toString() + "&limit=" + limit.toString();
   fetch(fetchURL)
@@ -92,7 +90,6 @@ function getPokemons(limit, offset) {
 }
 
 function getAttributes() {
-  //
   attributes = [];
   let requests = pokemons.map((pokemon) =>
     fetch(baseURL + `/${pokemon}`)
@@ -132,41 +129,19 @@ function searchPokemon(term) {
 
 /*  /////////////////// RUNTIME   //////////////////////   */
 window.onload = getPokemons(limit, offset);
-page.innerHTML = `${pageNo}`;
 setTimeout(() => {
   getAttributes(getPokemons);
 }, 1000);
 
-nextPage.addEventListener("click", function () {
-  pageNo = (Number(pageNo) + 1).toString();
+nextSixty.addEventListener("click", function () {
+  pageNo = Number(pageNo) + 1;
   if (pageNo >= 15) {
-    nextPage.style.pointerEvents = "none";
+    nextSixty.style.pointerEvents = "none";
     return 0;
   } else {
-    pokemonNumber.textContent = "";
-    offset = ((Number(pageNo) - 1) * 60).toString();
-    console.log(offset);
+    offset = (Number(pageNo) * 60).toString();
+    pokemonNumber.textContent = `Showing up to pokemon ${Number(offset)}`;
     limit = "60";
-
-    console.log(pageNo);
-    setTimeout(() => {
-      getAttributes(getPokemons(limit, offset));
-    }, 500);
-  }
-});
-
-previousPage.addEventListener("click", function () {
-  pageNo = (Number(pageNo) - 1).toString();
-  if (pageNo <= 1) {
-    pageNo = 1;
-    previousPage.style.pointerEvents = "none";
-    return 0;
-  } else {
-    pokemonNumber.textContent = "";
-    offset = ((Number(pageNo) - 1) * 60).toString();
-    console.log(offset);
-    limit = "60";
-    pageNo = (Number(pageNo) - 1).toString();
     setTimeout(() => {
       getAttributes(getPokemons(limit, offset));
     }, 500);
