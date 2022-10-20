@@ -3,7 +3,10 @@
 const pokemonNumber = document.querySelector("#pokemon-number");
 const pokemonContainer = document.querySelector(".pokemon-container");
 const searchBtn = document.querySelector("#search-btn");
+const form = document.querySelector("form");
+const searchTerm = document.querySelector("#search-term");
 const genRadios = document.querySelectorAll(".gen-radio");
+
 //const nextPage = document.querySelector('#nextPage);
 //const previousPage = document.querySelector('#previousPage);
 
@@ -14,7 +17,6 @@ let pokemons = [];
 let attributes = [];
 let limit = "60";
 let offset = "0";
-let testPokemons = [1, 2, 3];
 
 /*  //////////////// CLASS CONSTRUCTOR  ////////////////7   */
 
@@ -67,15 +69,11 @@ function makePoke(data) {
     data.sprites.other["official-artwork"].front_default
   );
   attributes.push(newPoke);
-  // localStorage.setItem(newPoke);
   return newPoke;
 }
 
 function getPokemons(limit, offset) {
   pokemonContainer.innerHTML = "";
-  /*  let fetchLocal = Object.keys(localStorage);
-        fetchLocal.forEach((item) => pokemonCards(item)); */
-
   let fetchURL = //just fetches an array of names
     baseURL + "?offset=" + offset.toString() + "&limit=" + limit.toString();
   fetch(fetchURL)
@@ -126,15 +124,9 @@ function pokemonCards(attributes) {
 }
 
 function searchPokemon(term) {
-  //check localStorage first, then:
-  if (Object.keys(localStorage).includes(term)) {
-    pokemonCards(term);
-  } else {
-    pokemons = [term];
-    getAttributes();
-  }
-  /*  let fetchLocal = 
-        fetchLocal.forEach((item) => pokemonCards(item)); */
+  pokemonContainer.innerHTML = "";
+  pokemons = [term];
+  getAttributes();
 }
 
 /*  /////////////////// RUNTIME   //////////////////////   */
@@ -142,14 +134,20 @@ window.onload = getPokemons(limit, offset);
 
 setTimeout(() => {
   getAttributes(getPokemons);
-}, 1000); //put here a function that populates boxes
+}, 1000);
 
-searchBtn.addEventListener("click", function () {
-  const searchTerm = document.querySelector("#search-term");
-  if (searchTerm.value) {
-    console.log(value);
-    searchPokemon(searchTerm.value);
-  }
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  console.log(searchTerm);
+  console.log(searchTerm.value);
+  searchPokemon(searchTerm.value);
+});
+
+searchBtn.addEventListener("submit", function (e) {
+  e.preventDefault();
+  console.log(searchTerm, "button");
+  console.log(searchTerm.value, "button");
+  searchPokemon(searchTerm.value);
 });
 
 genRadios.forEach((radio) => {
