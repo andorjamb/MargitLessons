@@ -1,5 +1,5 @@
 body {
-  background-image: url("./assets/images/nao-takabayashi-gT3b5EwYAnQ-unsplash.jpg");
+  background-image: url("./assets/images/nao-takabayashi-gT3b5EwYAnQ-unsplash.webp");
   background-size: cover;
   background-repeat: no-repeat;
   font-family: "Roboto Mono";
@@ -64,7 +64,7 @@ main {
 
 .circle {
   position: relative;
-  background-image: url("./assets/images/planet1.png");
+  background-image: url("./assets/images/planet1.webp");
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;

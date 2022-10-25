@@ -86,7 +86,7 @@ function finalScore(score) {
 
 function getImage() {
   let imageURLroot = 'url("./assets/images/planet1_alien';
-  imageURL = imageURLroot + Math.ceil(Math.random() * 4).toString() + '.png")';
+  imageURL = imageURLroot + Math.ceil(Math.random() * 4).toString() + '.webp")';
   return imageURL;
 }
 
