@@ -46,11 +46,12 @@ h1 {
 }
 
 /* class for small screens */ 
-.mobile {
+.button-container.mobile {
   display: flex;
   flex-direction: column;
   max-width: 700px;
-  background-color: white;
+  background-color: rgb(146, 226, 238);
+  border-radius: 20px;
  
 }
 
@@ -61,6 +62,8 @@ h1 {
   float: left;
   background-color: transparent;
   border: none;
+  height: 40px;
+  width: 40px;
   
 }
 
@@ -202,12 +205,19 @@ footer {
     display: none;
   }
 
-  .menu-icon {
+  #menu-icon {
     display: block;
+    border: none;
+    background-color: transparent;
   
   }
 
-  
+  .hamburger {
+    display: block;
+    
+  }
+
+
 
   #display-number {
     text-align: center;

@@ -7,9 +7,9 @@ const form = document.querySelector("form");
 const searchTerm = document.querySelector("#search-term");
 const genRadios = document.querySelectorAll(".gen-radio");
 const nextSixty = document.querySelector("#nextSixty");
-const menuIcon = document.querySelector(".menu-icon");
+const menuIcon = document.querySelector("#menu-icon");
 const buttonContainer = document.querySelector(".button-container");
-let gen = document.querySelectorAll('.gen');
+const gen = document.querySelectorAll('.gen');
 
 /* ////////////////  GLOBAL VARIABLES    ////////////    */
 const baseURL = "https://pokeapi.co/api/v2/pokemon";
@@ -127,7 +127,7 @@ function pokemonCards(attributes) {
 function searchPokemon(term) {
   pokemonContainer.innerHTML = "";
   pokemons = [term];
-  getAttributes();
+  getAttributes(pokemons);
 }
 
 /*  /////////////////// RUNTIME   //////////////////////   */
@@ -152,7 +152,7 @@ nextSixty.addEventListener("click", function () {
   }
 });
 
-menuIcon.addEventListener('click', ()=>{buttonContainer.classList.add(".mobile"); gen.classList.add(".mobile")});
+menuIcon.addEventListener('click', ()=>{buttonContainer.classList.add("mobile")});
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -171,7 +171,7 @@ genRadios.forEach((radio) => {
     pokemonNumber.textContent = `There are ${limit} pokemons in generation ${genNumber}`;
     getPokemons(limit, offset);
     setTimeout(() => {
-      getAttributes();
+      getAttributes(pokemons);
     }, 2000); // Note for improvement: see if async/await avoids the need for these timeouts
   });
 });
