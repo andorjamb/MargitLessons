@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
+
 
 * {
   margin: 0;
@@ -34,12 +36,42 @@ h1 {
 }
 
 .button-container {
+  
   padding: 1rem;
   display: grid;
   max-width: 900px;
   grid-template-rows: 1;
   grid-template-columns: repeat(8, 1fr);
   height: auto;
+}
+
+/* class for small screens */ 
+.mobile {
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  background-color: white;
+ 
+}
+
+
+/*  Shows only on small screens  */
+.menu-icon {/*button*/
+  display: none;
+  float: left;
+  background-color: transparent;
+  border: none;
+  
+}
+
+.hamburger { /*span in button*/
+font-family: "Material Symbols Outlined";
+display: none;
+  font-size: 4rem;
+  color: rgb(107, 107, 168);
+  text-shadow: 2px 2px  orange;
+ 
+
 }
 
 h3 {
@@ -155,6 +187,8 @@ footer {
   box-shadow: 1px 1px 3px black;
 }
 
+/* ************    SMALL SCREENS            ************************/
+
 @media screen and (max-width: 700px) {
   body {
     max-width: 700px;
@@ -164,16 +198,21 @@ footer {
     flex-direction: column;
     align-items: center;
   }
+  .button-container {
+    display: none;
+  }
 
   .menu-icon {
+    display: block;
+  
   }
+
+  
 
   #display-number {
     text-align: center;
   }
-  .gen {
-    display: none;
-  }
+
 
   .pokemon-container {
     display: flex;
@@ -182,6 +221,7 @@ footer {
     justify-content: center;
     align-items: center;
   }
+
 
   .card {
     /*flex: 50%;*/
