@@ -7,6 +7,9 @@ const form = document.querySelector("form");
 const searchTerm = document.querySelector("#search-term");
 const genRadios = document.querySelectorAll(".gen-radio");
 const nextSixty = document.querySelector("#nextSixty");
+const menuIcon = document.querySelector("#menu-icon");
+const buttonContainer = document.querySelector(".button-container");
+const gen = document.querySelectorAll('.gen');
 
 /* ////////////////  GLOBAL VARIABLES    ////////////    */
 const baseURL = "https://pokeapi.co/api/v2/pokemon";
@@ -15,7 +18,7 @@ let pokemons = [];
 let attributes = [];
 let limit = "60";
 let offset = "0";
-let pageNo = 0;
+let pageNo = 1;
 
 /*  //////////////// CLASS CONSTRUCTOR  ////////////////7   */
 
@@ -124,14 +127,14 @@ function pokemonCards(attributes) {
 function searchPokemon(term) {
   pokemonContainer.innerHTML = "";
   pokemons = [term];
-  getAttributes();
+  getAttributes(pokemons);
 }
 
 /*  /////////////////// RUNTIME   //////////////////////   */
 window.onload = getPokemons(limit, offset);
 setTimeout(() => {
   getAttributes(getPokemons);
-}, 1000);
+}, 500);
 
 nextSixty.addEventListener("click", function () {
   pageNo = Number(pageNo) + 1;
@@ -139,6 +142,7 @@ nextSixty.addEventListener("click", function () {
     nextSixty.style.pointerEvents = "none";
     return 0;
   } else {
+    /** This still needs attention  */
     offset = (Number(pageNo) * 60).toString();
     pokemonNumber.textContent = `Showing up to pokemon ${Number(offset)}`;
     limit = "60";
@@ -148,12 +152,12 @@ nextSixty.addEventListener("click", function () {
   }
 });
 
+menuIcon.addEventListener('click', ()=>{buttonContainer.classList.add("mobile")});
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   pokemonNumber.textContent = "";
-  console.log(searchTerm);
-  console.log(searchTerm.value);
-  searchPokemon(searchTerm.value);
+  searchPokemon(searchTerm.value.toLowerCase());
 });
 
 genRadios.forEach((radio) => {
@@ -167,7 +171,7 @@ genRadios.forEach((radio) => {
     pokemonNumber.textContent = `There are ${limit} pokemons in generation ${genNumber}`;
     getPokemons(limit, offset);
     setTimeout(() => {
-      getAttributes();
+      getAttributes(pokemons);
     }, 2000); // Note for improvement: see if async/await avoids the need for these timeouts
   });
 });
