@@ -75,8 +75,8 @@ function makePoke(data) {
 }
 
 function getPokemons(limit, offset) {
-  pokemonContainer.innerHTML = ""; //note: to improve: inefficient to always empty these hard-gotten gains
-  let fetchURL = //just fetches an array of names
+  pokemonContainer.innerHTML = "";
+  let fetchURL =
     baseURL + "?offset=" + offset.toString() + "&limit=" + limit.toString();
   fetch(fetchURL)
     .then((response) => {
@@ -98,12 +98,12 @@ function getAttributes() {
     fetch(baseURL + `/${pokemon}`)
       .then((response) => response.json())
       .then((data) => {
-        return makePoke(data); //attributes are pushed to attributes array in makePoke()
+        return makePoke(data);
       })
   );
 
   Promise.all(requests).then((attributes) => {
-    return pokemonCards(attributes); //making an object from each request
+    return pokemonCards(attributes);
   });
 }
 
@@ -114,9 +114,8 @@ function pokemonCards(attributes) {
     pokemonContainer.appendChild(pokemonCard);
     pokemonCard.innerHTML = `
     
-  <h3>${
-    attribute.name.charAt(0).toUpperCase() + attribute.name.substring(1)
-  }</h3>
+  <h3>${attribute.name.charAt(0).toUpperCase() + attribute.name.substring(1)
+      }</h3>
   <img src="${attribute.img}">
     <p>Id: ${attribute.id}</p>
     <p>Types: ${attribute.types}</p>
@@ -142,7 +141,7 @@ nextSixty.addEventListener("click", function () {
     nextSixty.style.pointerEvents = "none";
     return 0;
   } else {
-    /** This still needs attention  */
+
     offset = (Number(pageNo) * 60).toString();
     pokemonNumber.textContent = `Showing up to pokemon ${Number(offset)}`;
     limit = "60";
@@ -152,7 +151,7 @@ nextSixty.addEventListener("click", function () {
   }
 });
 
-menuIcon.addEventListener('click', ()=>{buttonContainer.classList.add("mobile")});
+menuIcon.addEventListener('click', () => { buttonContainer.classList.add("mobile") });
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -172,6 +171,6 @@ genRadios.forEach((radio) => {
     getPokemons(limit, offset);
     setTimeout(() => {
       getAttributes(pokemons);
-    }, 2000); // Note for improvement: see if async/await avoids the need for these timeouts
+    }, 500);
   });
 });
